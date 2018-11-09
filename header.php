@@ -14,12 +14,15 @@
 ?><!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
 <?php do_action('cba_head_before') ?>
-<meta charset="UTF-8">
+<meta charset="<?php bloginfo( 'charset' ); ?>">
 <?php if(! wp_is_mobile()): ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <?php endif; ?>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 <?php wp_head(); ?>
 <script type="text/javascript">
 var urlHome="<?php echo site_url() ?>";
