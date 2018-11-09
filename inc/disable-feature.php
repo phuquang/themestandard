@@ -8,15 +8,19 @@
  * @version 1.0
  */
 
-$disable_crop_image   = false;
-$disable_wp_generator = false;
-$disable_emoji        = false;
-$disable_json_api     = false;
-$disable_wlwmanifest  = false;
-$disable_rsd          = false;
-$disable_shortlink    = false;
-$disable_embed_script = false;
-$disable_svg_icons    = false;
+$disable_crop_image         = false;
+$disable_wp_generator       = false;
+$disable_emoji              = false;
+$disable_json_api           = false;
+$disable_wlwmanifest        = false;
+$disable_rsd                = false;
+$disable_shortlink          = false;
+$disable_embed_script       = false;
+$disable_svg_icons          = false;
+$disable_update_core        = false;
+$disable_update_plugins     = false;
+$disable_update_themes      = false;
+$disable_check_version_core = false;
 
 // disable crop image feature
 if ($disable_crop_image === true){
@@ -83,4 +87,40 @@ if ($disable_embed_script === true){
 // remove include svg icons
 if ($disable_svg_icons === true){
     remove_action( 'wp_footer', 'twentyseventeen_include_svg_icons', 9999 );
+}
+
+// Remove update notifications Without error notices
+function remove_core_updates () {
+    global $wp_version;
+    return(object) array(
+        'last_checked'    => time(),
+        'version_checked' => $wp_version,
+        'updates'         => array()
+    );
+}
+if ($disable_update_core === true){
+    // Remove update notifications for core.
+    add_filter('pre_site_transient_update_core','__return_null');
+    // Remove update notifications Without error notices for core
+    add_filter('pre_site_transient_update_core','remove_core_updates');
+}
+
+if ($disable_update_plugins === true){
+    // Remove update notifications for plugins.
+    add_filter('pre_site_transient_update_plugins','__return_null');
+    // Remove update notifications Without error notices for plugins
+    add_filter('pre_site_transient_update_plugins','remove_core_updates');
+}
+
+if ($disable_update_themes === true){
+    // Remove update notifications for themes.
+    add_filter('pre_site_transient_update_themes','__return_null');
+    // Remove update notifications Without error notices for themes
+    add_filter('pre_site_transient_update_themes','remove_core_updates');
+}
+
+if ($disable_check_version_core === true){
+    // APIによるバージョンチェックの通信をさせない
+    remove_action('wp_version_check', 'wp_version_check');
+    remove_action('admin_init', '_maybe_update_core');
 }
