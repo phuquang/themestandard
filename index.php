@@ -15,14 +15,9 @@
  * @version 1.0
  */
 
-get_header();
-
-    if ( is_home() && ! is_front_page() ) :
-        single_post_title();
-    else :
-        _e( 'Posts', 'twentyseventeen' );
-    endif;
-
+get_header(); ?>
+    <main class="container">
+    <?php 
     if ( have_posts() ) :
 
         /* Start the Loop */
@@ -42,10 +37,12 @@ get_header();
 
     else :
 
-        get_template_part( 'template-parts/post/content', 'none' );
+        get_template_part( 'template-parts/content', 'none' );
 
     endif;
-
+    ?>
+    </main>
+    <?php 
     get_sidebar();
 
 get_footer();
