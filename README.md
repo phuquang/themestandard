@@ -9,48 +9,95 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 # Giải thích cấu trúc thư mục
 ```bash
 .
-├──📁assets/                  # Chứa tệp frontend
-│  ├──📁admin-css/            # Style dành cho admin
-│  ├──📁admin-fonts/          # Font dành cho admin
-│  ├──📁admin-images/         # Hình dành cho admin
-│  ├──📁admin-js/             # Script dành cho admin
-│  ├──📁css/                  # Style dành cho user
-│  ├──📁fonts/                # Font dành cho user
-│  ├──📁images/               # Hình dành cho user
-│  └──📁js/                   # Script dành cho user
-├──📁inc/                     # Chứa tệp chức năng
-│  ├──📁libraries/            # Chứa thư viện code khác
-│  ├──📝disable-feature.php   # Hàm loại bỏ các tính năng mặc định
-│  ├──📝helper.php            # Những hàm hỗ trợ khác
-│  ├──📝redirects.php         # Những hàm chuyển hướng
-│  └──📝init.php              # Require các file khác trong inc
-├──📁languages/               # Ngôn ngữ
-│  ├──📝theme.pot             # File chứa chuỗi dịch (Portable Object Template)
-│  ├──📝theme.po              # File chứa bản dịch thực sự (Portable Object)
-│  └──📝theme.mo              # File đã được biên dịch (Machine Object)
-├──📁template-pages/          # Chứa các trang với định danh là slug
-│  └──📝page-slug.php         # Các trang theo định danh slug
-├──📁template-parts/          # Chứa các phần của code
-├──📝404.php                  # Trang không tìm thấy
-├──📝archive-post-type.php    # Danh sách của loại bài viết
-├──📝archive.php              # Danh sách chung (Post)
-├──📝comments.php             # Bình luận
-├──📝footer.php               # Chân site
-├──📝functions.php            # Chức năng chính
-├──📝header.php               # Đầu site
-├──📝index.php                # Trang chủ
-├──📝page.php                 # Trang
-├──📝README.md                # Hướng dẫn sử dụng
-├──📝screenshot.png           # Hình đại diện của theme
-├──📝search.php               # Trang tìm kiếm
-├──📝searchform.php           # Form tìm kiếm
-├──📝sidebar.php              # sidebar
-├──📝single-post-type.php     # Chi tiết của loại bài viết
-├──📝single.php               # Chi tiết chung (Post)
-└──📝style.css                # Style chính
+├──📁assets/                          # Chứa tệp frontend
+│  ├──📁admin-css/                    # Style dành cho admin
+│  ├──📁admin-fonts/                  # Font dành cho admin
+│  ├──📁admin-images/                 # Hình dành cho admin
+│  ├──📁admin-js/                     # Script dành cho admin
+│  ├──📁css/                          # Style dành cho user
+│  ├──📁fonts/                        # Font dành cho user
+│  ├──📁images/                       # Hình dành cho user
+│  └──📁js/                           # Script dành cho user
+├──📁inc/                             # Chứa tệp chức năng
+│  ├──📁libraries/                    # Chứa thư viện code khác
+│  ├──📝disable-feature.php           # Hàm loại bỏ các tính năng mặc định
+│  ├──📝helper.php                    # Những hàm hỗ trợ khác
+│  ├──📝redirects.php                 # Những hàm chuyển hướng
+│  └──📝init.php                      # Require các file khác trong inc
+├──📁languages/                       # Ngôn ngữ
+│  ├──📝theme.pot                     # File chứa chuỗi dịch (Portable Object Template)
+│  ├──📝theme.po                      # File chứa bản dịch thực sự (Portable Object)
+│  └──📝theme.mo                      # File đã được biên dịch (Machine Object)
+├──📁form-controllers/                # Chứa các file sử lý của form
+│  ├──📁libraries/                    # Chứa thư viện chung cho form hoặc để trong /inc/libraries
+│  ├──📝page-contact-controller.php   # Xử lý
+│  ├──📝page-contact-validator.php    # Kiểm tra đầu vào
+│  └──📝page-contact-sendmail.php     # Gửi mail
+├──📁template-emails/                 # Chứa các trang với định danh là slug
+│  ├──📝page-contact-user.tpl         # Mẫu dành email của user
+│  └──📝page-contact-admin.tpl        # Mẫu dành email của admin
+├──📁template-pages/                  # Chứa các trang với định danh là slug
+│  ├──📝page-slug.php                 # Các trang theo định danh slug
+│  ├──📝page-contact.php              # Trang form
+│  ├──📝page-contact-confirmation.php # Trang xác nhận
+│  ├──📝page-contact-error.php        # Trang in lỗi
+│  └──📝page-contact-complete.php     # Trang hoàn thành
+├──📁template-parts/                  # Chứa các phần của code
+├──📝404.php                          # Trang không tìm thấy
+├──📝archive-post-type.php            # Danh sách của loại bài viết
+├──📝archive.php                      # Danh sách chung (Post)
+├──📝comments.php                     # Bình luận
+├──📝footer.php                       # Chân site
+├──📝functions.php                    # Chức năng chính
+├──📝header.php                       # Đầu site
+├──📝index.php                        # Trang chủ
+├──📝page.php                         # Trang
+├──📝README.md                        # Hướng dẫn sử dụng
+├──📝screenshot.png                   # Hình đại diện của theme
+├──📝search.php                       # Trang tìm kiếm
+├──📝searchform.php                   # Form tìm kiếm
+├──📝sidebar.php                      # Sidebar
+├──📝single-post-type.php             # Chi tiết của loại bài viết
+├──📝single.php                       # Chi tiết chung (Post)
+└──📝style.css                        # Style chính
 ```
+
+# Yêu cầu
+Đối với PHP
+- Học cách viết code chuẩn tại đây https://www.php-fig.org/psr/
+- Luôn sử dụng 4 khoảng trống (4-spaces) khi thục dòng (indent)
+- Cuối file chừa 1 dòng trống (end line)
+Đối với Javascript
+- Học cách viết code chuẩn tại đây https://standardjs.com/
+Yêu cầu khác
+- Viết ngay hàng thẳng lối, sạch đẹp vừa giúp bản thân dễ tìm bug vừa giúp người khác dễ tiếp cận. Xin hãy vì mọi người xin cảm ơn.
+
+# Đối với Form cần viết riêng
+- Nên phân code ra thành file như mẫu bên dưới
+```bash
+.
+├──📁form-controllers/                # Chứa các file sử lý của form
+│  ├──📁libraries/                    # Chứa thư viện chung cho form hoặc để trong /inc/libraries
+│  ├──📝page-contact-controller.php   # Xử lý
+│  ├──📝page-contact-validator.php    # Kiểm tra đầu vào
+│  └──📝page-contact-sendmail.php     # Gửi mail
+├──📁template-emails/                 # Chứa các trang với định danh là slug
+│  ├──📝page-contact-user.tpl         # Mẫu dành email của user
+│  └──📝page-contact-admin.tpl        # Mẫu dành email của admin
+├──📁template-pages/                  # Chứa các trang với định danh là slug
+│  ├──📝page-contact.php              # Trang form
+│  ├──📝page-contact-confirmation.php # Trang xác nhận
+│  ├──📝page-contact-error.php        # Trang in lỗi
+│  └──📝page-contact-complete.php     # Trang hoàn thành
+```
+
 # Đặt tên
-- Prefix: cba
+- Thêm tiếp đầu ngữ (prefix là cba) ở các function để tránh trùng lặp ví dụ cba_sendmail()
+- Nối các từ trong tên thư mục bằng dấu gạch nối ví dụ: template-parts
+- Nối các từ trong tên tập tin cũng bằng dấu gạch nối ví dụ archive-post-type.php
+- Sử dụng các từ tiếng anh, ngắn gọn, dễ hiểu
+- Trong inc nên đặt tên file theo {Chức năng/Kiểu loại}-{Ý nghĩa}.php
+- Thư mục template-pages các tên file được đặt theo cách page-slug.php với slug nên đặt theo url của trang ví dụ trang https://themestandard.com/recruit/search/shop/ thì slug nên đặt là recruit-search-shop và file sẽ là page-recruit-search-shop.php
 
 # Tận dụng hook để tiết kiệm code
 Các hook sau đây là custom được tạo trong phạm vi theme này
@@ -131,12 +178,8 @@ echo esc_url(get_template_directory_uri());
 
 // Lấy next và prev link
 the_post_navigation( array(
-    'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentysixteen' ) . '</span> ' .
-        '<span class="screen-reader-text">' . __( 'Next post:', 'twentysixteen' ) . '</span> ' .
-        '<span class="post-title">%title</span>',
-    'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'twentysixteen' ) . '</span> ' .
-        '<span class="screen-reader-text">' . __( 'Previous post:', 'twentysixteen' ) . '</span> ' .
-        '<span class="post-title">%title</span>',
+    'next_text' => __( 'Next post:', 'twentysixteen' ),
+    'prev_text' => __( 'Previous post:', 'twentysixteen' ),
 ) );
 
 // Check Điều kiện file single-attachment.php
