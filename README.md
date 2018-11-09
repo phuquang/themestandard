@@ -1,10 +1,10 @@
 # Theme standard
 Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành cho người mới bất đầu và đã biết thì tìm hiểu thêm, rất mong được sự đóng góp của mọi người. Mọi thắc mắc, yêu cầu, phát hiện bug xin vui lòng gửi về phuquanglxc@gmail.com xin cảm ơn.
 - Giải quyết các vấn đề:
-    * Đồng nhất để dễ tiếp cận
-    * Chia nhỏ rõ ràng để tiện quản lý
-    * Không ảnh hưởng lẫn nhau của các tệp khi sửa chữa
-    * Sử dụng lại được tài nguyên code (snippets)
+ * Đồng nhất để dễ tiếp cận
+ * Chia nhỏ rõ ràng để tiện quản lý
+ * Không ảnh hưởng lẫn nhau của các tệp khi sửa chữa
+ * Sử dụng lại được tài nguyên code (snippets)
 
 # Giải thích cấu trúc thư mục
 ```bash
@@ -63,14 +63,14 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 ```
 
 # Yêu cầu
-Đối với PHP
-- Học cách viết code chuẩn tại đây https://www.php-fig.org/psr/
-- Luôn sử dụng 4 khoảng trống (4-spaces) khi thục dòng (indent)
-- Cuối file chừa 1 dòng trống (end line)
-Đối với Javascript
-- Học cách viết code chuẩn tại đây https://standardjs.com/
-Yêu cầu khác
-- Viết ngay hàng thẳng lối, sạch đẹp vừa giúp bản thân dễ tìm bug vừa giúp người khác dễ tiếp cận. Xin hãy vì mọi người xin cảm ơn.
+- Đối với PHP
+ * Học cách viết code chuẩn tại đây https://www.php-fig.org/psr/
+ * Luôn sử dụng 4 khoảng trống (4-spaces) khi thục dòng (indent)
+ * Cuối file chừa 1 dòng trống (end line)
+- Đối với Javascript
+ * Học cách viết code chuẩn tại đây https://standardjs.com/
+- Yêu cầu khác
+ * Viết ngay hàng thẳng lối, sạch đẹp vừa giúp bản thân dễ tìm bug vừa giúp người khác dễ tiếp cận. Xin hãy vì mọi người xin cảm ơn.
 
 # Đối với Form cần viết riêng
 - Nên phân code ra thành file như mẫu bên dưới
