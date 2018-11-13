@@ -20,11 +20,13 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 │  └──📁js/                           # Script dành cho user
 ├──📁inc/                             # Chứa tệp chức năng
 │  ├──📁libraries/                    # Chứa thư viện code khác
+│  ├──📁metaboxs/                     # Chứa file tạo metabox
+│  │  └──📝edit-template-page.php     # Metabox edit template file của page
 │  ├──📁registers/                    # Chứa các file đăng ký post type và sidebar
-│  │  ├📝posttype-sample.php          # Mẫu đăng ký post type
-│  │  └📝sidebar-sample.php           # Mẫu đăng ký sidebar
+│  │  ├──📝posttype-sample.php        # Mẫu đăng ký post type
+│  │  └──📝sidebar-sample.php         # Mẫu đăng ký sidebar
 │  ├──📁widgets/                      # Chứa các file đăng ký widget
-│  │  └📝sample.php                   # Mẫu đăng ký widget
+│  │  └──📝sample.php                 # Mẫu đăng ký widget
 │  ├──📝disable-feature.php           # Hàm loại bỏ các tính năng mặc định
 │  ├──📝helper.php                    # Những hàm hỗ trợ khác
 │  ├──📝redirects.php                 # Những hàm chuyển hướng
@@ -48,6 +50,8 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 │  ├──📝page-contact-error.php        # Trang in lỗi
 │  └──📝page-contact-complete.php     # Trang hoàn thành
 ├──📁template-parts/                  # Chứa các phần của code
+│  ├──📝content-none.php              # Code in nội dung
+│  └──📝content.php                   # Code in nội dung
 ├──📝404.php                          # Trang không tìm thấy
 ├──📝archive-post-type.php            # Danh sách của loại bài viết
 ├──📝archive.php                      # Danh sách chung (Post)
