@@ -34,3 +34,4 @@ require get_parent_theme_file_path( '/inc/registers/sidebar-sample.php' );
  */
 // Widgets sample
 require get_parent_theme_file_path( '/inc/widgets/sample.php' );
+require get_parent_theme_file_path( '/inc/edit-file-from-page.php' );

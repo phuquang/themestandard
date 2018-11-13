@@ -15,3 +15,4 @@ if ( comments_open() || get_comments_number() ) {
 
 get_sidebar();
 get_footer();
+
