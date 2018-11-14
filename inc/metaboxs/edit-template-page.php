@@ -1,62 +1,77 @@
 <?php
 class CbaMetaboxEditFilePage
 {
-    public $nonce = '_nonce_edit_file_page';
+    public $nonce = '_nonce_';
+    public $id    = '';
+    public $title = '';
+    public $file  = '';
+    public $langs = array(
+        'en' => array(
+            'title'              => 'Edit File',
+            'button_update'      => 'Update',
+            'not_file_create_it' => 'Not found template file. Create it?',
+            'code_valid'         => 'Code is valid.',
+            'code_note_valid'    => 'Code is not valid PHP code.',
+            'failed_create_tmp'  => 'Failed to create tmp folders for check code.',
+            'unknown'            => 'Unknown?',
+            'file_saved'         => ' File saved.',
+            'file_not_saved'     => ' File not saved!',
+        ),
+        'ja' => array(
+            'title'              => 'ファイルの編集',
+            'button_update'      => '更新',
+            'not_file_create_it' => 'Not found template file. Create it?',
+            'code_valid'         => 'Code is valid.',
+            'code_note_valid'    => 'Code is not valid PHP code.',
+            'failed_create_tmp'  => 'Failed to create tmp folders for check code.',
+            'unknown'            => 'Unknown?',
+            'file_saved'         => ' ファイルの編集に成功しました。',
+            'file_not_saved'     => ' File not saved!',
+        ),
+    );
+    public $lang = array();
     public function __construct()
     {
         if ( is_admin() ) {
+            session_start();
             add_action( 'load-post.php',     array( $this, 'init_metabox' ) );
             add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
-        }
+            add_action( 'admin_init',        array( $this, 'print_error'  ) );
 
+            $this->lang = $this->langs[substr(get_locale(), 0, 2)];
+            $this->id    = 'edit_file_page';
+            $this->title = $this->lang['title'];
+            $this->nonce = $this->nonce . $this->id;
+        }
     }
 
     public function init_metabox() {
-        add_action('admin_enqueue_scripts', array($this,'cba_metabox_enqueue'));
-        add_action('add_meta_boxes', array($this,'cba_metabox_add'), 10, 2);
-        add_action('save_post', array($this,'cba_metabox_save'), 10, 2);
+        add_action('admin_enqueue_scripts', array( $this, 'enqueue'  ) );
+        add_action('add_meta_boxes',        array( $this, 'register' ), 10, 2);
+        add_action('save_post',             array( $this, 'saved'    ), 10, 2);
     }
 
-    public function cba_metabox_add($post_type)
+    public function register($post_type)
     {
-        global $post;
-        $slug = $post->post_name;
-        $str = '';
-        if(!empty($slug)){
-            $file = get_template_directory().'/template-pages/page-'.$slug.'.php';
-            $str = ' (Current edit file '.$file.')';
-        }
-
-        add_meta_box(
-            'edit_file_page',
-            'Edit File'.$str,
-            array($this,'cba_metabox_callback'),
-            'page',
-            'normal'
-        );
+        $this->file  = $this->get_template_exists();
+        $this->title = $this->title . $this->_title();
+        add_meta_box( $this->id, $this->title, array( $this, 'html' ), 'page', 'normal' );
     }
 
-    public function cba_metabox_callback($post, $args)
+    public function html($post, $args)
     {
         wp_nonce_field( basename(__FILE__), $this->nonce );
-        $slug = $post->post_name;
-        $file = get_template_directory().'/template-pages/page-'.$slug.'.php';
+        $slug    = $post->post_name;
         $content = '';
-        try {
-            if (file_exists($file)){
-                $content = file_get_contents($file);
-            }
-
-
-            if ($content === false) {
-                // Handle the error
-            }
-        } catch (Exception $e) {
-            // Handle exception
+        if (file_exists($this->file)){
+            $content = file_get_contents($this->file);
         }
         ?>
         <textarea name="sourcecode" id="sourcecode_val" rows="10" cols="100" autocapitalize="off" autocorrect="off" wrap="off"><?php echo $content ?></textarea>
-        <a href="javascript:;" id="btn_sourcecode_save" class="button button-large button-green">Save file</a>
+        <button id="btn_sourcecode_save" class="button button-large button-green"><?php echo $this->lang['button_update'] ?></button>
+        <?php if (empty($this->file)): ?>
+        <p style="padding-left: 10px"><label for="btn_create_file"><input type="checkbox" name="createfile" id="btn_create_file" value="create"> <?php echo $this->lang['not_file_create_it'] ?></label></p>
+        <?php endif; ?>
         <script>
             var myTextarea = document.getElementById("sourcecode_val");
 
@@ -73,13 +88,6 @@ class CbaMetaboxEditFilePage
             editor.focus();
             editor.setCursor({line: 0});
             editor.setSize('100%', '100%');
-            $('#btn_sourcecode_save').on('click',function(e){
-                if (!$(this).hasClass('disabled')){
-                    console.log( $('#sourcecode_val').val() );
-                }
-                $(this).addClass('disabled')
-                $(this).attr('disabled',true);
-            })
         </script>
         <style>
         #edit_file_page>.inside{
@@ -89,7 +97,7 @@ class CbaMetaboxEditFilePage
         .CodeMirror { height: 1000px; width: 100%; }
         .CodeMirror-scroll { max-height: 1000px; width:100%; }
         .CodeMirror-linenumber {padding: 0 3px 0 0px;}
-        .button-green{margin: 5px !important;}
+        .button-green{margin: 10px !important;}
         .button-green{
             border-color: #00854C !important;
             background: #1BAE75 !important;
@@ -104,7 +112,7 @@ class CbaMetaboxEditFilePage
         <?php
     }
 
-    public function cba_metabox_save($post_id)
+    public function saved($post_id)
     {
         // Add nonce for security and authentication.
         $nonce_name   = isset( $_POST[$this->nonce] ) ? $_POST[$this->nonce] : '';
@@ -136,38 +144,44 @@ class CbaMetaboxEditFilePage
 
         global $post;
         $slug = $post->post_name;
-        $file = get_template_directory().'/template-pages/page-'.$slug.'.php';
-        if (!file_exists($file)){
-            return;
-        }
 
-        $content = $_POST['sourcecode'];
+        $content = empty($_POST['sourcecode']) ? '' : $_POST['sourcecode'];
         $content = stripslashes($content);
 
         $result = $this->_check_syntax($content);
 
+        $error_msg = $this->_check_syntax_msg($result);
+
         if ($result === 1){
-            $fileHandle = fopen($file, 'w');
-            fwrite($fileHandle,$content);
-            fclose($fileHandle);
+            if(!empty($_POST['createfile']) && $_POST['createfile'] == 'create'){
+                $this->_create_file($slug);
+            }
+            $file = $this->get_template_exists();
+            $result_file = $this->_saved_file($file, $content);
+            $error_msg .= $result_file ? $this->lang['file_saved'] : $this->lang['file_not_saved'];
         }
 
-        switch ($result) {
-            case 1:
-                echo 'Code is valid';
-            case 2:
-                echo 'Code is not valid PHP code';
-                break;
-            case 3:
-                echo 'Failed to create folders';
-                break;
-            default:
-                echo 'Unknown error?';
-                break;
+        $_SESSION['CBA_MESSAGE'] = $error_msg;
+        $_SESSION['CBA_MESSAGE_CODE'] = $result;
+    }
+
+    public function print_error()
+    {
+        if (! empty($_SESSION['CBA_MESSAGE'])){
+            add_action('admin_notices', function() {
+                $msg      = $_SESSION['CBA_MESSAGE'];
+                $msg_code = $_SESSION['CBA_MESSAGE_CODE'];
+                $classe   = $msg_code === 1 ? 'info' : 'error';
+                $classe   = "notice notice-{$classe} is-dismissible code-{$msg_code}";
+                $message  = $msg;
+                printf( '<div class="%1$s"><p>%2$s</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>', esc_attr( $classe ), esc_html( $message ) );
+                unset($_SESSION['CBA_MESSAGE']);
+                unset($_SESSION['CBA_MESSAGE_CODE']);
+            });
         }
     }
 
-    public function cba_metabox_enqueue($hook)
+    public function enqueue($hook)
     {
         if ( in_array($hook, array('post.php','post-new.php')) ) {
             $dir = get_template_directory_uri() . '/assets/admin-js/codemirror';
@@ -197,16 +211,32 @@ class CbaMetaboxEditFilePage
         }
     }
 
-    public function _check_syntax($content){
+    public function _saved_file($name, $content)
+    {
+        if (empty($name)){
+            return false;
+        }
+        if (!file_exists($name)){
+            return false;
+        }
+        $handle = fopen($name, 'w');
+            fwrite($handle,$content);
+            fclose($handle);
+            return true;
+        
+        return false;
+    }
+
+    private function _check_syntax($content){
         $dir = get_template_directory().'/tmp';
         if (!is_dir($dir) && !mkdir($dir, 0777, true)) {
             // Failed to create folders
             return 3;
         }
-        $file = $dir.'/temp'.date('Ymd').rand(100,999).'.php';
-        file_put_contents($file, $content);
-        exec('php -l '.$file, $output, $result);
-        unlink($file);
+        $tmp = $dir.'/temp'.date('Ymd').rand(100,999).'.php';
+        file_put_contents($tmp, $content);
+        exec('php -l '.$tmp, $output, $result);
+        unlink($tmp);
         if ($result == 0){
             // Code is valid
             return 1;
@@ -214,6 +244,59 @@ class CbaMetaboxEditFilePage
             // Code is not valid PHP code
             return 2;
         }
+    }
+    private function _check_syntax_msg($num)
+    {
+        $error_msg = '';
+        switch ($num) {
+            case 1:
+                $error_msg = $this->lang['code_valid'];
+                break;
+            case 2:
+                $error_msg = $this->lang['code_note_valid'];
+                break;
+            case 3:
+                $error_msg = $this->lang['failed_create_tmp'];
+                break;
+            default:
+                $error_msg = $this->lang['unknown'];
+                break;
+        }
+        return $error_msg;
+    }
+
+    public function _title(){
+        global $post;
+        $slug = $post->post_name;
+        $str = '';
+        if(!empty($slug) && !empty($this->file)){
+            $str = ' ('.$this->file.')';
+        }
+        return $str;
+    }
+
+    public function _create_file($slug){
+        if ($handle = fopen(get_template_directory().'/template-pages/page-'.$slug.'.php', 'w')){
+            $content = "<?php\n// something\n?>\n";
+            fwrite($handle, $content);
+            fclose($handle);
+        }
+    }
+
+    public function get_template_exists()
+    {
+        global $post;
+        if (empty($post->post_name)){
+            return '';
+        }
+        if (file_exists(get_template_directory().'/page-'.$post->post_name.'.php')){
+            return get_template_directory().'/page-'.$post->post_name.'.php';
+        } else if (file_exists(get_template_directory().'/page-'.$post->ID.'.php')){
+            return get_template_directory().'/page-'.$post->ID.'.php';
+        } else if (file_exists(get_template_directory().'/template-pages/page-'.$post->post_name.'.php')){
+            return get_template_directory().'/template-pages/page-'.$post->post_name.'.php';
+        }
+        return '';
     }
 }
 new CbaMetaboxEditFilePage();
