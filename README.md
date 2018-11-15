@@ -6,7 +6,7 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
     * Không ảnh hưởng lẫn nhau của các tệp khi sửa chữa
     * Sử dụng lại được tài nguyên code (snippets)
 
-# Giải thích cấu trúc thư mục
+# Hệ thống phân cấp thư mục dành cho dự án
 ```bash
 .
 ├──📁assets/                          # Chứa tệp frontend
@@ -55,6 +55,11 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 ├──📝404.php                          # Trang không tìm thấy
 ├──📝archive-post-type.php            # Danh sách của loại bài viết
 ├──📝archive.php                      # Danh sách chung (Post)
+├──📝author.php                       # Trang dành cho user
+├──📝category.php                     # Trang dành cho danh mục
+├──📝tag.php                          # Trang dành cho thẻ
+├──📝date.php                         # Trang dành cho ngày tháng năm
+├──📝taxonomy.php                     # Trang dành cho các phân loại
 ├──📝comments.php                     # Bình luận
 ├──📝footer.php                       # Chân site
 ├──📝functions.php                    # Chức năng chính
@@ -69,6 +74,50 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 ├──📝single-post-type.php             # Chi tiết của loại bài viết
 ├──📝single.php                       # Chi tiết chung (Post)
 └──📝style.css                        # Style chính
+```
+
+# THE WORDPRESS TEMPLATE HIERARCHY
+Đây là hệ thống cấp bật của template được wordpress quy định nhớ tuân thủ hen.
+```bash
+index.php
+├──archive.php
+│  ├──author.php
+│  │  └──author-$id.php
+│  │     └──author-$nicename.php
+│  ├──category.php
+│  │  └──category-$id.php
+│  │     └──category-$slug.php
+│  ├──archive-$posttype.php
+│  ├──taxonomy.php
+│  │  └──taxonomy-$taxonomy.php
+│  │     └──taxonomy-$taxonomy-$term.php
+│  ├──date.php
+│  └──tag.php
+│     └──tag-$id.php
+│        └──tag-$slug.php
+├──singular.php
+│  ├──single.php
+│  │  ├──attachment.php
+│  │  │  └──$mimetype.php
+│  │  │     └──$subtype.php
+│  │  │        └──$mimetype-$subtype.php
+│  │  ├──single-$posttype.php
+│  │  │  └──single-$posttype-$slug.php
+│  │  └──single-post.php
+│  └──page.php
+│     └──page-$id.php
+│        └──page-$slug.php
+├──home.php
+├──404.php
+└──search.php
+```
+Đối với WP 4.7 về sau sử dụng comment block trước file sẽ dùng được template này cho các loại bài viết
+```php
+<?php
+/*
+Template Name: Tên template
+Template Post Type: post, page, product
+*/
 ```
 
 # Yêu cầu
@@ -518,5 +567,5 @@ endif;
 - https://codex.wordpress.org/Category:Conditional_Tags
 - https://developer.wordpress.org/themes/basics
 - https://developer.wordpress.org/themes/basics/template-files/#template-partials
-- https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
-- https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+- https://developer.wordpress.org/themes/basics/template-hierarchy/
+- https://wphierarchy.com/
