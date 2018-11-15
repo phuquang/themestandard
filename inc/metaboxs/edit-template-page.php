@@ -20,13 +20,13 @@ class CbaMetaboxEditFilePage
         'ja' => array(
             'title'              => 'ファイルの編集',
             'button_update'      => '更新',
-            'not_file_create_it' => 'Not found template file. Create it?',
-            'code_valid'         => 'Code is valid.',
-            'code_note_valid'    => 'Code is not valid PHP code.',
-            'failed_create_tmp'  => 'Failed to create tmp folders for check code.',
-            'unknown'            => 'Unknown?',
-            'file_saved'         => ' ファイルの編集に成功しました。',
-            'file_not_saved'     => ' File not saved!',
+            'not_file_create_it' => 'テンプレートファイルは見つかりません。作成したいですか？',
+            'code_valid'         => 'コードは有効です。',
+            'code_note_valid'    => 'コードは無効です。',
+            'failed_create_tmp'  => 'コードチェック用のtmpフォルダの作成に失敗しました。',
+            'unknown'            => '不明なエラーです。',
+            'file_saved'         => '　ファイルは保存されました。',
+            'file_not_saved'     => '　ファイルは保存されませんでした。',
         ),
     );
     public $lang = array();
@@ -55,7 +55,7 @@ class CbaMetaboxEditFilePage
     {
         $this->file  = $this->get_template_exists();
         $this->title = $this->title . $this->_title();
-        add_meta_box( $this->id, $this->title, array( $this, 'html' ), 'page', 'normal' );
+        add_meta_box( $this->id, $this->title, array( $this, 'html' ), 'page', 'normal', 'high' );
     }
 
     public function html($post, $args)
