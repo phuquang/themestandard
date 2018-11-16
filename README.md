@@ -20,7 +20,7 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 │  └──📁js/                           # Script dành cho user
 ├──📁inc/                             # Chứa tệp chức năng
 │  ├──📁libraries/                    # Chứa thư viện code khác
-│  ├──📁metaboxs/                     # Chứa file tạo metabox
+│  ├──📁metaboxes/                     # Chứa file tạo metabox
 │  │  └──📝edit-template-page.php     # Metabox edit template file của page
 │  ├──📁registers/                    # Chứa các file đăng ký post type và sidebar
 │  │  ├──📝posttype-sample.php        # Mẫu đăng ký post type
@@ -170,6 +170,27 @@ add_action('cba_head_after', function(){
 });
 ```
 
+# Hàm Helper
+```php
+<?php
+// Hàm này tạo ra để rút ngắn tên dùng ở frontend
+
+// echo home url
+url();
+
+// return home url
+getUrl();
+
+// echo theme url
+themeUrl();
+
+// return theme url
+getThemeUrl();
+
+// echo url for assets folder in theme
+assets();
+```
+
 # Sử dụng hàm xuất cho url và luôn escape
 ```html
 <?php echo esc_url( home_url( '/' ) ); ?>
@@ -181,6 +202,7 @@ add_action('cba_head_after', function(){
 - Các hàm có tiếp đầu ngữ the_ thì sẽ print dữ liệu luôn
 - Các hàm có tiếp đầu ngữ get_ thì sẽ trã về dữ liệu
 ```php
+<?php
 /**
  * Posts
  */
