@@ -34,4 +34,9 @@ require get_parent_theme_file_path( '/inc/registers/sidebar-sample.php' );
  */
 // Widgets sample
 require get_parent_theme_file_path( '/inc/widgets/sample.php' );
-require get_parent_theme_file_path( '/inc/metaboxs/edit-template-page.php' );
+
+/**
+ * Register Metaboxes
+ */
+// Editor code for template page
+require get_parent_theme_file_path( '/inc/metaboxes/edit-template-page.php' );

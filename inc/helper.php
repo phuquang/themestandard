@@ -79,3 +79,33 @@ if(!function_exists('the_build_url')){
         }
     }
 }
+
+if(!function_exists('url')){
+    function url(){
+        echo getUrl();
+    }
+}
+
+if(!function_exists('getUrl')){
+    function getUrl(){
+        return esc_url(home_url());
+    }
+}
+
+if(!function_exists('themeUrl')){
+    function themeUrl(){
+        echo getThemeUrl();
+    }
+}
+
+if(!function_exists('getThemeUrl')){
+    function getThemeUrl(){
+        return esc_url(get_template_directory_uri());
+    }
+}
+
+if(!function_exists('assets')){
+    function assets(){
+        echo esc_url(get_template_directory_uri().'/assets');
+    }
+}
