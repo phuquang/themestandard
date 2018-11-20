@@ -15,7 +15,12 @@ $disable_json_api                      = false;
 $disable_wlwmanifest                   = false;
 $disable_rsd                           = false;
 $disable_shortlink                     = false;
+$disable_link_canonical                = false;
+$disable_jquery_core                   = false;
+$disable_jquery_migrate                = false;
 $disable_embed_script                  = false;
+$disable_feed_links                    = false;
+$disable_dns_prefetch                  = false;
 $disable_svg_icons                     = false;
 $disable_update_core                   = false;
 $disable_update_plugins                = false;
@@ -99,12 +104,16 @@ if ($disable_shortlink === true){
     remove_action( 'wp_head', 'wp_shortlink_wp_head');
 }
 
+// Remove canonical link
+if ($disable_link_canonical === true){
+    remove_action('wp_head', 'rel_canonical');
+}
+
 // remove wp-embed.min.js
 if ($disable_embed_script === true){
-    function cba_remove_deregister_scripts(){
-      wp_deregister_script( 'wp-embed' );
-    }
-    add_action( 'wp_footer', 'cba_remove_deregister_scripts' );
+    add_action( 'wp_footer', function(){
+        wp_deregister_script( 'wp-embed' );
+    } );
 }
 
 // remove include svg icons
@@ -238,3 +247,30 @@ add_action( 'admin_init', function() {
         remove_post_type_support('page', 'editor');
     }
 });
+
+//Remove JQuery migrate
+add_action( 'wp_default_scripts', function( $scripts ) {
+    global $disable_jquery_core;
+    global $disable_jquery_migrate;
+    if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
+        $script = $scripts->registered['jquery'];
+        if ( $script->deps ) { // Check whether the script has any dependencies
+            if ($disable_jquery_core === true){
+                $script->deps = array_diff( $script->deps, array( 'jquery-core' ) );
+            }
+            if ($disable_jquery_migrate === true){
+                $script->deps = array_diff( $script->deps, array( 'jquery-migrate' ) );
+            }
+        }
+    }
+} );
+
+if ($disable_feed_links === true){
+    remove_action( 'wp_head','feed_links', 2 );
+    remove_action( 'wp_head','feed_links_extra', 3 );
+}
+
+// remove WP 4.9+ dns-prefetch
+if ($disable_dns_prefetch === true){
+    remove_action( 'wp_head', 'wp_resource_hints', 2 );
+}
