@@ -19,17 +19,12 @@
 <?php if(! wp_is_mobile()): ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <?php endif; ?>
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
+<title><?php wp_title( '｜', true, 'right' ) ?></title>
 <?php wp_head(); ?>
-<script type="text/javascript">
-var urlHome="<?php echo site_url() ?>";
-var urlThemeTemplate="<?php echo get_template_directory_uri() ?>";
-</script>
 <?php do_action('cba_head_after') ?>
 </head>
-<body <?php if (WP_DEBUG){ body_class(); } ?>>
+<body <?php if (WP_DEBUG){ body_class(); } ?> id="<?php do_action('cba_body_id') ?>">
 <?php do_action('cba_body_before') ?>
     <header></header>

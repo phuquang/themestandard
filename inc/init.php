@@ -40,3 +40,8 @@ require get_parent_theme_file_path( '/inc/widgets/sample.php' );
  */
 // Editor code for template page
 require get_parent_theme_file_path( '/inc/metaboxes/edit-template-page.php' );
+
+/**
+ * Setup theme
+ */
+require get_parent_theme_file_path( '/inc/setup.php' );

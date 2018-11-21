@@ -12,8 +12,6 @@
  * @version 1.0
  */
 
-get_header();
-
 // Start the loop.
 while ( have_posts() ) : the_post();
 
@@ -22,5 +20,3 @@ while ( have_posts() ) : the_post();
 
     // End of the loop.
 endwhile;
-
-get_footer();

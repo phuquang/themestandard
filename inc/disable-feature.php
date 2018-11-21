@@ -8,7 +8,6 @@
  * @version 1.0
  */
 
-$disable_crop_image                    = false;
 $disable_wp_generator                  = false;
 $disable_emoji                         = false;
 $disable_json_api                      = false;
@@ -26,6 +25,7 @@ $disable_update_core                   = false;
 $disable_update_plugins                = false;
 $disable_update_themes                 = false;
 $disable_check_version_core            = false;
+$disable_crop_image                    = false;
 $remove_menu_page_dashboard            = false;
 $remove_menu_page_jetpack              = false;
 $remove_menu_page_posts                = false;
