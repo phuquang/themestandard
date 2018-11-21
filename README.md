@@ -20,7 +20,7 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 │  └──📁js/                           # Script dành cho user
 ├──📁inc/                             # Chứa tệp chức năng
 │  ├──📁libraries/                    # Chứa thư viện code khác
-│  ├──📁metaboxes/                     # Chứa file tạo metabox
+│  ├──📁metaboxes/                    # Chứa file tạo metabox
 │  │  └──📝edit-template-page.php     # Metabox edit template file của page
 │  ├──📁registers/                    # Chứa các file đăng ký post type và sidebar
 │  │  ├──📝posttype-sample.php        # Mẫu đăng ký post type
@@ -30,6 +30,7 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 │  ├──📝disable-feature.php           # Hàm loại bỏ các tính năng mặc định
 │  ├──📝helper.php                    # Những hàm hỗ trợ khác
 │  ├──📝redirects.php                 # Những hàm chuyển hướng
+│  ├──📝setup.php                     # Thiết lập theme
 │  └──📝init.php                      # Require các file khác trong inc
 ├──📁languages/                       # Ngôn ngữ
 │  ├──📝theme.pot                     # File chứa chuỗi dịch (Portable Object Template)
