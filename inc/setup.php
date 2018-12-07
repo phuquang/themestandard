@@ -88,20 +88,6 @@ add_action( 'wp_enqueue_scripts', function() {
     }
 });
 
-// Custom title tag
-add_filter( 'wp_title', function ( $title ) {
-    $site_info = get_bloginfo('description').'｜'.get_bloginfo();
-    if (empty($title)){
-        $title = $site_info;
-    } else {
-        $title .= '｜'.$site_info;
-    }
-    if ( is_404() ) {
-        $title = '404｜'.$site_info;
-    }
-    return $title;
-} );
-
 add_action('cba_head_after',function(){
 ?>
 <script type="text/javascript">

@@ -27,6 +27,7 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 │  │  └──📝sidebar-sample.php         # Mẫu đăng ký sidebar
 │  ├──📁widgets/                      # Chứa các file đăng ký widget
 │  │  └──📝sample.php                 # Mẫu đăng ký widget
+│  ├──📝custom-seo.php                # Tùy chỉnh lại các thẻ SEO
 │  ├──📝disable-feature.php           # Hàm loại bỏ các tính năng mặc định
 │  ├──📝helper.php                    # Những hàm hỗ trợ khác
 │  ├──📝redirects.php                 # Những hàm chuyển hướng

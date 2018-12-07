@@ -42,6 +42,11 @@ require get_parent_theme_file_path( '/inc/widgets/sample.php' );
 require get_parent_theme_file_path( '/inc/metaboxes/edit-template-page.php' );
 
 /**
+ * Custom SEO tags
+ */
+require get_parent_theme_file_path( '/inc/custom-seo.php' );
+
+/**
  * Setup theme
  */
 require get_parent_theme_file_path( '/inc/setup.php' );
