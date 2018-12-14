@@ -8,6 +8,9 @@
  * @version 1.0
  */
 
+// Pagination functions
+require get_parent_theme_file_path( '/inc/pagination.php' );
+
 // Helper functions
 require get_parent_theme_file_path( '/inc/helper.php' );
 
@@ -47,6 +50,15 @@ require get_parent_theme_file_path( '/inc/metaboxes/edit-template-page.php' );
 require get_parent_theme_file_path( '/inc/custom-seo.php' );
 
 /**
+ * Page options
+ */
+// require get_parent_theme_file_path( '/inc/theme-options/theme-settings.php' );
+// require get_parent_theme_file_path( '/inc/theme-options/theme-settings-child.php' );
+
+/**
  * Setup theme
  */
 require get_parent_theme_file_path( '/inc/setup.php' );
+
+// Theme debug
+require get_parent_theme_file_path( '/inc/theme-debug.php' );

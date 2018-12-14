@@ -10,8 +10,9 @@
  * @version 1.0
  */
 
-get_header();
-    if ( have_posts() ) :
+get_header(); ?>
+<main class="container">
+    <?php if ( have_posts() ) :
         printf( __( 'Search Results for: %s', 'twentyseventeen' ), '<span>' . get_search_query() . '</span>' );
     else :
         _e( 'Nothing Found', 'twentyseventeen' );
@@ -26,12 +27,27 @@ get_header();
 
         endwhile; // End of the loop.
 
+        global $wp_query;
+        theme_debug('$wp_query');
+        the_pagination(array(
+            'paged' => $wp_query->query['paged'],
+            'max_num_pages' => $wp_query->max_num_pages,
+            'found_posts' => $wp_query->found_posts,
+            'posts_per_page' => $wp_query->posts_per_page,
+        ));
+        
+        _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyseventeen' ); 
+        _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyseventeen' ); 
+        _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyseventeen' ); 
+        _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyseventeen' ); 
+        _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyseventeen' ); 
+        _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyseventeen' ); 
     else :
 
         _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyseventeen' ); 
         get_search_form();
 
     endif;
-    get_sidebar();
-
-get_footer();
+    get_sidebar(); ?>
+</main>
+<?php get_footer();

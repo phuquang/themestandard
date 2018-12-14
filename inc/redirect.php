@@ -8,20 +8,20 @@
  * @version 1.0
  */
 
-if (!function_exists('cbaRedirectUrlTo404')){
+if ( !function_exists('cbaRedirectUrlTo404') ) {
     /**
      * cbaRedirectUrlTo404 redirect to not found page with condition
      * @return none
      */
-    function cbaRedirectUrlTo404(){
+    function cbaRedirectUrlTo404() {
         $gotonotfound = false;
-        if (!is_admin()){
+        if ( !is_admin() ) {
 
             // if ($condition){
             //     $gotonotfound = true;
             // }
 
-            if($gotonotfound === true){
+            if ( $gotonotfound === true ) {
                 global $wp_query;
                 $wp_query->set_404();
                 status_header( 404 );
@@ -32,12 +32,12 @@ if (!function_exists('cbaRedirectUrlTo404')){
     add_action( 'wp', 'cbaRedirectUrlTo404' );
 }
 
-if (!function_exists('cbaGoto404')){
+if ( !function_exists('cbaGoto404') ) {
     /**
      * cbaGoto404 redirect to not found page
      * @return none
      */
-    function cbaGoto404(){
+    function cbaGoto404() {
         global $wp_query;
         $wp_query->set_404();
         status_header( 404 );

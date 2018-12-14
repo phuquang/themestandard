@@ -1,10 +1,11 @@
 <?php
 // Register and load the widget
-add_action( 'widgets_init', function(){
+add_action( 'widgets_init', function() {
     register_widget( 'cba_sample_widget' );
 } );
 
-class cba_sample_widget extends WP_Widget{
+class cba_sample_widget extends WP_Widget
+{
     /**
      * Widgetを登録する
      */
@@ -29,7 +30,7 @@ class cba_sample_widget extends WP_Widget{
 
         // before and after widget arguments are defined by themes
         echo $args['before_widget'];
-        if ( ! empty( $title ) ){
+        if ( ! empty( $title ) ) {
             echo $args['before_title'] . $title . $args['after_title'];
         }
 
@@ -45,9 +46,9 @@ class cba_sample_widget extends WP_Widget{
      * @param array $instance 設定項目
      * @return string|void
      */
-    public function form( $instance ){
-        $title = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : '';
-        $title_id = $this->get_field_id('title');
+    public function form( $instance ) {
+        $title      = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : '';
+        $title_id   = $this->get_field_id('title');
         $title_name = $this->get_field_name('title');
         $email      = isset($instance['email']) ? $instance[ 'title' ] : '';
         $email_id   = $this->get_field_id('email');
@@ -77,7 +78,7 @@ class cba_sample_widget extends WP_Widget{
         $instance = array();
         $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 
-        if(filter_var($new_instance['email'],FILTER_VALIDATE_EMAIL)){
+        if ( filter_var($new_instance['email'],FILTER_VALIDATE_EMAIL) ) {
             $instance['email'] = $new_instance['email'];
         }
 

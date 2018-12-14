@@ -10,6 +10,11 @@
  * @version 1.0
  */
 
+define('TEXT_DOMAIN', 'themestandard');
+define('HOME_URL', esc_url(home_url()));
+define('THEME_URL', esc_url(get_template_directory_uri()));
+define('THEME_ASSETS', THEME_URL . '/assets');
+
 /**
  * Include common
  */

@@ -1,1 +1,7 @@
-/*sample*/
+a,
+a:hover {
+    color: #FF6F61;
+}
+.screen-reader-text{
+    display: none;
+}
