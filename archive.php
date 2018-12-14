@@ -10,8 +10,9 @@
  * @version 1.0
  */
 
-get_header();
-
+get_header(); ?>
+<main class="container">
+<?php
 if ( have_posts() ) :
         the_archive_title( '<h1 class="page-title">', '</h1>' );
         the_archive_description( '<div class="taxonomy-description">', '</div>' );
@@ -40,6 +41,6 @@ else :
 
 endif;
 
-get_sidebar();
-
-get_footer();
+get_sidebar(); ?>
+</main>
+<?php get_footer();

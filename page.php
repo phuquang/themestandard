@@ -15,8 +15,13 @@
 // Start the loop.
 while ( have_posts() ) : the_post();
 
-    // Include the page content template.
-    get_template_part( 'template-pages/page', get_post_field( 'post_name') );
+    $located = locate_template('template-pages/page-' . get_post_field( 'post_name') . '.php');
+    if ( !empty($located) ) {
+        // Include the page content template.
+        get_template_part( 'template-pages/page', get_post_field( 'post_name') );
+    } else {
+        get_template_part( 'template-parts/content');
+    }
 
-    // End of the loop.
 endwhile;
+// End of the loop.

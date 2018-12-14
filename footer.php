@@ -12,10 +12,8 @@
  * @version 1.0
  */
 ?>
-    <footer></footer>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<?php get_template_part( 'template-parts/global', 'footer' ); ?>
+</div><!-- END #app -->
 <?php wp_footer(); ?>
 <?php do_action('cba_body_after') ?>
 </body>

@@ -40,9 +40,6 @@ get_header(); ?>
         get_template_part( 'template-parts/content', 'none' );
 
     endif;
-    ?>
+    get_sidebar(); ?>
     </main>
-    <?php 
-    get_sidebar();
-
-get_footer();
+<?php get_footer();

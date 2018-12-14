@@ -10,12 +10,12 @@
  * @version 1.0
  */
 
-get_header();
-
-    _e( 'Oops! That page can&rsquo;t be found.', 'twentyseventeen' );
+get_header(); ?>
+<main class="container">
+    <?php _e( 'Oops! That page can&rsquo;t be found.', 'twentyseventeen' );
 
     _e( 'It looks like nothing was found at this location. Maybe try a search?', 'twentyseventeen' );
 
-    get_search_form();
-
-get_footer();
+    get_search_form(); ?>
+</main>
+<?php get_footer();
