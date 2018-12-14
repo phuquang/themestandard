@@ -32,6 +32,7 @@ class CbaMetaboxEditTemplatePage
         ),
     );
     public $lang = array();
+
     public function __construct()
     {
         if ( is_admin() ) {
@@ -47,7 +48,8 @@ class CbaMetaboxEditTemplatePage
         }
     }
 
-    public function init_metabox() {
+    public function init_metabox()
+    {
         add_action('admin_enqueue_scripts', array( $this, 'enqueue'  ) );
         add_action('add_meta_boxes',        array( $this, 'register' ), 10, 2);
         add_action('save_post',             array( $this, 'saved'    ), 10, 2);
@@ -65,7 +67,7 @@ class CbaMetaboxEditTemplatePage
         wp_nonce_field( basename(__FILE__), $this->nonce );
         $slug    = $post->post_name;
         $content = '';
-        if (file_exists($this->file)){
+        if ( file_exists($this->file) ) {
             $content = file_get_contents($this->file);
         }
         ?>
@@ -225,28 +227,28 @@ class CbaMetaboxEditTemplatePage
         $file = $this->get_template_exists();
 
         // Kiểm tra cú pháp đúng
-        if ($result_check_syntax === 1){
+        if ( $result_check_syntax === 1 ) {
             $has_change_template = isset($_POST['has_change_template']) ? $_POST['has_change_template'] : '';
             $has_change_slug     = isset($_POST['has_change_slug']) ? $_POST['has_change_slug'] : '';
 
             // Khi chọn tạo file mới
-            if(!empty($_POST['createfile']) && $_POST['createfile'] == 'create'){
+            if ( !empty($_POST['createfile']) && $_POST['createfile'] == 'create' ) {
                 $this->_create_file($slug, $content);
             }
 
             $is_save_file = true;
 
             // Khi đã có template và thay đổi template
-            if ($file && $has_change_template === 'changed' ){
+            if ( $file && $has_change_template === 'changed' ) {
                 $is_save_file = false;
             }
             // Khi đã có template và thay đổi slug
-            if ($file && $has_change_slug === 'changed' ){
+            if ( $file && $has_change_slug === 'changed' ) {
                 $is_save_file = false;
             }
         }
 
-        if ($is_save_file === true){
+        if ( $is_save_file === true ) {
             $result_saved_file = $this->_saved_file($file, $content);
             $error_msg .= $result_saved_file ? $this->lang['file_saved'] : $this->lang['file_not_saved'];
         }
@@ -257,7 +259,7 @@ class CbaMetaboxEditTemplatePage
 
     public function print_error()
     {
-        if (! empty($_SESSION['CBA_MESSAGE'])){
+        if ( !empty($_SESSION['CBA_MESSAGE']) ) {
             add_action('admin_notices', function() {
                 $msg      = $_SESSION['CBA_MESSAGE'];
                 $msg_code = $_SESSION['CBA_MESSAGE_CODE'];
@@ -303,23 +305,25 @@ class CbaMetaboxEditTemplatePage
 
     private function _saved_file($name, $content)
     {
-        if (empty($name)){
+        if ( empty($name) ) {
             return false;
         }
-        if (!file_exists($name)){
+
+        if ( !file_exists($name) ) {
             return false;
         }
+
         $handle = fopen($name, 'w');
-            fwrite($handle,$content);
-            fclose($handle);
-            return true;
-        
-        return false;
+        fwrite($handle, $content);
+        fclose($handle);
+
+        return true;
     }
 
-    private function _check_syntax($content){
+    private function _check_syntax($content)
+    {
         $dir = get_template_directory().'/tmp';
-        if (!is_dir($dir) && !mkdir($dir, 0777, true)) {
+        if ( !is_dir($dir) && !mkdir($dir, 0777, true) ) {
             // Failed to create folders
             return 3;
         }
@@ -327,7 +331,7 @@ class CbaMetaboxEditTemplatePage
         file_put_contents($tmp, $content);
         exec('php -l '.$tmp, $output, $result);
         unlink($tmp);
-        if ($result == 0){
+        if ( $result == 0 ) {
             // Code is valid
             return 1;
         } else {
@@ -335,10 +339,11 @@ class CbaMetaboxEditTemplatePage
             return 2;
         }
     }
+
     private function _check_syntax_msg($num)
     {
         $error_msg = '';
-        switch ($num) {
+        switch ( $num ) {
             case 1:
                 $error_msg = $this->lang['code_valid'];
                 break;
@@ -355,21 +360,24 @@ class CbaMetaboxEditTemplatePage
         return $error_msg;
     }
 
-    private function _title(){
+    private function _title()
+    {
         global $post;
         $slug = $post->post_name;
-        $str = '';
-        if(!empty($slug) && !empty($this->file)){
+        $str  = '';
+        if ( !empty($slug) && !empty($this->file) ) {
             $str = ' ('.$this->file.')';
         }
         return $str;
     }
 
-    private function _create_file($slug, $content = ''){
-        if (empty($content)){
+    private function _create_file($slug, $content = '')
+    {
+        if ( empty($content) ) {
             return false;
         }
-        if ($handle = fopen(get_template_directory().'/template-pages/page-'.$slug.'.php', 'w')){
+
+        if ( $handle = fopen(get_template_directory().'/template-pages/page-'.$slug.'.php', 'w') ) {
             /*$content = "<?php\n// something\n?>\n";*/
             fwrite($handle, $content);
             fclose($handle);
@@ -381,17 +389,20 @@ class CbaMetaboxEditTemplatePage
     public function get_template_exists()
     {
         global $post;
-        if (empty($post->post_name)){
+
+        if ( empty($post->post_name) ) {
             return '';
         }
+
         $page_template = get_post_meta( $post->ID, '_wp_page_template', true );
-        if($page_template && $page_template !== 'default'){
+
+        if ( $page_template && $page_template !== 'default' ) {
             return get_page_template();
-        } else if (file_exists(get_template_directory().'/page-'.$post->post_name.'.php')){
+        } else if ( file_exists(get_template_directory().'/page-'.$post->post_name.'.php') ) {
             return get_template_directory().'/page-'.$post->post_name.'.php';
-        } else if (file_exists(get_template_directory().'/page-'.$post->ID.'.php')){
+        } else if ( file_exists(get_template_directory().'/page-'.$post->ID.'.php') ) {
             return get_template_directory().'/page-'.$post->ID.'.php';
-        } else if (file_exists(get_template_directory().'/template-pages/page-'.$post->post_name.'.php')){
+        } else if ( file_exists(get_template_directory().'/template-pages/page-'.$post->post_name.'.php') ) {
             return get_template_directory().'/template-pages/page-'.$post->post_name.'.php';
         }
         return '';
