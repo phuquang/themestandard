@@ -28,7 +28,7 @@ get_header(); ?>
         endwhile; // End of the loop.
 
         global $wp_query;
-        theme_debug('$wp_query');
+
         the_pagination(array(
             'paged' => $wp_query->query['paged'],
             'max_num_pages' => $wp_query->max_num_pages,

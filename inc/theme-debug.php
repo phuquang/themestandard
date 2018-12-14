@@ -280,7 +280,10 @@ document.getElementById('themedebug_close').addEventListener('click', function (
 if ( !function_exists('theme_debug') ) {
     function theme_debug($var)
     {
+        $bt = debug_backtrace();
+        $caller = array_shift($bt);
         echo '<div class="recursiveThemeDebug">';
+        echo "<div class='header'>Debug line {$caller['line']} in {$caller['file']}</div>";
         recursiveThemeDebug($var);
         echo '</div>';
         ?><style>.recursiveThemeDebug{background: #272822;font-size: 13px;color:#fff;padding: 5px;}
@@ -307,16 +310,16 @@ Array.from(recursiveThemeDebug).map(item => {
     function recursiveThemeDebug($variable)
     {
         if ( is_string($variable) && !empty($variable) ) {
-            echo "<span class='string'>{$variable}</span>";
+            echo "<span class='string' title='String'>{$variable}</span>";
         } elseif ( is_numeric($variable) ) {
-            echo "<span class='int'>{$variable}</span>";
+            echo "<span class='int' title='Number'>{$variable}</span>";
         } elseif ( is_bool($variable) ) {
-            echo '<span class="bool">' . ($variable ? 'true' : 'false').'</span>';
+            echo '<span class="bool" title="Boolean">' . ($variable ? 'true' : 'false').'</span>';
         } elseif ( is_object($variable) || (is_array($variable) && count($variable) ) ) {
             echo '<table>';
             foreach ($variable as $key => $value) {
                 echo "<tr>";
-                    echo "<td><span class='key'>{$key}</span></td>";
+                    echo "<td><span class='key' title='Array'>{$key}</span></td>";
                     echo '<td>';
                     recursiveThemeDebug($value);
                     echo '</td>';
@@ -324,7 +327,7 @@ Array.from(recursiveThemeDebug).map(item => {
             }
             echo '</table>';
         } else {
-            echo "<span class='null'>null</span>";
+            echo "<span class='null' title='Null'>null</span>";
         }
     }
 }
