@@ -27,10 +27,15 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 │  │  └──📝sidebar-sample.php         # Mẫu đăng ký sidebar
 │  ├──📁widgets/                      # Chứa các file đăng ký widget
 │  │  └──📝sample.php                 # Mẫu đăng ký widget
-│  ├──📝custom-seo.php                # Tùy chỉnh lại các thẻ SEO
+│  ├──📁theme-options/                # Chứa các trang admin option
+│  │  ├──📝theme-settings-child.php   # Trang option con
+│  │  └──📝theme-settings.php         # Trang option chung
 │  ├──📝disable-feature.php           # Hàm loại bỏ các tính năng mặc định
-│  ├──📝helper.php                    # Những hàm hỗ trợ khác
+│  ├──📝theme-debug.php               # Hàm hỗ trợ cho dev và debug gọn hơn, deploy thì nên xóa đi
+│  ├──📝custom-seo.php                # Tùy chỉnh lại các thẻ SEO
+│  ├──📝pagination.php                # Class phân trang, được gọi trong the_pagination()
 │  ├──📝redirects.php                 # Những hàm chuyển hướng
+│  ├──📝helper.php                    # Những hàm hỗ trợ khác
 │  ├──📝setup.php                     # Thiết lập theme
 │  └──📝init.php                      # Require các file khác trong inc
 ├──📁languages/                       # Ngôn ngữ
@@ -52,8 +57,12 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 │  ├──📝page-contact-error.php        # Trang in lỗi
 │  └──📝page-contact-complete.php     # Trang hoàn thành
 ├──📁template-parts/                  # Chứa các phần của code
+│  ├──📝global-footer.php             # Phần footer
+│  ├──📝global-header.php             # Phần header
+│  ├──📝global-navigation.php         # Điều hướng trang
 │  ├──📝content-none.php              # Code in nội dung
 │  └──📝content.php                   # Code in nội dung
+├──📁tmp/                            # Sử dụng cho chức năng edit-template
 ├──📝404.php                          # Trang không tìm thấy
 ├──📝archive-post-type.php            # Danh sách của loại bài viết
 ├──📝archive.php                      # Danh sách chung (Post)
