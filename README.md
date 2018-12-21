@@ -3,5 +3,5 @@ Theme này được tạo ra nhằm quy ước chung cho mọi người. Dành c
 
 # Tham khảm thêm
 - [Tài liệu](https://phuquang.github.io/themestandard/)
-- [Hàm thường dùng](https://phuquang.github.io/wordpress-functions)
-- [Hệ thống cấp bật template](https://phuquang.github.io/wordpress-hierarchy)
+- [Hàm thường dùng](https://phuquang.github.io/themestandard/wordpress-functions)
+- [Hệ thống cấp bật template](https://phuquang.github.io/themestandard/wordpress-hierarchy)

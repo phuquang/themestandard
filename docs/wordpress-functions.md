@@ -4,8 +4,8 @@ Các hàm có tiếp đầu ngữ the_ thì sẽ print dữ liệu và get_ thì
 
 # Navigation
 - [Tài liệu](https://phuquang.github.io/themestandard/)
-- [Hàm thường dùng](https://phuquang.github.io/wordpress-functions)
-- [Hệ thống cấp bật template](https://phuquang.github.io/wordpress-hierarchy)
+- [Hàm thường dùng](https://phuquang.github.io/themestandard/wordpress-functions)
+- [Hệ thống cấp bật template](https://phuquang.github.io/themestandard/wordpress-hierarchy)
 
 ```php
 <?php
