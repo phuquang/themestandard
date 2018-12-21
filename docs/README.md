@@ -291,14 +291,14 @@ get_post_type_archive_link();
  */
 
 // Lấy tất cả ID của page
-get_all_page_ids()
+get_all_page_ids();
 
 // Lấy url của page
-get_page_link()
-get_page_uri()
+get_page_link();
+get_page_uri();
 
 // Điều kiện nếu là page
-is_page()
+is_page();
 
 /**
  * Custom Fields (postmeta)
@@ -373,7 +373,7 @@ $url = wp_get_attachment_image_url($id_attachment, 'full');
 $terms = wp_get_post_terms(get_the_ID(),'taxonomy_slug');
 
 // Truy xuất danh sách mục cho một bài
-$categories wp_get_post_categories();
+$categories = wp_get_post_categories();
 
 // Truy xuất danh sách thẻ cho một bài
 $tags = wp_get_post_tags();
@@ -540,7 +540,7 @@ get_stylesheet_directory_uri();
 get_template_directory_uri();
 
 // Trả về http://site.com/wp-content/themes
-get_theme_root_uri()
+get_theme_root_uri();
 
 // Xuất language attributes
 language_attributes();
@@ -589,10 +589,11 @@ if (have_posts()):
     while ( have_posts() ) : the_post();
         // found posts
     endwhile;
-else;
+else:
     // no posts found
 endif;
 ```
+
 ### Tham khảo thêm
 - https://codex.wordpress.org/Function_Reference
 - https://codex.wordpress.org/Creating_an_Error_404_Page
