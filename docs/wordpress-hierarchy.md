@@ -1,5 +1,11 @@
 # THE WORDPRESS TEMPLATE HIERARCHY
 Đây là hệ thống cấp bật của template được wordpress quy định nhớ tuân thủ hen.
+
+# Navigation
+- [Tài liệu](https://phuquang.github.io/themestandard/)
+- [Hàm thường dùng](https://phuquang.github.io/wordpress-functions)
+- [Hệ thống cấp bật template](https://phuquang.github.io/wordpress-hierarchy)
+
 ```bash
 index.php
 ├──archive.php

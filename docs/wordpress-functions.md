@@ -1,6 +1,12 @@
 # Các hàm thường dùng
 Dưới đây là danh sách kèm mô tả ngắn ý nghĩa của hàm để biết thêm chi tiết hãy xem mục tham khảo thêm.
 Các hàm có tiếp đầu ngữ the_ thì sẽ print dữ liệu và get_ thì sẽ return dữ liệu.
+
+# Navigation
+- [Tài liệu](https://phuquang.github.io/themestandard/)
+- [Hàm thường dùng](https://phuquang.github.io/wordpress-functions)
+- [Hệ thống cấp bật template](https://phuquang.github.io/wordpress-hierarchy)
+
 ```php
 <?php
 /**
