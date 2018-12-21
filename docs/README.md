@@ -148,7 +148,8 @@ add_action('cba_head_after', function(){
 ```
 
 # Thêm css hoặc js cho từng trang
-Có thể chọn 1 trong 2 cách bên dưới, khuyến nghị cách 1 nhe
+Có thể chọn 1 trong 2 cách bên dưới, khuyến nghị cách 1 nhe.
+Đặt ở phía trên hàm get_header().
 ```php
 <?php
 // Add style or script for current page
