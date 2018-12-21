@@ -212,6 +212,7 @@ assets();
 - Dưới đây là danh sách kèm mô tả ngắn ý nghĩa của hàm để biết thêm chi tiết hãy xem mục tham khảo thêm
 - Các hàm có tiếp đầu ngữ the_ thì sẽ print dữ liệu luôn
 - Các hàm có tiếp đầu ngữ get_ thì sẽ trã về dữ liệu
+
 ```php
 <?php
 /**
