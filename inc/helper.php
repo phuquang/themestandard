@@ -102,8 +102,12 @@ if ( !function_exists('the_pagination') ) {
 }
 
 if ( !function_exists('url') ) {
-    function url() {
-        echo HOME_URL;
+    function url( $return = false ) {
+        if ( $return === true ) {
+            return HOME_URL;
+        } else {
+            echo HOME_URL;
+        }
     }
 }
 
@@ -114,8 +118,12 @@ if ( !function_exists('getUrl') ) {
 }
 
 if ( !function_exists('themeUrl') ) {
-    function themeUrl() {
-        echo THEME_URL;
+    function themeUrl( $return = false ) {
+        if ( $return === true ) {
+            return THEME_URL;
+        } else {
+            echo THEME_URL;
+        }
     }
 }
 
@@ -126,8 +134,12 @@ if ( !function_exists('getThemeUrl') ) {
 }
 
 if ( !function_exists('assets') ) {
-    function assets() {
-        echo THEME_ASSETS;
+    function assets( $return = false ) {
+        if ( $return === true ) {
+            return THEME_ASSETS;
+        } else {
+            echo THEME_ASSETS;
+        }
     }
 }
 

@@ -10,8 +10,9 @@
  * @version 1.0
  */
 
-get_header(); 
-
+get_header(); ?>
+    <main class="container">
+    <?php
     /* Start the Loop */
     while ( have_posts() ) :
         the_post();
@@ -32,6 +33,6 @@ get_header();
 
     endwhile; // End of the loop.
 
-    get_sidebar();
-
-get_footer();
+    get_sidebar(); ?>
+    </main>
+<?php get_footer();
