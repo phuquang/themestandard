@@ -2,11 +2,6 @@
 Dưới đây là danh sách kèm mô tả ngắn ý nghĩa của hàm để biết thêm chi tiết hãy xem mục tham khảo thêm.
 Các hàm có tiếp đầu ngữ the_ thì sẽ print dữ liệu và get_ thì sẽ return dữ liệu.
 
-# Navigation
-- [Tài liệu](https://phuquang.github.io/themestandard/)
-- [Hàm thường dùng](https://phuquang.github.io/themestandard/wordpress-functions)
-- [Hệ thống cấp bật template](https://phuquang.github.io/themestandard/wordpress-hierarchy)
-
 ```php
 <?php
 /**
@@ -388,3 +383,11 @@ else:
     // no posts found
 endif;
 ```
+
+# Navigation
+- [Trang chủ](https://phuquang.github.io/themestandard/)
+- [Yêu cầu](https://phuquang.github.io/themestandard/theme-requite)
+- [Hệ thống cấp bật template](https://phuquang.github.io/themestandard/wordpress-hierarchy)
+- [Cấu trúc thư mục theme](https://phuquang.github.io/themestandard/theme-structure)
+- [Hàm thường dùng](https://phuquang.github.io/themestandard/wordpress-functions)
+- [Tham khảo](https://phuquang.github.io/themestandard/theme-document)

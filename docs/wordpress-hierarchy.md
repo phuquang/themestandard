@@ -1,11 +1,6 @@
 # THE WORDPRESS TEMPLATE HIERARCHY
 Đây là hệ thống cấp bật của template được wordpress quy định nhớ tuân thủ hen.
 
-# Navigation
-- [Tài liệu](https://phuquang.github.io/themestandard/)
-- [Hàm thường dùng](https://phuquang.github.io/themestandard/wordpress-functions)
-- [Hệ thống cấp bật template](https://phuquang.github.io/themestandard/wordpress-hierarchy)
-
 ```bash
 index.php
 ├──archive.php
@@ -55,3 +50,11 @@ index.php                    ⑤
 # Tham khảo
 - https://developer.wordpress.org/themes/basics/template-hierarchy/
 - https://wphierarchy.com/
+
+# Navigation
+- [Trang chủ](https://phuquang.github.io/themestandard/)
+- [Yêu cầu](https://phuquang.github.io/themestandard/theme-requite)
+- [Hệ thống cấp bật template](https://phuquang.github.io/themestandard/wordpress-hierarchy)
+- [Cấu trúc thư mục theme](https://phuquang.github.io/themestandard/theme-structure)
+- [Hàm thường dùng](https://phuquang.github.io/themestandard/wordpress-functions)
+- [Tham khảo](https://phuquang.github.io/themestandard/theme-document)
