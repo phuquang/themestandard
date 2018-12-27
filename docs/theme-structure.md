@@ -13,30 +13,32 @@
 │  └──📁js/                           # Script (js) dành cho frontend
 ├──📁inc/                             # Function, controller v.v..
 │  ├──📁libraries/                    # Chứa thư viện code
+│  │  ├──📝disable-feature.php        # Thư viện loại bỏ các tính năng mặc định
+│  │  ├──📝helper.php                 # Thư viện những hàm hỗ trợ
+│  │  ├──📝QNP_Pagination.php         # Class phân trang, được gọi trong the_pagination()
+│  │  └──📝theme-debug.php            # Hàm hỗ trợ cho dev và debug, deploy thì nên xóa đi
 │  ├──📁metaboxes/                    # Chứa file tạo metabox
 │  │  └──📝edit-template-page.php     # Chức năng edit-template-page của page
+│  ├──📁options/                      # Chứa các file đăng ký admin option page
+│  │  ├──📝theme-settings-child.php   # Trang option con
+│  │  └──📝theme-settings.php         # Trang option chung
 │  ├──📁registers/                    # Chứa các file đăng ký post type và sidebar
 │  │  ├──📝posttype-sample.php        # Mẫu đăng ký post type
 │  │  └──📝sidebar-sample.php         # Mẫu đăng ký sidebar
 │  ├──📁widgets/                      # Chứa các file đăng ký widget
 │  │  └──📝sample.php                 # Mẫu đăng ký widget
-│  ├──📁theme-options/                # Chứa các file đăng ký admin option page
-│  │  ├──📝theme-settings-child.php   # Trang option con
-│  │  └──📝theme-settings.php         # Trang option chung
-│  ├──📝disable-feature.php           # Hàm loại bỏ các tính năng mặc định
-│  ├──📝theme-debug.php               # Hàm hỗ trợ cho dev và debug, deploy thì nên xóa đi
-│  ├──📝custom-seo.php                # Tùy chỉnh lại các thẻ SEO
+│  ├──📝disable.php                   # Thực thi các hàm loại bỏ các tính năng mặc định
 │  ├──📝pagination.php                # Class phân trang, được gọi trong the_pagination()
 │  ├──📝redirects.php                 # Những hàm chuyển hướng
 │  ├──📝helper.php                    # Những hàm hỗ trợ
+│  ├──📝seo.php                       # Tùy chỉnh lại các thẻ SEO
 │  ├──📝setup.php                     # Thiết lập theme
-│  └──📝init.php                      # Require các file trong inc
+│  └──📝init.php                      # Require các file trong thư mục inc
 ├──📁languages/                       # Ngôn ngữ
 │  ├──📝theme.pot                     # File chứa chuỗi dịch (Portable Object Template)
 │  ├──📝theme.po                      # File chứa bản dịch thực sự (Portable Object)
 │  └──📝theme.mo                      # File đã được biên dịch (Machine Object)
 ├──📁form-controllers/                # Chứa các file sử lý của form
-│  ├──📁libraries/                    # Chứa thư viện chung cho form hoặc để trong /inc/libraries
 │  ├──📝page-contact-controller.php   # Xử lý
 │  ├──📝page-contact-validator.php    # Kiểm tra đầu vào
 │  └──📝page-contact-sendmail.php     # Gửi mail
