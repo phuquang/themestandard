@@ -7,6 +7,10 @@
  * @since 1.0
  * @version 1.0
  */
+require get_parent_theme_file_path( '/inc/libraries/disable-feature.php' );
+require get_parent_theme_file_path( '/inc/libraries/helper.php' );
+require get_parent_theme_file_path( '/inc/libraries/QNP_Pagination.php' );
+require get_parent_theme_file_path( '/inc/libraries/theme-debug.php' );
 
 // Pagination functions
 require get_parent_theme_file_path( '/inc/pagination.php' );
@@ -18,7 +22,7 @@ require get_parent_theme_file_path( '/inc/helper.php' );
 require get_parent_theme_file_path( '/inc/redirect.php' );
 
 // Change default feature in wordpress
-require get_parent_theme_file_path( '/inc/disable-feature.php' );
+require get_parent_theme_file_path( '/inc/disable.php' );
 
 /**
  * Register Post Type
@@ -47,18 +51,15 @@ require get_parent_theme_file_path( '/inc/metaboxes/edit-template-page.php' );
 /**
  * Custom SEO tags
  */
-require get_parent_theme_file_path( '/inc/custom-seo.php' );
+require get_parent_theme_file_path( '/inc/seo.php' );
 
 /**
  * Page options
  */
-// require get_parent_theme_file_path( '/inc/theme-options/theme-settings.php' );
-// require get_parent_theme_file_path( '/inc/theme-options/theme-settings-child.php' );
+// require get_parent_theme_file_path( '/inc/options/theme-settings.php' );
+// require get_parent_theme_file_path( '/inc/options/theme-settings-child.php' );
 
 /**
  * Setup theme
  */
 require get_parent_theme_file_path( '/inc/setup.php' );
-
-// Theme debug
-require get_parent_theme_file_path( '/inc/theme-debug.php' );

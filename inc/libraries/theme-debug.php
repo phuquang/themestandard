@@ -161,74 +161,20 @@ if ( WP_DEBUG === true && in_array($_SERVER['REMOTE_ADDR'], $allow_debug_ips) ) 
     </div>
 </div>
 </div>
-<style>
-#themedebug{
-    color: #FF6F61;
-    border: 1px solid #FF6F61;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    font-size: 16px;
-    padding-bottom: 20px;
-    background: #fff;
-    z-index: 999;
-    box-shadow: 3px 3px 10px 0px #000;
-}
-#themedebug_close{
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-    padding: 0 9px;
-    background: #222;
-}
-#themedebug .themedebug_header{
-    background: #FF6F61;
-    color: #FFF;
-    padding: 0 5px;
-}
-#themedebug .themedebug_content{
-    background:#FFF;
-}
-#themedebug.hidden {
-    left: auto;
-}
-#themedebug.hidden .themedebug_content{
-    display: none;
-}
-#themedebug.hidden .themedebug_header{
-    padding-right: 35px;
-}
-#themedebug ul{
-    margin: 0;
-}
-.themedebug_tab_content{
-    display: none;
-}
-.themedebug_tab_content.active{
-    display: block;
-}
-.themedebug_tab{
-    padding: 0;
-    font-size: 0;
-    border-bottom: 1px solid #FF6F61;
-}
-.themedebug_tab li{
-    display: inline-block;
-    font-size: 16px;
-    padding: 0 5px;
-    border-right: 1px solid #FF6F61;
-    cursor: pointer;
-}
-.themedebug_tab li.active{
-    color: #fff;
-    background: #FF6F61;
-}
-.themedebug_tab li:hover{
-    color: #fff;
-    background: #FF6F61;
-}
+<style>#themedebug{color: #FF6F61;border: 1px solid #FF6F61;position: fixed;bottom: 0;left: 0;right: 0;font-size: 16px;padding-bottom: 20px;background: #fff;z-index: 999;box-shadow: 3px 3px 10px 0px #000;}
+#themedebug_close{position: absolute;top: 0;right: 0;cursor: pointer;padding: 0 9px;background: #222;}
+#themedebug .themedebug_header{background: #FF6F61;color: #FFF;padding: 0 5px;}
+#themedebug .themedebug_content{background:#FFF;}
+#themedebug.hidden {left: auto;}
+#themedebug.hidden .themedebug_content{display: none;}
+#themedebug.hidden .themedebug_header{padding-right: 35px;}
+#themedebug ul{margin: 0;}
+.themedebug_tab_content{display: none;}
+.themedebug_tab_content.active{display: block;}
+.themedebug_tab{padding: 0;font-size: 0;border-bottom: 1px solid #FF6F61;}
+.themedebug_tab li{display: inline-block;font-size: 16px;padding: 0 5px;border-right: 1px solid #FF6F61;cursor: pointer;}
+.themedebug_tab li.active{color: #fff;background: #FF6F61;}
+.themedebug_tab li:hover{color: #fff;background: #FF6F61;}
 </style>
 <script>
 'use strict';
