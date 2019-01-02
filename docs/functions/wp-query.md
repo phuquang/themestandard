@@ -5,7 +5,8 @@
 $args = array(
     // Author Parameters - Tham số lấy bài viết theo tác giả
     // http://codex.wordpress.org/Class_Reference/WP_Query#Author_Parameters
-    'author'         => '1,2,3,',      // (int) - Các ID tác giả cần lấy bài viết (thêm dấu - vào để loại trừ tác giả, ví dụ: -14, -20)
+    'author'         => '1,2,3,',      // (int) - Các ID tác giả cần lấy bài viết
+                                       // (thêm dấu - vào để loại trừ tác giả, ví dụ: -14, -20)
     'author_name'    => 'luetkemj',    // (string) - Lấy bài viết dựa theo tên nick name của tác giả
     'author__in'     => array( 2, 6 ), // (array) - Lấy bài dựa theo ID của tác giả
     'author__not_in' => array( 2, 6 ), // (array)' - Các ID của tác giả không muốn lấy bài
@@ -34,11 +35,11 @@ $args = array(
     'tax_query' => array(    // (array) - Lấy bài viết dựa theo taxonomy
         'relation' => 'AND', // (string) - Mối quan hệ giữa các tham số bên trong, AND hoặc OR
         array(
-            'taxonomy'         => 'color',                // (string) - Tên của taxonomy
-            'field'            => 'slug',                 // (string) - Loại field cần xác định term của taxonomy, sử dụng 'id' hoặc 'slug'
+            'taxonomy'         => 'color', // (string) - Tên của taxonomy
+            'field'            => 'slug', // (string) - Loại field cần xác định term của taxonomy, sử dụng 'id' hoặc 'slug'
             'terms'            => array( 'red', 'blue' ), // (int/string/array) - Slug của các terms bên trong taxonomy cần lấy bài
-            'include_children' => true,                   // (bool) - Lấy category con, true hoặc false
-            'operator'         => 'IN'                    // (string) - Toán tử áp dụng cho mảng tham số này. Sử dụng 'IN' hoặc 'NOT IN'
+            'include_children' => true, // (bool) - Lấy category con, true hoặc false
+            'operator'         => 'IN' // (string) - Toán tử áp dụng cho mảng tham số này. Sử dụng 'IN' hoặc 'NOT IN'
         ),
         array(
             'taxonomy' => 'actor',
@@ -55,7 +56,8 @@ $args = array(
     'name'                => 'hello-world',       // (string) - Slug của post cần hiển thị
     'page_id'             => 1,                   // (int) - ID của page cần hiển thị
     'pagename'            => 'sample-page',       // (string) - Slug của page cần hiển thị
-    'pagename'            => 'contact_us/canada', // (string) - Hiển thị page con bằng slug của page mẹ và page con, cách nhau bởi dấu gạch chéo
+    'pagename'            => 'contact_us/canada', // (string) - Hiển thị page con bằng slug của page mẹ và page con,
+                                                  // cách nhau bởi dấu gạch chéo
     'post_parent'         => 1,                   // (int) - Lấy page con dựa vào ID của page mẹ
     'post_parent__in'     => array(1,2,3),        // (array) - Lấy nhiều page con dựa vào nhiều page mẹ thông qua ID
     'post_parent__not_in' => array(1,2,3),        // (array) - Các ID của page mẹ không muốn hiển thị page con
@@ -105,12 +107,14 @@ $args = array(
     'nopaging' => false,               // (bool) - Nếu muốn sử dụng phân trang thì đặt là false.
                                        // True sẽ hiển thị tất cả post. Mặc định là false.
     'paged' => get_query_var('paged'), // (int) - Số trang hiện tại.
-                                       // NOTE: Sử dụng get_query_var('page') nếu bạn cần sử dụng nó ở một Custom Page Template
-                                       // http://codex.wordpress.org/Function_Reference/next_posts_link#Usage_when_querying_the_loop_with_WP_Query
-                                       // http://codex.wordpress.org/Pagination#Troubleshooting_Broken_Pagination
-    'offset' => 3,                     // (int) - Số bài viết trước đó mà bạn muốn bỏ qua.
-                                       // Warning: Thiết lập này sẽ làm cho phần phân trang bị lỗi, xem thêm: http://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
-                                       // Nếu tham số 'posts_per_page' có giá trị là -1 thì offset sẽ bị bỏ qua.
+           // NOTE: Sử dụng get_query_var('page')
+           // nếu bạn cần sử dụng nó ở một Custom Page Template
+           // http://codex.wordpress.org/Function_Reference/next_posts_link#Usage_when_querying_the_loop_with_WP_Query
+           // http://codex.wordpress.org/Pagination#Troubleshooting_Broken_Pagination
+    'offset' => 3, // (int) - Số bài viết trước đó mà bạn muốn bỏ qua.
+           // Warning: Thiết lập này sẽ làm cho phần phân trang bị lỗi,
+           // xem thêm: http://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
+           // Nếu tham số 'posts_per_page' có giá trị là -1 thì offset sẽ bị bỏ qua.
     'page' => get_query_var('page'),   // (int) - Số trang hiện tại sử dụng cho Custom Page Template.
     'ignore_sticky_posts' => false,    // (boolean) - Tuỳ chọn có lấy bài viết được Sticky hay không.
                                        // Nếu false thì sẽ hiển thị, true thì bỏ qua.
@@ -160,31 +164,39 @@ $args = array(
                 'month' => 2,
                 'day'   => 28,
             ),
-            'inclusive' => true,        // (boolean) - Nếu sử dụng before và after, sử dụng 'true' nếu muốn bao gồm cả hai tham số.
+            'inclusive' => true,        // (boolean) - Nếu sử dụng before và after,
+                                        // sử dụng 'true' nếu muốn bao gồm cả hai tham số.
             'compare'   =>  '=',        // (string) - So sánh giá trị với '=', '!=', '>', '>=', '<', '<=',
                                         // 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN',
                                         // 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5).
                                         // Default value is '='
             'column'    => 'post_date', // (string) - Cột dữ liệu mà cần gửi query đến, mặc định là 'post_date'
-            'relation'  => 'AND',       // (string) - OR hoặc AND, sử dụng khi có nhiều array trong date_query để tạo mối quan hệ
+            'relation'  => 'AND', // (string) - OR hoặc AND, sử dụng khi có nhiều array trong date_query để tạo mối quan hệ
         ),
     ),
 
     // Custom Field Parameters - Lấy bài viết dựa theo custom field
     // http://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters
-    'meta_key'       => 'key',   // (string) - Lấy bài dựa theo meta key của custom field
-    'meta_value'     => 'value', // (string) - Lấy bài dựa theo giá trị của custom field
-    'meta_value_num' => 10,      // (number) - Giá trị của custom field dạng số tự nhiên
-    'meta_compare'   => '=',     // (string) - Toán tử để so sánh với 'meta_value'. Có thể sử dụng '!=', '>', '>=', '<', or ='. Mặc định là '='.
+    'meta_key'       => 'key',  // (string) - Lấy bài dựa theo meta key của custom field
+    'meta_value'     => 'value',// (string) - Lấy bài dựa theo giá trị của custom field
+    'meta_value_num' => 10,     // (number) - Giá trị của custom field dạng số tự nhiên
+    'meta_compare'   => '=',    // (string) - Toán tử để so sánh với 'meta_value'.
+                                // Có thể sử dụng '!=', '>', '>=', '<', or ='. Mặc định là '='.
     'meta_query'     => array(  // (array)  - Sử dụng nhiều điều kiện lấy bài viết theo custom field 
         'relation' => 'AND',    // (string) - Mối quan hệ của các array query bên trong, sử dụng 'OR' hoặc 'AND'
         array(
             'key'   => 'color', // (string) - Tên meta key
             'value' => 'blue',  // (string/array) - Giá trị meta value
-            'type'  => 'CHAR',  // (string) - Loại giá trị. Có thể sử dụng 'NUMERIC', 'BINARY', 'CHAR', 'DATE', 'DATETIME', 'DECIMAL', 'SIGNED', 'TIME', 'UNSIGNED'.
-                                // Mặc định là 'CHAR'. Tham số 'type' DATE chỉ có thể hoạt động với tham số 'compare' nếu định dạng ngày tháng được sử dụng là YYYYMMDD.
+            'type'  => 'CHAR',  // (string) - Loại giá trị. 
+                                // Có thể sử dụng 'NUMERIC', 'BINARY', 'CHAR', 'DATE',
+                                // 'DATETIME', 'DECIMAL', 'SIGNED', 'TIME', 'UNSIGNED'.
+                                // Mặc định là 'CHAR'.
+                                // Tham số 'type' DATE chỉ có thể hoạt động với tham số 'compare'
+                                // nếu định dạng ngày tháng được sử dụng là YYYYMMDD.
             'compare' => '='    // (string) - Toán tử so sánh với giá trị value trong mảng này.
-                                // Có thể sử dụng '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN', 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5).
+                                // Có thể sử dụng '=', '!=', '>', '>=', '<', '<=',
+                                // 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN',
+                                // 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5).
                                 // Default value is '='.
         ),
         array(
