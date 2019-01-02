@@ -6,4 +6,4 @@
 - [Hàm thường dùng](https://phuquang.github.io/themestandard/wordpress-functions)
 - [Tham khảo](https://phuquang.github.io/themestandard/theme-document)
 - Functions, Hooks, Classes, Methods
- - [WP_Query](https://phuquang.github.io/themestandard/functions/wp-query)
+ * [WP_Query](https://phuquang.github.io/themestandard/functions/wp-query)
