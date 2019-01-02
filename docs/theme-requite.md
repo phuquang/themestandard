@@ -19,8 +19,4 @@
 
 # Navigation
 - [Trang chủ](https://phuquang.github.io/themestandard/)
-- [Yêu cầu](https://phuquang.github.io/themestandard/theme-requite)
-- [Hệ thống cấp bật template](https://phuquang.github.io/themestandard/wordpress-hierarchy)
-- [Cấu trúc thư mục theme](https://phuquang.github.io/themestandard/theme-structure)
-- [Hàm thường dùng](https://phuquang.github.io/themestandard/wordpress-functions)
-- [Tham khảo](https://phuquang.github.io/themestandard/theme-document)
+- [Sơ đồ tài liệu](https://phuquang.github.io/themestandard/sitemap)
