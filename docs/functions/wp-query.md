@@ -98,9 +98,12 @@ $args = array(
 
     // Pagination Parameters
     // http://codex.wordpress.org/Class_Reference/WP_Query#Pagination_Parameters
-    'posts_per_page' => 10,            // (int) - Số lượng bài viết cần lấy ra để hiển thị trên mỗi trang. Nếu muốn hiển thị toàn bộ thì đặt giá trị là -1
-    'posts_per_archive_page' => 10,    // (int) - Số lượng bài viết cần lấy ra hiển thị trên mỗi trang. Nhưng chỉ sử dụng cho các trang lưu trữ.
-    'nopaging' => false,               // (bool) - Nếu muốn sử dụng phân trang thì đặt là false. True sẽ hiển thị tất cả post. Mặc định là false.
+    'posts_per_page' => 10,            // (int) - Số lượng bài viết cần lấy ra để hiển thị trên mỗi trang.
+                                       // Nếu muốn hiển thị toàn bộ thì đặt giá trị là -1
+    'posts_per_archive_page' => 10,    // (int) - Số lượng bài viết cần lấy ra hiển thị trên mỗi trang.
+                                       // Nhưng chỉ sử dụng cho các trang lưu trữ.
+    'nopaging' => false,               // (bool) - Nếu muốn sử dụng phân trang thì đặt là false.
+                                       // True sẽ hiển thị tất cả post. Mặc định là false.
     'paged' => get_query_var('paged'), // (int) - Số trang hiện tại.
                                        // NOTE: Sử dụng get_query_var('page') nếu bạn cần sử dụng nó ở một Custom Page Template
                                        // http://codex.wordpress.org/Function_Reference/next_posts_link#Usage_when_querying_the_loop_with_WP_Query
@@ -109,7 +112,8 @@ $args = array(
                                        // Warning: Thiết lập này sẽ làm cho phần phân trang bị lỗi, xem thêm: http://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
                                        // Nếu tham số 'posts_per_page' có giá trị là -1 thì offset sẽ bị bỏ qua.
     'page' => get_query_var('page'),   // (int) - Số trang hiện tại sử dụng cho Custom Page Template.
-    'ignore_sticky_posts' => false,    // (boolean) - Tuỳ chọn có lấy bài viết được Sticky hay không. Nếu false thì sẽ hiển thị, true thì bỏ qua.
+    'ignore_sticky_posts' => false,    // (boolean) - Tuỳ chọn có lấy bài viết được Sticky hay không.
+                                       // Nếu false thì sẽ hiển thị, true thì bỏ qua.
 
     // Order & Orderby Parameters - Thiết lập kiểu sắp xếp các bài viết
     // http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters
@@ -117,7 +121,8 @@ $args = array(
                          // Possible Values:
                          // 'ASC' - Hiển thị kiểu tăng dần (1, 2, 3; a, b, c).
                          // 'DESC' - Hiển thị kiểu giảm dần (3, 2, 1; c, b, a).
-    'orderby' => 'date', // (string) - Thiết lập loại dữ liệu sẽ được sắp xếp dựa vào. Mặc định nó sẽ là tham số 'date' để dựa vào ngày đăng bài.
+    'orderby' => 'date', // (string) - Thiết lập loại dữ liệu sẽ được sắp xếp dựa vào.
+                         // Mặc định nó sẽ là tham số 'date' để dựa vào ngày đăng bài.
                          // Possible Values:
                          // 'none' - Không sắp xếp
                          // 'ID' - Sắp xếp bởi ID bài viết
@@ -145,32 +150,42 @@ $args = array(
             'minute'   => 19,                  // (int) - Lấy bài dựa theo phút trong giờ (từ 0 đến 60).
             'second'   => 30,                  // (int) - Lấy bài dựa theo giây trong phút (0 đến 60).
             'm'        => 201404,              // (int) - Tháng của năm cần lấy bài (Ví dụ: 201307).
-            'after'    => 'January 1st, 2013', // (string/array) - Lấy bài viết sau ngày cố định. Có thể sử dụng strtotime()-compatible string, hoặc sử dụng array gồm 'year', 'month', 'day'
-            'before'   => array(               // (string/array) - Lấy bài viết trước ngày cố định. Có thể sử dụng strtotime()-compatible string, hoặc sử dụng array gồm 'year', 'month', 'day'
+            'after'    => 'January 1st, 2013', // (string/array) - Lấy bài viết sau ngày cố định.
+                                               // Có thể sử dụng strtotime()-compatible string,
+                                               // hoặc sử dụng array gồm 'year', 'month', 'day'
+            'before'   => array(               // (string/array) - Lấy bài viết trước ngày cố định.
+                                               // Có thể sử dụng strtotime()-compatible string,
+                                               // hoặc sử dụng array gồm 'year', 'month', 'day'
                 'year'  => 2013,
                 'month' => 2,
                 'day'   => 28,
             ),
-            'inclusive' => true,               // (boolean) - Nếu sử dụng before và after, sử dụng 'true' nếu muốn bao gồm cả hai tham số.
-            'compare'   =>  '=',               // (string) - So sánh giá trị với '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN', 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5). Default value is '='
-            'column'    => 'post_date',        // (string) - Cột dữ liệu mà cần gửi query đến, mặc định là 'post_date'
-            'relation'  => 'AND',              // (string) - OR hoặc AND, sử dụng khi có nhiều array trong date_query để tạo mối quan hệ
+            'inclusive' => true,        // (boolean) - Nếu sử dụng before và after, sử dụng 'true' nếu muốn bao gồm cả hai tham số.
+            'compare'   =>  '=',        // (string) - So sánh giá trị với '=', '!=', '>', '>=', '<', '<=',
+                                        // 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN',
+                                        // 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5).
+                                        // Default value is '='
+            'column'    => 'post_date', // (string) - Cột dữ liệu mà cần gửi query đến, mặc định là 'post_date'
+            'relation'  => 'AND',       // (string) - OR hoặc AND, sử dụng khi có nhiều array trong date_query để tạo mối quan hệ
         ),
     ),
 
     // Custom Field Parameters - Lấy bài viết dựa theo custom field
     // http://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters
-    'meta_key'       => 'key',    // (string) - Lấy bài dựa theo meta key của custom field
-    'meta_value'     => 'value',  // (string) - Lấy bài dựa theo giá trị của custom field
-    'meta_value_num' => 10,       // (number) - Giá trị của custom field dạng số tự nhiên
-    'meta_compare'   => '=',      // (string) - Toán tử để so sánh với 'meta_value'. Có thể sử dụng '!=', '>', '>=', '<', or ='. Mặc định là '='.
-    'meta_query'     => array(    // (array)  - Sử dụng nhiều điều kiện lấy bài viết theo custom field 
-        'relation' => 'AND',      // (string) - Mối quan hệ của các array query bên trong, sử dụng 'OR' hoặc 'AND'
+    'meta_key'       => 'key',   // (string) - Lấy bài dựa theo meta key của custom field
+    'meta_value'     => 'value', // (string) - Lấy bài dựa theo giá trị của custom field
+    'meta_value_num' => 10,      // (number) - Giá trị của custom field dạng số tự nhiên
+    'meta_compare'   => '=',     // (string) - Toán tử để so sánh với 'meta_value'. Có thể sử dụng '!=', '>', '>=', '<', or ='. Mặc định là '='.
+    'meta_query'     => array(  // (array)  - Sử dụng nhiều điều kiện lấy bài viết theo custom field 
+        'relation' => 'AND',    // (string) - Mối quan hệ của các array query bên trong, sử dụng 'OR' hoặc 'AND'
         array(
-            'key'     => 'color', // (string) - Tên meta key
-            'value'   => 'blue',  // (string/array) - Giá trị meta value
-            'type'    => 'CHAR',  // (string) - Loại giá trị. Có thể sử dụng 'NUMERIC', 'BINARY', 'CHAR', 'DATE', 'DATETIME', 'DECIMAL', 'SIGNED', 'TIME', 'UNSIGNED'. Mặc định là 'CHAR'. Tham số 'type' DATE chỉ có thể hoạt động với tham số 'compare' nếu định dạng ngày tháng được sử dụng là YYYYMMDD.
-            'compare' => '='      // (string) - Toán tử so sánh với giá trị value trong mảng này. Có thể sử dụng '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN', 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5). Default value is '='.
+            'key'   => 'color', // (string) - Tên meta key
+            'value' => 'blue',  // (string/array) - Giá trị meta value
+            'type'  => 'CHAR',  // (string) - Loại giá trị. Có thể sử dụng 'NUMERIC', 'BINARY', 'CHAR', 'DATE', 'DATETIME', 'DECIMAL', 'SIGNED', 'TIME', 'UNSIGNED'.
+                                // Mặc định là 'CHAR'. Tham số 'type' DATE chỉ có thể hoạt động với tham số 'compare' nếu định dạng ngày tháng được sử dụng là YYYYMMDD.
+            'compare' => '='    // (string) - Toán tử so sánh với giá trị value trong mảng này.
+                                // Có thể sử dụng '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN', 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5).
+                                // Default value is '='.
         ),
         array(
             'key'     => 'price',
@@ -189,7 +204,8 @@ $args = array(
 
     // Search Parameter - Lấy bài viết dựa theo truy vấn tìm kiếm
     // http://codex.wordpress.org/Class_Reference/WP_Query#Search_Parameter
-    's'        => $s,   // (string) - Từ khoá tìm kiếm bài viết. $s chính là biến lưu từ khoá truy vấn tìm kiếm khi tìm thông qua form tìm kiếm.
+    's'        => $s,   // (string) - Từ khoá tìm kiếm bài viết.
+                        // $s chính là biến lưu từ khoá truy vấn tìm kiếm khi tìm thông qua form tìm kiếm.
     'exact'    => true, // (bool) - Tìm nội dung khớp chính xác với từ khoá tìm kiếm
     'sentence' => true, // (bool) - Sử dụng tìm kiếm trong cụm từ
 );
