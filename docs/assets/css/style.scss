@@ -1,7 +1,9 @@
 ---
 ---
 
-// Breakpoints
-$large-breakpoint: 80rem !default;
-
 @import "{{ site.theme }}";
+
+.main-content {
+    max-width: 80rem;
+    padding: 2rem;
+}
