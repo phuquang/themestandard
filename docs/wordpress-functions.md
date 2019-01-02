@@ -361,10 +361,11 @@ the_post_navigation( array(
     'prev_text' => __( 'Previous post:', 'twentysixteen' ),
 ) );
 
-// Truy vấn post
+// Truy vấn post dựa vào đối số.
+// tìm hiểu thêm các đối số ở https://phuquang.github.io/themestandard/functions/wp-query
 $query = new WP_Query( $args );
-if ( $query->have_posts() ):
-    while ( $query->have_posts() ):
+if ( $query->have_posts() ): /* Xác định nếu có post tồn tại*/
+    while ( $query->have_posts() ): /* Vòng lặp */
             $query->the_post(); /* Thiết lập post hiện tại sau mõi vòng lặp */
     endwhile;
     // <!-- pagination here -->
