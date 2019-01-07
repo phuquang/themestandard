@@ -246,7 +246,9 @@ if ( !function_exists('theme_debug') ) {
 .recursiveThemeDebug .string {color: #e6db74;}
 .recursiveThemeDebug .null {color: #75715e;font-style: italic;}
 .recursiveThemeDebug .bool {color: #ae81ff;}
-.recursiveThemeDebug .key {color: #66d9ef;}</style><script>
+.recursiveThemeDebug .obj {color: #66d9ef;}
+.recursiveThemeDebug .key {color: #a6e22b;}
+</style><script>
 var recursiveThemeDebug = document.querySelectorAll('.recursiveThemeDebug td');
 Array.from(recursiveThemeDebug).map(item => {
     item.addEventListener('click', function (e) {this.classList.toggle('hidden');}, false);
@@ -262,10 +264,19 @@ Array.from(recursiveThemeDebug).map(item => {
         } elseif ( is_bool($variable) ) {
             echo '<span class="bool" title="Boolean">' . ($variable ? 'true' : 'false').'</span>';
         } elseif ( is_object($variable) || (is_array($variable) && count($variable) ) ) {
+            $class = '';
+            if ( is_array($variable) ) {
+                $class= 'key';
+                $title= 'Array';
+            }
+            if ( is_object($variable) ) {
+                $class= 'obj';
+                $title= 'Object';
+            }
             echo '<table>';
             foreach ($variable as $key => $value) {
                 echo "<tr>";
-                    echo "<td><span class='key' title='Array'>{$key}</span></td>";
+                    echo "<td><span class='{$class}' title='{$title}'>{$key}</span></td>";
                     echo '<td>';
                     recursiveThemeDebug($value);
                     echo '</td>';
