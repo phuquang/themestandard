@@ -1,31 +1,31 @@
 お問い合わせを受付けました。
 ------------------------------------------------------------
-投稿日時：{[$datetime]}
+投稿日時：{$datetime}
 
 【お問い合わせ内容　本文】
-{[$content]}
+{$content}
 
 【お問合せの種別】
-{[$inquiry]}
+{$inquiry}
 
 【お名前】
-{[$name]}
+{$name}
 
 【フリガナ】
-{[$kana]}
+{$kana}
 
 【メールアドレス】
-{[$email]}
+{$email}
 
 【会社・団体名】
-{[$company]}
+{$company}
 
 【お取引先のディーラー名】
-{[$partner]}
+{$partner}
 
 【住所】
-{[$pref]} {[$city]} {[$street]} {[$address]}
+{$pref} {$city} {$street} {$address}
 
 【電話番号】
-{[$phone1]}-{[$phone2]}-{[$phone3]}
+{$phone1}-{$phone2}-{$phone3}
 ------------------------------------------------------------
