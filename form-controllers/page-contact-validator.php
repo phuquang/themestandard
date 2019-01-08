@@ -14,4 +14,5 @@ $Validate->name('fullname', '氏名')
 
 $Validate->name('namekana', 'フリガナ')
         ->max('message max',10)
-        ->required('message required');
+        ->required('message required')
+        ;

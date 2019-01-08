@@ -5,25 +5,34 @@ session_start();
 // regenerates SESSIONID to prevent hijacking
 session_regenerate_id(true);
 
+// Include libraries
 include_once get_parent_theme_file_path('inc/libraries/Form/init.php');
 
-// Sử dụng được Validate
-// Tạo được valid ở controlller
-// form status
+$include_path = array(
+    'validator' => get_parent_theme_file_path('form-controllers/page-contact-validator.php'),
+    'sendmail' => get_parent_theme_file_path('form-controllers/page-contact-sendmail.php'),
+);
+
+$urls = array(
+    'form' => '/contact/',
+    'thank' => '/contact/thank/',
+);
+
 $Validate = new QNP_Form();
 
 // Set form status is first
 $form_status = '';
 
+// Method is GET
 if ( $Validate->methodIsGet() ) {
-    $form_name = $salt = 'contact';
-    $form_id = rand(10000,99999);
+    $form_id           = rand(10000,99999);
+    $form_name         = 'contact';
     $form_session_name = 'form_' . $form_name . '_' . $form_id;
-    $form_token_name = 'form_' . $form_name . '_' . $form_id . '_csrf';
-    $form_token_value = md5(mt_rand(1,1000000) . $salt);;
+    $form_token_name   = 'form_' . $form_name . '_' . $form_id . '_csrf';
+    $form_token_value  = md5(mt_rand(1,1000000) . $form_name);
     // Set session for form
     $_SESSION[$form_session_name] = time();
-    $_SESSION[$form_token_name] = $form_token_value;
+    $_SESSION[$form_token_name]   = $form_token_value;
 }
 
 // Method is POST
@@ -31,22 +40,21 @@ if ( $Validate->methodIsPost() ) {
 
     // Not form session
     if ( empty($Validate->post('form_session')) ) {
-        $Validate->redirect('/contact');
+        $Validate->redirect($urls['form']);
     }
 
     // form token not match
     if ($_SESSION[$Validate->post('form_session') . '_csrf'] !== $Validate->post('form_token') ) {
-        $Validate->redirect('/contact');
+        $Validate->redirect($urls['form']);
     }
 
     // form due
     if ( strtotime('+1 day', $_SESSION[$Validate->post('form_session')]) < time() ) {
-        $Validate->redirect('/contact');
+        $Validate->redirect($urls['form']);
     }
 
-    // Validator
-    include_once get_parent_theme_file_path('form-controllers/page-contact-validator.php');
-
+    // Include Validator
+    include_once $include_path['validator'];
 
     // First submit and Validate not errors
     if ( $Validate->post('submit') === 'confirm' && $Validate->notErrors() ) {
@@ -59,9 +67,9 @@ if ( $Validate->methodIsPost() ) {
         // Set form status is done
         $form_status = 'complete';
 
-        // include_once "send_mail.php";
-        include_once get_parent_theme_file_path('form-controllers/page-contact-sendmail.php');
-        // $Validate->redirect('/contact/thank');
+        // Include Sendmail
+        include_once $include_path['sendmail'];
+        $Validate->redirect($urls['thank']);
 
         // Rremove this form session
         unset($_SESSION[$Validate->post('form_session')]);
