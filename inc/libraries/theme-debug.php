@@ -234,14 +234,15 @@ if ( !function_exists('theme_debug') ) {
         echo '</div>';
         ?><style>.recursiveThemeDebug{background: #272822;font-size: 13px;color:#fff;padding: 5px;}
 .recursiveThemeDebug tr:nth-of-type(odd) {background-color: rgba(0,0,0,.05);}
-.recursiveThemeDebug td:first-child {width: 5%;padding-left: 5px;}
+.recursiveThemeDebug td:first-child {width: 5%;}
 .recursiveThemeDebug td {border: 1px solid #75715e;vertical-align: top;}
 .recursiveThemeDebug td td {border-left: 0;border-bottom: 0;}
 .recursiveThemeDebug td td:last-child{border-right: 0;}
 .recursiveThemeDebug td tr:first-child td {border-top: 0;}
-.recursiveThemeDebug table {width: 100%;}
+.recursiveThemeDebug table {width: 100%;border-spacing: 0px;border-collapse: collapse;}
 .recursiveThemeDebug td.hidden + td{background:#75715e;}
 .recursiveThemeDebug td.hidden + td > *{display: none;}
+.recursiveThemeDebug span {padding-left: 5px;padding-right: 5px;}
 .recursiveThemeDebug .int {color: #ae81ff;}
 .recursiveThemeDebug .string {color: #e6db74;}
 .recursiveThemeDebug .null {color: #75715e;font-style: italic;}
