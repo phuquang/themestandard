@@ -1,15 +1,12 @@
 <?php
-if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) {
-    header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
-    die();
-}
+namespace phuquang\Validation;
 
 trait QNP_Rules
 {
     /**
-     * [required]
-     * @param  [string] $str [description]
-     * @return [true]      [is error]
+     * [Value is exist]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
      */
     private function _required($str)
     {
@@ -20,51 +17,51 @@ trait QNP_Rules
     }
 
     /**
-     * [max]
-     * @param  [string] $str [description]
-     * @param  [integer] $max [description]
-     * @return [true]      [is error]
+     * [Value is elder condition]
+     * @param  [string]  $str [Input]
+     * @param  [integer] $max [Condition]
+     * @return [true]         [is error]
      */
     private function _max($str,$max)
     {
-        if ( mb_strlen($str) > $max ) {
+        if ( mb_strlen($str, 'UTF-8') > intval($max) ) {
             return true;
         }
         return false;
     }
 
     /**
-     * [min]
-     * @param  [string] $str [description]
-     * @param  [integer] $min [description]
-     * @return [true]      [is error]
+     * [Value is lesser condition]
+     * @param  [string]  $str [Input]
+     * @param  [integer] $min [Condition]
+     * @return [true]         [is error]
      */
     private function _min($str,$min)
     {
-        if ( mb_strlen($str) < $min ) {
+        if ( mb_strlen($str, 'UTF-8') < intval($min) ) {
             return true;
         }
         return false;
     }
 
     /**
-     * [zipcode]
-     * @param  [string] $str [description]
-     * @return [true]          [is error]
+     * [zipcode format exactly]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
      *         
      */
     private function _zipcode($str)
     {
-        if ( !preg_match('/^(\d{3}[\s-]?\d{4})$/', $str) ) {
+        if ( ! preg_match('/^(\d{3}[\s-]?\d{4})$/', $str) ) {
             return true;
         }
         return false;
     }
 
     /**
-     * [hiragana]
-     * @param  [string] $str [description]
-     * @return [true]      [is error]
+     * [hiragana format exactly]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
      */
     private function _hiragana($str)
     {
@@ -75,9 +72,9 @@ trait QNP_Rules
     }
 
     /**
-     * [katakana]
-     * @param  [string] $str [description]
-     * @return [true]      [is error]
+     * [katakana format exactly]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
      */
     private function _katakana($str)
     {
@@ -89,9 +86,9 @@ trait QNP_Rules
     }
 
     /**
-     * [email]
-     * @param  [string] $str [description]
-     * @return [true]      [is error]
+     * [email format exactly]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
      */
     private function _email($str)
     {
@@ -102,9 +99,9 @@ trait QNP_Rules
     }
 
     /**
-     * [phone]
-     * @param  [string] $str [description]
-     * @return [true]      [is error]
+     * [phone format exactly]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
      */
     private function _phone($str)
     {
@@ -115,9 +112,9 @@ trait QNP_Rules
     }
 
     /**
-     * [number]
-     * @param  [number] $str [description]
-     * @return [true]      [is error]
+     * [number format exactly]
+     * @param  [number] $str [Input]
+     * @return [true]        [is error]
      */
     private function _number($str)
     {
@@ -127,6 +124,24 @@ trait QNP_Rules
         return false;
     }
 
+    /**
+     * [url format exactly]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
+     */
+    private function _url($str)
+    {
+        if ( ! preg_match('/^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/', $value) ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * [fullwidth format exactly]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
+     */
     private function _fullwidth($str)
     {
         if ( !preg_match('/^[^ -~｡-ﾟ\x00-\x1f\t]+$/u', $str) ) {
@@ -135,10 +150,92 @@ trait QNP_Rules
         return false;
     }
 
+    /**
+     * [number fullwidth format exactly]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
+     */
     private function _numfullwidth($str)
     {
         if ( preg_match('/０|１|２|３|４|５|６|７|８|９/', $str) ) {
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * [date format exactly]
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
+     */
+    private function _dateformat($str)
+    {
+        if ( ! preg_match("/^\d{4}-\d{1,2}-\d{1,2}$/", $str) ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Use long passwords (8-20) with letters, CAPS, numbers and sybols
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
+     */
+    private function _passwordstrength($str)
+    {
+        if ( ! preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$#", $str) ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Use long passwords (8-20) with letters, CAPS and numbers
+     * @param  [string] $str [Input]
+     * @return [true]        [is error]
+     */
+    private function _passwordstrengthnotsymbols($str)
+    {
+        if ( ! preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", $str) ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Use long passwords (8-20) with letters, CAPS and numbers
+     * @param  [string] $str [Input]
+     * @return [string]      [is error]
+     */
+    private function _passwordstrengthtomessage($str)
+    {
+        $errors = array();
+        if( strlen($pwd) < 8 ) {
+            $errors[] = "too short";
+        }
+
+        if( strlen($pwd) > 20 ) {
+            $errors[] = "too long";
+        }
+
+        if( !preg_match("#[0-9]+#", $pwd) ) {
+            $errors[] = "must include at least one number";
+        }
+
+        if( !preg_match("#[a-z]+#", $pwd) ) {
+            $errors[] = "must include at least one letter";
+        }
+
+        if( !preg_match("#[A-Z]+#", $pwd) ) {
+            $errors[] = "must include at least one CAPS";
+        }
+
+        if( !preg_match("#\W+#", $pwd) ) {
+            $errors[] = "must include at least one symbol";
+        }
+
+        if ( count($errors) !== 0 ) {
+            return "Password validation failure(your choise is weak): " . implode(',', $errors);
         }
         return false;
     }

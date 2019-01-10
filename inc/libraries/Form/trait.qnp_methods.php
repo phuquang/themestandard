@@ -1,8 +1,5 @@
 <?php
-if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) {
-    header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
-    die();
-}
+namespace phuquang\Validation;
 
 trait QNP_Methods
 {
@@ -14,14 +11,6 @@ trait QNP_Methods
     public static function methodIsGet()
     {
         return $_SERVER['REQUEST_METHOD'] === 'GET';
-    }
-
-    public static function issetPost($name = '')
-    {
-        if ( array_key_exists($name, $_POST) ) {
-            return true;
-        }
-        return false;
     }
 
     public static function post($name = '', $return = true, $filter = false)
@@ -40,5 +29,39 @@ trait QNP_Methods
         } else {
             echo $value;
         }
+    }
+
+    public static function get($name = '', $return = true, $filter = false)
+    {
+        $value = null;
+        if ( array_key_exists($name, $_GET) && ! empty($_GET[$name]) ) {
+            $value = $_GET[$name];
+        }
+
+        if ( $filter === true) {
+            $value = $this::filter($value);
+        }
+
+        if ( $return === true) {
+            return $value;
+        } else {
+            echo $value;
+        }
+    }
+
+    public static function issetPost($name = '')
+    {
+        if ( array_key_exists($name, $_POST) ) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function issetGet($name = '')
+    {
+        if ( array_key_exists($name, $_GET) ) {
+            return true;
+        }
+        return false;
     }
 }

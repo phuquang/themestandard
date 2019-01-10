@@ -8,6 +8,8 @@ session_regenerate_id(true);
 // Include libraries
 include_once get_parent_theme_file_path('inc/libraries/Form/init.php');
 
+use phuquang\Validation\QNP_Form;
+
 $include_path = array(
     'validator' => get_parent_theme_file_path('form-controllers/page-contact-validator.php'),
     'sendmail' => get_parent_theme_file_path('form-controllers/page-contact-sendmail.php'),
