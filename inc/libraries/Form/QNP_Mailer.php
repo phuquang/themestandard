@@ -4,8 +4,8 @@ namespace phuquang\Validation;
 class QNP_Mailer
 {
     public $Language = 'ja';
-    public $Form     = '';
-    public $FormName = '';
+    public $From     = '';
+    public $FromName = '';
     public $To       = '';
     public $ToName   = '';
     public $CharSet  = 'ISO-2022-JP';
@@ -21,9 +21,9 @@ class QNP_Mailer
             return;
         }
 
-        $this->Form = $email;
+        $this->From = $email;
 
-        $this->FormName = $this->transferMimeEncode($name);
+        $this->FromName = $this->transferMimeEncode($name);
     }
 
     public function setTo($email, $name = '')
@@ -109,12 +109,13 @@ class QNP_Mailer
         $headers  = array(
             'MIME-Version: 1.0',
             "Content-transfer-encoding: {$this->Encoding}",
-            "From: {$this->From} <{$this->FormName}>",
+            "From: {$this->From} <{$this->FromName}>",
             "Content-Type: text/plain; charset={$this->CharSet}",
         );
 
         if ($this->Language === 'ja'){
-            mb_language('uni');
+            // mb_language('uni');
+            mb_language("Japanese");
             mb_internal_encoding('UTF-8');
 
             return mb_send_mail($this->To, $this->Subject, $this->Body, $headers);

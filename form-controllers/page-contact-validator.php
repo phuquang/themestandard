@@ -8,8 +8,8 @@ $Validate->_test = function($field, $message) use ($Validate) {
 
 $Validate->name('fullname', '氏名')
         ->required('message required')
-        ->test('message test')
-        ->hiragana('message hiragana')
+        // ->test('message test')
+        // ->hiragana('message hiragana')
         ;
 
 $Validate->name('namekana', 'フリガナ')

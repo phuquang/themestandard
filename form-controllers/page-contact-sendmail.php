@@ -1,5 +1,7 @@
 <?php
-$Mailer = QNP_Mailer();
+use phuquang\Validation\QNP_Mailer;
+
+$Mailer = new QNP_Mailer();
 
 $Mailer->setFrom('admin@cybridge.jp', 'Admin');
 $Mailer->setTo('user@cybridge.jp', 'Admin');

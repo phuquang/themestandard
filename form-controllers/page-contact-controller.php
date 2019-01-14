@@ -6,13 +6,13 @@ session_start();
 session_regenerate_id(true);
 
 // Include libraries
-include_once get_parent_theme_file_path('inc/libraries/Form/init.php');
+include_once dirname(__FILE__) . '/../inc/libraries/Form/init.php';
 
 use phuquang\Validation\QNP_Form;
 
 $include_path = array(
-    'validator' => get_parent_theme_file_path('form-controllers/page-contact-validator.php'),
-    'sendmail' => get_parent_theme_file_path('form-controllers/page-contact-sendmail.php'),
+    'validator' => dirname(__FILE__) . '/page-contact-validator.php',
+    'sendmail' => dirname(__FILE__) . '/page-contact-sendmail.php',
 );
 
 $urls = array(
@@ -71,7 +71,7 @@ if ( $Validate->methodIsPost() ) {
 
         // Include Sendmail
         include_once $include_path['sendmail'];
-        $Validate->redirect($urls['thank']);
+        // $Validate->redirect($urls['thank']);
 
         // Rremove this form session
         unset($_SESSION[$Validate->post('form_session')]);

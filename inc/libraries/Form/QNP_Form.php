@@ -5,10 +5,10 @@ class QNP_Form
 {
     use QNP_Rules, QNP_Methods, QNP_Errors,
         QNP_Filters, QNP_Helpers;
-    public $method;
-    public $fields;
-    public $field;
-    public $errors;
+    public $method = '';
+    public $fields = array();
+    public $field = null;
+    public $errors = array();
 
     public function __construct()
     {
