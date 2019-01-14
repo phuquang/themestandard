@@ -22,6 +22,15 @@ class QNP_Form
         return $this;
     }
 
+    public function getAllData()
+    {
+        $args = array();
+        foreach ($this->fields as $key => $field) {
+            $args[$key] = $field->value;
+        }
+        return $args;
+    }
+
     public function rule($method, $args)
     {
         if ( method_exists($this, "_{$method}") ) {

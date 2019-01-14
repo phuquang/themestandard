@@ -88,7 +88,6 @@ if ( $Validate->methodIsPost() ) {
 
 }
 
-
 theme_debug(
     array(
         'Session' => $_SESSION,
