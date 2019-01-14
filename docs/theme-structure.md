@@ -13,6 +13,17 @@
 │  └──📁js/                           # Script (js) dành cho frontend
 ├──📁inc/                             # Function, controller v.v..
 │  ├──📁libraries/                    # Chứa thư viện code
+│  │  ├──📁Form/                      # Thư viện Form
+│  │  │  ├──📝index.php               # File index để tránh truy cập trực tiếp
+│  │  │  ├──📝init.php                # Include các file quang trọng
+│  │  │  ├──📝QNP_Form.php            # Chương trình chính
+│  │  │  ├──📝QNP_Field.php           # Khởi tạo field
+│  │  │  ├──📝QNP_Mailer.php          # Gửi mail
+│  │  │  ├──📝trait.qnp_errors.php    # Hàm xử lý thông tin lỗi
+│  │  │  ├──📝trait.qnp_filters.php   # Hàm xử lý và chuyển đổi dữ liệu
+│  │  │  ├──📝trait.qnp_methods.php   # Hàm xử lý dữ liệu đầu vào
+│  │  │  ├──📝trait.qnp_rules.php     # Xử lý dữ liệu qua các quy tắc định trước
+│  │  │  └──📝trait.qnp_helpers.php   # Hàm phụ trợ
 │  │  ├──📝disable-feature.php        # Thư viện loại bỏ các tính năng mặc định
 │  │  ├──📝helper.php                 # Thư viện những hàm hỗ trợ
 │  │  ├──📝QNP_Pagination.php         # Class phân trang, được gọi trong the_pagination()
@@ -49,13 +60,13 @@
 │  ├──📝page-top.php                  # Nội dung trang chủ
 │  ├──📝page-slug.php                 # Các trang theo định danh slug
 │  ├──📝page-contact.php              # Trang form
-│  ├──📝page-contact-confirmation.php # Trang xác nhận
-│  ├──📝page-contact-error.php        # Trang in lỗi
 │  └──📝page-contact-complete.php     # Trang hoàn thành
 ├──📁template-parts/                  # Chứa các phần của code
 │  ├──📝global-footer.php             # Phần footer chung
 │  ├──📝global-header.php             # Phần header chung
 │  ├──📝global-navigation.php         # Điều hướng trang
+│  ├──📝content-contact-confirmation.php # Phần nội dung của trang xác nhận
+│  ├──📝content-contact.php              # Phần nội dung của trang form
 │  ├──📝content-none.php              # Code in nội dung
 │  └──📝content.php                   # Code in nội dung
 ├──📁tmp/                             # Sử dụng cho chức năng edit-template-page của page
