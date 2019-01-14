@@ -118,7 +118,7 @@ class QNP_Mailer
             mb_language("Japanese");
             mb_internal_encoding('UTF-8');
 
-            return mb_send_mail($this->To, $this->Subject, $this->Body, $headers);
+            return @mb_send_mail($this->To, $this->Subject, $this->Body, $headers);
         } else {
             return send_mail($this->To, $this->Subject, $this->Body, $headers);
         }

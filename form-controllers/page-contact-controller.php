@@ -46,7 +46,7 @@ if ( $Validate->methodIsPost() ) {
     }
 
     // form token not match
-    if ($_SESSION[$Validate->post('form_session') . '_csrf'] !== $Validate->post('form_token') ) {
+    if ( !isset($_SESSION[$Validate->post('form_session') . '_csrf']) || $_SESSION[$Validate->post('form_session') . '_csrf'] !== $Validate->post('form_token') ) {
         $Validate->redirect($urls['form']);
     }
 
