@@ -7,6 +7,10 @@ trait QNP_Errors
     {
         return count($this->errors) === 0;
     }
+    public function hasErrors()
+    {
+        return ! $this->notErrors();
+    }
 
     public function addError($name, $method, $message)
     {

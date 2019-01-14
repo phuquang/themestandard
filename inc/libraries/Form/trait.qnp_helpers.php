@@ -83,7 +83,7 @@ trait QNP_Helpers
 
     public static function hiddenInput($name)
     {
-        echo "<input type='hiden' name='{$name}' value='{self::post($name)}'>";
+        echo "<input type='hidden' name='{$name}' value='".self::post($name)."'>";
     }
 
     public static function hiddenTextarea($name){

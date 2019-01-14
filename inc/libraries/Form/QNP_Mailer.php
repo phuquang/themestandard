@@ -90,7 +90,7 @@ class QNP_Mailer
         $template = file_get_contents($file);
 
         if (!empty($this->Data)){
-            $this->Body = transferFormToTemplate($this->Data, $template);
+            $this->Body = $this->transferFormToTemplate($this->Data, $template);
         } else {
             $this->Body = $template;
         }
