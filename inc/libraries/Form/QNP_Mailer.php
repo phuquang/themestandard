@@ -15,6 +15,11 @@ class QNP_Mailer
     public $Data     = array();
     public $File     = '';
 
+    /**
+     * set email from
+     * @param string $email email from
+     * @param string $name  name of email from
+     */
     public function setFrom($email, $name = '')
     {
         if (empty($email)){
@@ -26,6 +31,11 @@ class QNP_Mailer
         $this->FromName = $this->transferMimeEncode($name);
     }
 
+    /**
+     * set email to
+     * @param string $email email to
+     * @param string $name  name of email to
+     */
     public function setTo($email, $name = '')
     {
         if (empty($email)){
@@ -37,16 +47,47 @@ class QNP_Mailer
         $this->ToName = $this->transferMimeEncode($name);
     }
 
+    /**
+     * set subject
+     * @param string $subject
+     */
     public function setSubject($subject = '')
     {
         $this->Subject = $this->transferMimeEncode($subject);
     }
 
+    /**
+     * set body
+     * @param string $body
+     */
     public function setBody($body = '')
     {
         $this->Body = $this->transferEncode($body);
     }
 
+    /**
+     * set charset
+     * @param string $charset
+     */
+    public function setCharSet($charset = 'ISO-2022-JP')
+    {
+        $this->CharSet = $charset;
+    }
+
+    /**
+     * set encoding
+     * @param string $encoding
+     */
+    public function setEncoding($encoding = '7bit')
+    {
+        $this->Encoding = $encoding;
+    }
+
+    /**
+     * transfer mime encode
+     * @param  string $string
+     * @return string
+     */
     public function transferMimeEncode($string = '')
     {
         if ($this->Language === 'ja'){
@@ -56,6 +97,11 @@ class QNP_Mailer
         }
     }
 
+    /**
+     * transfer encode
+     * @param  string $string
+     * @return string
+     */
     public function transferEncode($string = '')
     {
         if ($this->Language === 'ja'){
@@ -65,6 +111,12 @@ class QNP_Mailer
         }
     }
 
+    /**
+     * transfer array data to template
+     * @param  array  $args
+     * @param  string $template
+     * @return string
+     */
     public function transferFormToTemplate(array $args, $template)
     {
         foreach ($args as $key => $value) {
@@ -75,11 +127,20 @@ class QNP_Mailer
         return $template;
     }
 
+    /**
+     * set mail data
+     * @param array $data
+     */
     public function setMailData($data = array()){
         if (is_array($data) && !empty($data)){
             $this->Data = $data;
         }
     }
+
+    /**
+     * set mail template
+     * @param string $file path of template
+     */
     public function setMailTemplate($file)
     {
         if (!file_exists($file)) {
@@ -96,7 +157,11 @@ class QNP_Mailer
         }
     }
 
-    public function test($condition)
+    /**
+     * set test email
+     * @param  boolean $condition
+     */
+    public function test($condition = true)
     {
         if ($condition === true){
             $this->To = 'test@cybridge.jp';
@@ -104,6 +169,9 @@ class QNP_Mailer
         }
     }
 
+    /**
+     * send mail
+     */
     public function send()
     {
         $headers  = array(

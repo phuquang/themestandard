@@ -90,6 +90,7 @@ if ( $Validate->methodIsPost() ) {
     }
 
 }
+var_dump($Validate);
 
 theme_debug(
     array(

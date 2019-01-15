@@ -3,6 +3,11 @@ namespace phuquang\Validation;
 
 trait QNP_Helpers
 {
+    /**
+     * isset post name
+     * @param  string $name name of input
+     * @return string       html checked attribute
+     */
     public static function eAgreement($name)
     {
         if ( self::issetPost($name) ) {
@@ -10,6 +15,13 @@ trait QNP_Helpers
         }
     }
 
+    /**
+     * check value in post
+     * @param  string $name    name of input
+     * @param  string $value   value
+     * @param  string $default default
+     * @return string          html checked attribute
+     */
     public static function eChecked($name, $value, $default = false)
     {
         $post = self::post($name);
@@ -20,6 +32,13 @@ trait QNP_Helpers
         }
     }
 
+    /**
+     * check value in post
+     * @param  string $name    name of input
+     * @param  string $value   value
+     * @param  string $default default
+     * @return string          html selected attribute
+     */
     public static function eSelected($name, $value, $default = false)
     {
         $post = self::post($name);
@@ -30,6 +49,13 @@ trait QNP_Helpers
         }
     }
 
+    /**
+     * check value in post
+     * @param  string $name    name of input
+     * @param  string $value   value
+     * @param  string $default default
+     * @return string          html checked attribute
+     */
     public static function eCheckedbox($name, $value, $default = false)
     {
         $args = self::post($name);
@@ -40,6 +66,13 @@ trait QNP_Helpers
         }
     }
 
+    /**
+     * check value in post
+     * @param  string $name    name of input
+     * @param  string $value   value
+     * @param  string $default default
+     * @return string
+     */
     public static function eCheckedboxText($name, $value, $default = false)
     {
         $args = self::post($name);
@@ -50,10 +83,17 @@ trait QNP_Helpers
         }
     }
 
+    /**
+     * print value and convert newline in value
+     * @param  string  $name    name of input
+     * @param  boolean $newline value
+     * @param  boolean $return  echo or return
+     * @return string
+     */
     public static function eTextarea($name, $newline = false, $return = false)
     {
         if ( $post = self::post($name) ) {
-            $post = $this::convertNewLine($post, $newline);
+            $post = self::convertNewLine($post, $newline);
 
             if ( $return === true) {
                 return $post;
@@ -63,7 +103,13 @@ trait QNP_Helpers
         }
     }
 
-    // for ratio and select
+    /**
+     * return value in array if post exist in array
+     * used for ratio and select
+     * @param  string $name name of input
+     * @param  array  $args array default
+     * @return value
+     */
     public static function args_msg($name, $args)
     {
         $post = self::post($name);
@@ -72,7 +118,13 @@ trait QNP_Helpers
         }
     }
 
-    // for checkbox
+    /**
+     * return value in post array if value exist in post array
+     * used for checkbox
+     * @param  string $name name of input
+     * @param  string $val  value default
+     * @return value
+     */
     public static function args_checkbox($name, $val)
     {
         $args = self::post($name);
@@ -81,11 +133,21 @@ trait QNP_Helpers
         }
     }
 
+    /**
+     * print input hidden
+     * @param  string $name name of input
+     * @return string
+     */
     public static function hiddenInput($name)
     {
         echo "<input type='hidden' name='{$name}' value='".self::post($name)."'>";
     }
 
+    /**
+     * print textarea hidden
+     * @param  string $name name of input
+     * @return string
+     */
     public static function hiddenTextarea($name){
         echo "<textarea style='display:none' name='{$name}'>{self::post($name)}</textarea>";
     }

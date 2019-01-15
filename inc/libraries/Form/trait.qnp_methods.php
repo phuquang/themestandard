@@ -3,16 +3,28 @@ namespace phuquang\Validation;
 
 trait QNP_Methods
 {
+    /**
+     * Check method is post
+     * @return boolean
+     */
     public static function methodIsPost()
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
 
+    /**
+     * Check method is get
+     * @return boolean
+     */
     public static function methodIsGet()
     {
         return $_SERVER['REQUEST_METHOD'] === 'GET';
     }
 
+    /**
+     * get value from post
+     * @return string
+     */
     public static function post($name = '', $return = true, $filter = false)
     {
         $value = null;
@@ -31,6 +43,10 @@ trait QNP_Methods
         }
     }
 
+    /**
+     * get value from get
+     * @return string
+     */
     public static function get($name = '', $return = true, $filter = false)
     {
         $value = null;
@@ -49,6 +65,10 @@ trait QNP_Methods
         }
     }
 
+    /**
+     * Check name exist in post
+     * @return boolean
+     */
     public static function issetPost($name = '')
     {
         if ( array_key_exists($name, $_POST) ) {
@@ -57,6 +77,10 @@ trait QNP_Methods
         return false;
     }
 
+    /**
+     * Check name exist in get
+     * @return boolean
+     */
     public static function issetGet($name = '')
     {
         if ( array_key_exists($name, $_GET) ) {

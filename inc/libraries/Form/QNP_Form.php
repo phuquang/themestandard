@@ -15,6 +15,11 @@ class QNP_Form
         $this->method = $_SERVER['REQUEST_METHOD'];
     }
 
+    /**
+     * Add new field
+     * @param  string $name  name of input
+     * @param  string $label label of input
+     */
     public function name($name, $label = '')
     {
         $this->field = new QNP_Field($name, $label);
@@ -22,6 +27,11 @@ class QNP_Form
         return $this;
     }
 
+    /**
+     * get all field data
+     * @param  string $name  name of input
+     * @param  string $label label of input
+     */
     public function getAllData()
     {
         $args = array();
@@ -31,6 +41,11 @@ class QNP_Form
         return $args;
     }
 
+    /**
+     * Call trait qnp_rules
+     * @param  string $method method name
+     * @param  array  $args   attribute
+     */
     public function rule($method, $args)
     {
         if ( method_exists($this, "_{$method}") ) {
@@ -48,6 +63,11 @@ class QNP_Form
         return $this;
     }
 
+    /**
+     * Call methods
+     * @param  string $method method name
+     * @param  array  $args   attribute
+     */
     public function __call($method, $args)
     {
         try {
@@ -56,6 +76,7 @@ class QNP_Form
                 $this->rule($method, $args);
             } elseif ( property_exists($this, "_{$method}") && is_callable(array($this, "_{$method}")) ) {
                 $this->fields[$this->field->name]->rules[] = $method;
+                // call closure methods
                 call_user_func_array($this->{"_{$method}"}, array($this->field, $args));
             } else { // else throw exception
                 throw new Exception("method _$method exists?");
@@ -66,6 +87,10 @@ class QNP_Form
         return $this;
     }
 
+    /**
+     * redirect to url
+     * @param  string $path url
+     */
     public function redirect($path)
     {
         header("Location: ".$path,TRUE,302);

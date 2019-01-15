@@ -8,22 +8,45 @@ class QNP_Field
     public $label;
     public $value;
 
+    /**
+     * set name, label and auto get value
+     * @param string $name
+     * @param string $label
+     */
     public function __construct($name, $label)
     {
         $this->name = $name;
         $this->label = $label;
-        if ( $this->methodIsPost() && $this->issetPost($this->name) ) {
-            $this->value = $this->post($this->name);
-        }
+        $this->setValue($this->name);
     }
 
+    /**
+     * set name field
+     * @param string $name
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
+    /**
+     * set label field
+     * @param string $label
+     */
     public function setLabel($label)
     {
         $this->label = $label;
+    }
+
+    /**
+     * set value field
+     * auto get value from post method
+     * @param string $name
+     */
+    public function setValue($name)
+    {
+        if ( $this->methodIsPost() && $this->issetPost($name) ) {
+            $this->value = $this->post($name);
+        }
     }
 }

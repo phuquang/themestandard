@@ -915,14 +915,20 @@ trait QNP_Filters
         return mb_convert_kana($value, "KV", "UTF-8");
     }
 
+    /**
+     * convert newline to br tag or newline
+     * @param  string  $value
+     * @param  boolean $newline
+     * @return string
+     */
     public static function convertNewLine($value, $newline = true)
     {
         if ( $newline === true ) {
-            $n = "\n";
+            $tag = "\n";
         } else {
-            $n = '<br>';
+            $tag = '<br>';
         }
-        return preg_replace("/\r\n|\r|\n/", $tag, $value);;
+        return preg_replace("/\r\n|\r|\n/", $tag, $value);
     }
 
     /**
