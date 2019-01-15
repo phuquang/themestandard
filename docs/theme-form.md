@@ -54,54 +54,54 @@
 
 # Helpers
 
-| Hàm | Cú pháp | Giải thích |
-| --- | --- | --- |
-| **eAgreement** | | |
-| **eChecked** | | |
-| **eSelected** | | |
-| **eCheckedbox** | | |
-| **eCheckedboxText** | | |
-| **eTextarea** | | |
-| **args_msg** | | |
-| **args_checkbox** | | |
-| **hiddenInput** | | |
-| **hiddenTextarea** | | |
+| Hàm | Param | Return | Giải thích |
+| --- | --- | --- | --- |
+| **eAgreement** | `String` name of input | `String` checked for checkbox | Used for checkbox |
+| **eChecked** | `String` name of input, `String` current value of field, `Boolean` default when empty value | `String` checked for checkbox | Used for checkbox |
+| **eSelected** | `String` name of input, `String` current value of field, `Boolean` default when empty value | `String` selected for select | Used for select |
+| **eCheckedbox** | `String` name of input, `String` current value of field, `Boolean` default when empty value | `String` checked for checkbox | Used for checkbox |
+| **eCheckedboxText** | `String` name of input, `String` current value of field, `Boolean` default when empty value | `String` checked for checkbox | Used for checkbox |
+| **eTextarea** | `String` name of input, `Boolean` br tag or newline, `Boolean` return or echo | `String` value for input | Used for textarea |
+| **args_msg** | `String` name of input, `Array` | `String` value of array | Used for ratio or select |
+| **args_checkbox** | `String` name of input, `String` | `String` value of array | Used for checkbox |
+| **hiddenInput** | `String` name of input | `String` input tag hidden | Used for input |
+| **hiddenTextarea** | `String` name of input | `String` textarea tag hidden | Used for textarea |
 
 # Errors
 
-| Hàm | Cú pháp | Giải thích |
-| --- | --- | --- |
-| **notErrors** | | |
-| **hasErrors** | | |
-| **addError** | | |
+| Hàm | Param | Return | Giải thích |
+| --- | --- | --- | --- |
+| **notErrors** | | `true`/`false` | condition is not error |
+| **hasErrors** | | `true`/`false` | condition is has error |
+| **addError** | `String` name of input, `String` name of method, `String` message of error | | Used for add error |
 
 # Filters
 
-| Hàm | Cú pháp | Giải thích |
-| --- | --- | --- |
-| **convertKatakana** | | |
-| **convertHankaku** | | |
-| **convertHiragana** | | |
-| **convertHiraganaToKatakana** | | |
-| **convertNewLine** | | |
-| **mb_trim** | | |
-| **trimSpace** | | |
-| **numFull2Half** | | |
-| **removeSlashes** | | |
-| **convertTel** | | |
-| **convertDateJa** | | |
-| **convertStr2Dot** | | |
+| Hàm | Param | Return | Giải thích |
+| --- | --- | --- | --- |
+| **convertKatakana** | `String` | `String` | Chuyển đổi hoàn toàn hiragana sang katakana |
+| **convertHankaku** | `String` | `String` | Chuyển đổi thành các ký tự hankaku |
+| **convertHiragana** | `String` | `String` | Chuyển đổi hoàn toàn katakana sang hiragana |
+| **convertHiraganaToKatakana** | `String` | `String` | Chuyển đổi hiragana thành katakana |
+| **convertNewLine** | `String`, `Boolean` | `String` | Chuyển \r\n thành thẻ br hoặc \n |
+| **mb_trim** | `String`, `String` | `String` | Trim space fullsize and halfsize |
+| **trimSpace** | `String` | `String` | Trim space, tab |
+| **numFull2Half** | `String` | `String` | Chuyển đổi số full-width thành half-width |
+| **removeSlashes** | `String` | `String` | Loại bỏ 2 dấu \ liền kề |
+| **convertTel** | `String` | `String` | Bình thường hóa số điện thoại |
+| **convertDateJa** | `String` | `String` | Chuyển đổi ngày sang định dạng Y年m月d日 |
+| **convertStr2Dot** | `String`, `String` | `String` | Chuyển đổi tất cả ký tự thành ký tự ● |
 
 # Methods
 
-| Hàm | Cú pháp | Giải thích |
-| --- | --- | --- |
-| **methodIsPost** | | |
-| **methodIsGet** | | |
-| **post** | | |
-| **get** | | |
-| **issetPost** | | |
-| **issetGet** | | |
+| Hàm | Param | Return | Giải thích |
+| --- | --- | --- | --- |
+| **methodIsPost** | | `Boolean` | Condition REQUEST_METHOD is POST  |
+| **methodIsGet** | | `Boolean` | Condition REQUEST_METHOD is GET |
+| **post** | `String` name of input, `Boolean` return or echo, `Boolean` filter it | `String` | get value from POST |
+| **get** | `String` name of input, `Boolean` return or echo, `Boolean` filter it | `String` | get value from GET |
+| **issetPost** | | | Condition input name exist POST |
+| **issetGet** | | | Condition input name exist GET |
 
 # Navigation
 
