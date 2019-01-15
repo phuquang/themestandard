@@ -32,8 +32,9 @@
 ```
 
 # Rules
+
 | Hàm | Cú pháp | Giải thích |
-| ----- | --------- | ---------- |
+| --- | --- | --- |
 | **required** | | [Value is exist] |
 | **max** | | [Value is elder condition] |
 | **min** | | [Value is lesser condition] |
@@ -52,8 +53,9 @@
 | **passwordstrengthtomessage** | | Use long passwords (8-20) with letters, CAPS and numbers |
 
 # Helpers
+
 | Hàm | Cú pháp | Giải thích |
-| ----- | --------- | ---------- |
+| --- | --- | --- |
 | **eAgreement** | | |
 | **eChecked** | | |
 | **eSelected** | | |
@@ -66,15 +68,17 @@
 | **hiddenTextarea** | | |
 
 # Errors
+
 | Hàm | Cú pháp | Giải thích |
-| ----- | --------- | ---------- |
+| --- | --- | --- |
 | **notErrors** | | |
 | **hasErrors** | | |
 | **addError** | | |
 
 # Filters
+
 | Hàm | Cú pháp | Giải thích |
-| ----- | --------- | ---------- |
+| --- | --- | --- |
 | **convertKatakana** | | |
 | **convertHankaku** | | |
 | **convertHiragana** | | |
@@ -89,8 +93,9 @@
 | **convertStr2Dot** | | |
 
 # Methods
+
 | Hàm | Cú pháp | Giải thích |
-| ----- | --------- | ---------- |
+| --- | --- | --- |
 | **methodIsPost** | | |
 | **methodIsGet** | | |
 | **post** | | |
@@ -99,5 +104,6 @@
 | **issetGet** | | |
 
 # Navigation
+
 - [Trang chủ](https://phuquang.github.io/themestandard/)
 - [Sơ đồ tài liệu](https://phuquang.github.io/themestandard/sitemap)
