@@ -7,6 +7,7 @@ trait QNP_Errors
     {
         return count($this->errors) === 0;
     }
+
     public function hasErrors()
     {
         return ! $this->notErrors();
@@ -18,5 +19,17 @@ trait QNP_Errors
             $this->errors[$name] = array();
         }
         array_push($this->errors[$name], array($method => $message));
+    }
+
+    public function printError($name, $print = '')
+    {
+        if ( isset($this->errors[$name]) ) {
+            $error = $this->errors[$name];
+            if ( empty($print) ) {
+                echo array_shift($error[0]);
+            } else {
+                echo $print;
+            }
+        }
     }
 }

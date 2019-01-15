@@ -223,6 +223,8 @@ document.getElementById('themedebug_close').addEventListener('click', function (
 </script>
 <?php }, 999);
 
+} // END WP_DEBUG
+
 if ( !function_exists('theme_debug') ) {
     function theme_debug($var)
     {
@@ -289,5 +291,3 @@ Array.from(recursiveThemeDebug).map(item => {
         }
     }
 }
-
-} // END WP_DEBUG

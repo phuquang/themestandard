@@ -5,6 +5,9 @@ session_start();
 // regenerates SESSIONID to prevent hijacking
 session_regenerate_id(true);
 
+// Theme_debug
+include_once dirname(__FILE__) . '/../inc/libraries/theme-debug.php';
+
 // Include libraries
 include_once dirname(__FILE__) . '/../inc/libraries/Form/init.php';
 
@@ -92,5 +95,6 @@ theme_debug(
     array(
         'Session' => $_SESSION,
         'Form' => $Validate,
+        'form_status' => $form_status,
     )
 );

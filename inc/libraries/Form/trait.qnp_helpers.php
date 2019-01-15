@@ -33,7 +33,7 @@ trait QNP_Helpers
     public static function eCheckedbox($name, $value, $default = false)
     {
         $args = self::post($name);
-        if ( count($args) && in_array($value,$args) ) {
+        if ( is_array($args) && count($args) > 0 && in_array($value,$args) ) {
             echo 'checked="checked"';
         } elseif ( $default ) {
             echo 'checked="checked"';
@@ -43,7 +43,7 @@ trait QNP_Helpers
     public static function eCheckedboxText($name, $value, $default = false)
     {
         $args = self::post($name);
-        if ( count($args) && in_array($value,$args) ) {
+        if ( is_array($args) && count($args) > 0 && in_array($value,$args) ) {
             echo '[●]';
         } elseif ( $default ) {
             echo '[　]';
@@ -76,7 +76,7 @@ trait QNP_Helpers
     public static function args_checkbox($name, $val)
     {
         $args = self::post($name);
-        if ( count($args) && in_array($val,$args) ) {
+        if ( is_array($args) && count($args) > 0 && in_array($val,$args) ) {
             return $val;
         }
     }
