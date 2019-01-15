@@ -32,77 +32,71 @@
 ```
 
 # Rules
-- Tên hàm **required**
-[Value is exist]
-- Tên hàm **max**
-[Value is elder condition]
-- Tên hàm **min**
-[Value is lesser condition]
-- Tên hàm **zipcode**
-[zipcode format exactly]
-- Tên hàm **hiragana**
-[hiragana format exactly]
-- Tên hàm **katakana**
-[katakana format exactly]
-- Tên hàm **email**
-[email format exactly]
-- Tên hàm **phone**
-[phone format exactly]
-- Tên hàm **number**
-[number format exactly]
-- Tên hàm **url**
-[url format exactly]
-- Tên hàm **fullwidth**
-[fullwidth format exactly]
-- Tên hàm **numfullwidth**
-[number fullwidth format exactly]
-- Tên hàm **dateformat**
-[date format exactly]
-- Tên hàm **passwordstrength**
-Use long passwords (8-20) with letters, CAPS, numbers and sybols
-- Tên hàm **passwordstrengthnotsymbols**
-Use long passwords (8-20) with letters, CAPS and numbers
-- Tên hàm **passwordstrengthtomessage**
-Use long passwords (8-20) with letters, CAPS and numbers
+| Hàm | Cú pháp | Giải thích |
+| ----- | --------- | ---------- |
+| **required** | | [Value is exist] |
+| **max** | | [Value is elder condition] |
+| **min** | | [Value is lesser condition] |
+| **zipcode** | | [zipcode format exactly] |
+| **hiragana** | | [hiragana format exactly] |
+| **katakana** | | [katakana format exactly] |
+| **email** | | [email format exactly] |
+| **phone** | | [phone format exactly] |
+| **number** | | [number format exactly] |
+| **url** | | [url format exactly] |
+| **fullwidth** | | [fullwidth format exactly] |
+| **numfullwidth** | | [number fullwidth format exactly] |
+| **dateformat** | | [date format exactly] |
+| **passwordstrength** | | Use long passwords (8-20) with letters, CAPS, numbers and sybols |
+| **passwordstrengthnotsymbols** | | Use long passwords (8-20) with letters, CAPS and numbers |
+| **passwordstrengthtomessage** | | Use long passwords (8-20) with letters, CAPS and numbers |
 
 # Helpers
-- Tên hàm **eAgreement**
-- Tên hàm **eChecked**
-- Tên hàm **eSelected**
-- Tên hàm **eCheckedbox**
-- Tên hàm **eCheckedboxText**
-- Tên hàm **eTextarea**
-- Tên hàm **args_msg**
-- Tên hàm **args_checkbox**
-- Tên hàm **hiddenInput**
-- Tên hàm **hiddenTextarea**
+| Hàm | Cú pháp | Giải thích |
+| ----- | --------- | ---------- |
+| **eAgreement** | | |
+| **eChecked** | | |
+| **eSelected** | | |
+| **eCheckedbox** | | |
+| **eCheckedboxText** | | |
+| **eTextarea** | | |
+| **args_msg** | | |
+| **args_checkbox** | | |
+| **hiddenInput** | | |
+| **hiddenTextarea** | | |
 
 # Errors
-- Tên hàm **notErrors**
-- Tên hàm **hasErrors**
-- Tên hàm **addError**
+| Hàm | Cú pháp | Giải thích |
+| ----- | --------- | ---------- |
+| **notErrors** | | |
+| **hasErrors** | | |
+| **addError** | | |
 
 # Filters
-- Tên hàm **convertKatakana**
-- Tên hàm **convertHankaku**
-- Tên hàm **convertHiragana**
-- Tên hàm **convertHiraganaToKatakana**
-- Tên hàm **convertNewLine**
-- Tên hàm **mb_trim**
-- Tên hàm **trimSpace**
-- Tên hàm **numFull2Half**
-- Tên hàm **removeSlashes**
-- Tên hàm **convertTel**
-- Tên hàm **convertDateJa**
-- Tên hàm **convertStr2Dot**
+| Hàm | Cú pháp | Giải thích |
+| ----- | --------- | ---------- |
+| **convertKatakana** | | |
+| **convertHankaku** | | |
+| **convertHiragana** | | |
+| **convertHiraganaToKatakana** | | |
+| **convertNewLine** | | |
+| **mb_trim** | | |
+| **trimSpace** | | |
+| **numFull2Half** | | |
+| **removeSlashes** | | |
+| **convertTel** | | |
+| **convertDateJa** | | |
+| **convertStr2Dot** | | |
 
 # Methods
-- Tên hàm **methodIsPost**
-- Tên hàm **methodIsGet**
-- Tên hàm **post**
-- Tên hàm **get**
-- Tên hàm **issetPost**
-- Tên hàm **issetGet**
+| Hàm | Cú pháp | Giải thích |
+| ----- | --------- | ---------- |
+| **methodIsPost** | | |
+| **methodIsGet** | | |
+| **post** | | |
+| **get** | | |
+| **issetPost** | | |
+| **issetGet** | | |
 
 # Navigation
 - [Trang chủ](https://phuquang.github.io/themestandard/)
