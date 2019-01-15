@@ -33,24 +33,24 @@
 
 # Rules
 
-| Hàm | Cú pháp | Giải thích |
+| Hàm | Param | Return | Giải thích |
 | --- | --- | --- |
-| **required** | | [Value is exist] |
-| **max** | | [Value is elder condition] |
-| **min** | | [Value is lesser condition] |
-| **zipcode** | | [zipcode format exactly] |
-| **hiragana** | | [hiragana format exactly] |
-| **katakana** | | [katakana format exactly] |
-| **email** | | [email format exactly] |
-| **phone** | | [phone format exactly] |
-| **number** | | [number format exactly] |
-| **url** | | [url format exactly] |
-| **fullwidth** | | [fullwidth format exactly] |
-| **numfullwidth** | | [number fullwidth format exactly] |
-| **dateformat** | | [date format exactly] |
-| **passwordstrength** | | Use long passwords (8-20) with letters, CAPS, numbers and sybols |
-| **passwordstrengthnotsymbols** | | Use long passwords (8-20) with letters, CAPS and numbers |
-| **passwordstrengthtomessage** | | Use long passwords (8-20) with letters, CAPS and numbers |
+| **required** | `String` | `true`/`false` | [Value is exist] |
+| **max** | `String`, `integer` | `true`/`false` | [Value is elder condition] |
+| **min** | `String`, `integer` | `true`/`false` | [Value is lesser condition] |
+| **zipcode** | `String` | `true`/`false` | [zipcode format exactly] |
+| **hiragana** | `String` | `true`/`false` | [hiragana format exactly] |
+| **katakana** | `String` | `true`/`false` | [katakana format exactly] |
+| **email** | `String` | `true`/`false` | [email format exactly] |
+| **phone** | `String` | `true`/`false` | [phone format exactly] |
+| **number** | `String` | `true`/`false` | [number format exactly] |
+| **url** | `String` | `true`/`false` | [url format exactly] |
+| **fullwidth** | `String` | `true`/`false` | [fullwidth format exactly] |
+| **numfullwidth** | `String` | `true`/`false` | [number fullwidth format exactly] |
+| **dateformat** | `String` | `true`/`false` | [date format exactly] |
+| **passwordstrength** | `String` | `true`/`false` | Use long passwords (8-20) with letters, CAPS, numbers and sybols |
+| **passwordstrengthnotsymbols** | `String` | `true`/`false` | Use long passwords (8-20) with letters, CAPS and numbers |
+| **passwordstrengthtomessage** | `String` | `true`/`false` | Use long passwords (8-20) with letters, CAPS and numbers |
 
 # Helpers
 
