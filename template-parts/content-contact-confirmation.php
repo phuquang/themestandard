@@ -10,8 +10,17 @@
             <tr>
                 <td style="width:255px"><?php echo $field->label ?></td>
                 <td>
-                    <?php echo $field->value ?>
-                    <?php $Validate->hiddenInput($field->name) ?>
+                    <?php
+                    if ( is_array($field->value) ) {
+                        foreach ($field->value as $v) {
+                            echo $v . '<br>';
+                        }
+                        $Validate->hiddenInputArgs($field->name, $field->value);
+                    } else {
+                        echo $field->value;
+                        $Validate->hiddenInput($field->name);
+                    }
+                    ?>
                 </td>
             </tr>
         <?php endforeach; ?>

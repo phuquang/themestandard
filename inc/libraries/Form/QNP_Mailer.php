@@ -174,12 +174,10 @@ class QNP_Mailer
      */
     public function send()
     {
-        $headers  = array(
-            'MIME-Version: 1.0',
-            "Content-transfer-encoding: {$this->Encoding}",
-            "From: {$this->From} <{$this->FromName}>",
-            "Content-Type: text/plain; charset={$this->CharSet}",
-        );
+        $headers  = "MIME-Version: 1.0\n";
+        $headers .= "Content-transfer-encoding: {$this->Encoding}";
+        $headers .= "From: {$this->FromName} <{$this->From}>";
+        $headers .= "Content-Type: text/plain; charset={$this->CharSet}";
 
         if ($this->Language === 'ja'){
             // mb_language('uni');

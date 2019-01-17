@@ -144,6 +144,19 @@ trait QNP_Helpers
     }
 
     /**
+     * print input hidden
+     * @param  string $name name of input
+     * @param  string $args array data of input
+     * @return string
+     */
+    public static function hiddenInputArgs($name, $args)
+    {
+        foreach ($args as $value) {
+            echo "<input type='hidden' name='{$name}[]' value='{$value}'>";
+        }
+    }
+
+    /**
      * print textarea hidden
      * @param  string $name name of input
      * @return string
