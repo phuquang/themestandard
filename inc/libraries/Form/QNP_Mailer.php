@@ -174,19 +174,21 @@ class QNP_Mailer
      */
     public function send()
     {
-        $headers  = "MIME-Version: 1.0\n";
-        $headers .= "Content-transfer-encoding: {$this->Encoding}\n";
-        $headers .= "From: {$this->FromName} <{$this->From}>\n";
-        $headers .= "Content-Type: text/plain; charset={$this->CharSet}\n\n";
+        $headers = array(
+            "MIME-Version: 1.0",
+            "Content-Type: text/plain; charset={$this->CharSet}",
+            "Content-transfer-encoding: {$this->Encoding}",
+            "From: {$this->FromName} <{$this->From}>",
+        );
 
         if ($this->Language === 'ja'){
             // mb_language('uni');
             mb_language("Japanese");
             mb_internal_encoding('UTF-8');
 
-            return @mb_send_mail($this->To, $this->Subject, $this->Body, $headers);
+            return @mb_send_mail($this->To, $this->Subject, $this->Body, implode("\r\n", $headers));
         } else {
-            return send_mail($this->To, $this->Subject, $this->Body, $headers);
+            return send_mail($this->To, $this->Subject, $this->Body, implode("\r\n", $headers));
         }
     }
 }
