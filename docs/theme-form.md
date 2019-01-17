@@ -31,6 +31,35 @@
 │  └──📝content-contact.php              # Phần nội dung của trang form
 ```
 
+# Luồn chính
+```bash
+.
+└─┐template-pages/
+  ├──┐page-contact.php
+  │  ├──┐form-controllers/
+  │  │  └──┐page-contact-controller.php
+  │  │     ├──┐inc/libraries/Form/
+  │  │     │  ├──index.php
+  │  │     │  ├──init.php
+  │  │     │  ├──QNP_Form.php
+  │  │     │  ├──QNP_Field.php
+  │  │     │  ├──QNP_Mailer.php
+  │  │     │  ├──trait.qnp_errors.php
+  │  │     │  ├──trait.qnp_filters.php
+  │  │     │  ├──trait.qnp_methods.php
+  │  │     │  ├──trait.qnp_rules.php
+  │  │     │  └──trait.qnp_helpers.php
+  │  │     ├───page-contact-validator.php
+  │  │     └──┐page-contact-sendmail.php
+  │  │        └──┐template-emails/
+  │  │           ├──page-contact-user.tpl
+  │  │           └──page-contact-admin.tpl
+  │  └──┐template-parts/
+  │     ├──content-contact-confirmation.php
+  │     └──content-contact.php
+  └──page-contact-complete.php
+```
+
 # Rules
 
 | Hàm | Param | Return | Giải thích |
