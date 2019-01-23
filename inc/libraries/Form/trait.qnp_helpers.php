@@ -27,7 +27,7 @@ trait QNP_Helpers
         $post = self::post($name);
         if ( $post == $value ) {
             echo 'checked="checked"';
-        } elseif( $default ) {
+        } elseif( $default && empty($post) ) {
             echo 'checked="checked"';
         }
     }
@@ -44,7 +44,7 @@ trait QNP_Helpers
         $post = self::post($name);
         if ( $post == $value ) {
             echo 'selected="selected"';
-        } elseif ( $default ) {
+        } elseif ( $default && empty($post) ) {
             echo 'selected="selected"';
         }
     }
@@ -61,7 +61,7 @@ trait QNP_Helpers
         $args = self::post($name);
         if ( is_array($args) && count($args) > 0 && in_array($value,$args) ) {
             echo 'checked="checked"';
-        } elseif ( $default ) {
+        } elseif ( $default && empty($post) ) {
             echo 'checked="checked"';
         }
     }
@@ -78,7 +78,7 @@ trait QNP_Helpers
         $args = self::post($name);
         if ( is_array($args) && count($args) > 0 && in_array($value,$args) ) {
             echo '[●]';
-        } elseif ( $default ) {
+        } elseif ( $default && empty($post) ) {
             echo '[　]';
         }
     }
