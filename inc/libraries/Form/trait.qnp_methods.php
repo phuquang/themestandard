@@ -25,15 +25,15 @@ trait QNP_Methods
      * get value from post
      * @return string
      */
-    public static function post($name = '', $return = true, $filter = false)
+    public static function post($name = '', $return = true, $filter = false, $filter_list = array())
     {
         $value = null;
         if ( array_key_exists($name, $_POST) && ! empty($_POST[$name]) ) {
             $value = $_POST[$name];
         }
 
-        if ( $filter === true) {
-            $value = $this::filter($value);
+        if ( ! empty($value) && $filter === true) {
+            $value = self::filter($value, $filter_list);
         }
 
         if ( $return === true) {
@@ -47,7 +47,7 @@ trait QNP_Methods
      * get value from get
      * @return string
      */
-    public static function get($name = '', $return = true, $filter = false)
+    public static function get($name = '', $return = true, $filter = false, $filter_list = array())
     {
         $value = null;
         if ( array_key_exists($name, $_GET) && ! empty($_GET[$name]) ) {
@@ -55,7 +55,7 @@ trait QNP_Methods
         }
 
         if ( $filter === true) {
-            $value = $this::filter($value);
+            $value = self::filter($value, $filter_list);
         }
 
         if ( $return === true) {
@@ -87,5 +87,39 @@ trait QNP_Methods
             return true;
         }
         return false;
+    }
+
+    public static function filter($value, $filter_list = array())
+    {
+        foreach ($filter_list as $method_name) {
+            if ($method_name === 'trim') {
+                $value = trim($value);
+            }
+
+            if ($method_name === 'mb_trim') {
+                $value = mb_trim($value);
+            }
+
+            if ($method_name === 'stripslashes') {
+                $value = stripslashes($value);
+            }
+
+            if ($method_name === 'htmlentities') {
+                $value = htmlentities($value);
+            }
+
+            if ($method_name === 'htmlspecialchars') {
+                $value = htmlspecialchars($value);
+            }
+
+            if ($method_name === 'sql_escape') {
+                $value = sql_escape($value);
+            }
+
+            if ($method_name === 'addslashes') {
+                $value = addslashes($value);
+            }
+        }
+        return $value;
     }
 }
