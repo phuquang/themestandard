@@ -21,6 +21,12 @@ class QNP_Pagination
     public $label_next     = '次へ';
     public $alway_display  = false;
 
+    /**
+     * __construct
+     * @param array $config set variable for paged,
+     *                      max_num_pages, found_posts,
+     *                      posts_per_page
+     */
     public function __construct( $config = array() )
     {
         if ( array_key_exists('paged', $config) && $config['paged'] > 1 ) {
@@ -40,6 +46,10 @@ class QNP_Pagination
         }
     }
 
+    /**
+     * setQuery
+     * @param object $query
+     */
     public function setQuery( $query )
     {
         $this->paged = $query->query['paged'];
@@ -48,6 +58,12 @@ class QNP_Pagination
         $this->posts_per_page = $query->posts_per_page;
     }
 
+    /**
+     * link
+     * @param  integer $paged
+     * @param  integer $pages
+     * @return string
+     */
     public function link( $paged = 1, $pages = null )
     {
         $i = $paged;
@@ -63,11 +79,24 @@ class QNP_Pagination
         return '?' . http_build_query($params);
     }
 
+    /**
+     * pagerItem
+     * @param  string $text
+     * @param  string $link
+     * @param  string $class
+     * @return string
+     */
     public function pagerItem($text, $link = '#', $class = '')
     {
         echo "<li class='{$this->class_li} {$class}'><a href='{$link}' class='{$this->class_a}'>{$text}</a></li>";
     }
 
+    /**
+     * gotoPager
+     * @param  string $action
+     * @param  string $method
+     * @return string html
+     */
     public function gotoPager($action = '/', $method = 'GET')
     {
         if ( $this->total_pages <= 1 ) {
@@ -87,6 +116,12 @@ class QNP_Pagination
     <?php
     }
 
+    /**
+     * pagerText
+     * @param  string $before
+     * @param  string $after
+     * @return string
+     */
     public function pagerText($before = '', $after = '')
     {
         if ( $this->total_pages <= 1 ) {
@@ -98,6 +133,10 @@ class QNP_Pagination
         echo "{$before}{$from_to}/{$this->total_posts}件{$after}";
     }
 
+    /**
+     * pagination
+     * @return string html
+     */
     public function pagination()
     {
         if ( $this->total_pages > 1 ) {

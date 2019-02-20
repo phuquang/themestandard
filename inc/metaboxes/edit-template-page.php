@@ -48,6 +48,9 @@ class CbaMetaboxEditTemplatePage
         }
     }
 
+    /**
+     * init_metabox
+     */
     public function init_metabox()
     {
         add_action('admin_enqueue_scripts', array( $this, 'enqueue'  ) );
@@ -55,6 +58,10 @@ class CbaMetaboxEditTemplatePage
         add_action('save_post',             array( $this, 'saved'    ), 10, 2);
     }
 
+    /**
+     * register
+     * @param  [type] $post_type
+     */
     public function register($post_type)
     {
         $this->file  = $this->get_template_exists();
@@ -62,6 +69,12 @@ class CbaMetaboxEditTemplatePage
         add_meta_box( $this->id, $this->title, array( $this, 'html' ), 'page', 'normal', 'high' );
     }
 
+    /**
+     * html
+     * @param  [type] $post
+     * @param  [type] $args
+     * @return string html
+     */
     public function html($post, $args)
     {
         wp_nonce_field( basename(__FILE__), $this->nonce );
@@ -182,6 +195,10 @@ class CbaMetaboxEditTemplatePage
         <?php
     }
 
+    /**
+     * saved
+     * @param  integer $post_id
+     */
     public function saved($post_id)
     {
         $is_save_file = false;
@@ -257,6 +274,9 @@ class CbaMetaboxEditTemplatePage
         $_SESSION['CBA_MESSAGE_CODE'] = $result_check_syntax;
     }
 
+    /**
+     * print_error
+     */
     public function print_error()
     {
         if ( !empty($_SESSION['CBA_MESSAGE']) ) {
@@ -273,6 +293,10 @@ class CbaMetaboxEditTemplatePage
         }
     }
 
+    /**
+     * enqueue
+     * @param  string $hook
+     */
     public function enqueue($hook)
     {
         if ( in_array($hook, array('post.php','post-new.php')) ) {
@@ -303,6 +327,12 @@ class CbaMetaboxEditTemplatePage
         }
     }
 
+    /**
+     * _saved_file
+     * @param  string $name
+     * @param  string $content
+     * @return boolean
+     */
     private function _saved_file($name, $content)
     {
         if ( empty($name) ) {
@@ -320,6 +350,11 @@ class CbaMetaboxEditTemplatePage
         return true;
     }
 
+    /**
+     * _check_syntax
+     * @param  string $content
+     * @return integer
+     */
     private function _check_syntax($content)
     {
         $dir = get_template_directory().'/tmp';
@@ -340,6 +375,11 @@ class CbaMetaboxEditTemplatePage
         }
     }
 
+    /**
+     * _check_syntax_msg
+     * @param  integer $num
+     * @return string
+     */
     private function _check_syntax_msg($num)
     {
         $error_msg = '';
@@ -360,6 +400,10 @@ class CbaMetaboxEditTemplatePage
         return $error_msg;
     }
 
+    /**
+     * _title
+     * @return string
+     */
     private function _title()
     {
         global $post;
@@ -371,6 +415,12 @@ class CbaMetaboxEditTemplatePage
         return $str;
     }
 
+    /**
+     * _create_file
+     * @param  string $slug
+     * @param  string $content
+     * @return boolean
+     */
     private function _create_file($slug, $content = '')
     {
         if ( empty($content) ) {
@@ -386,6 +436,10 @@ class CbaMetaboxEditTemplatePage
         return false;
     }
 
+    /**
+     * get_template_exists
+     * @return string
+     */
     public function get_template_exists()
     {
         global $post;
@@ -408,4 +462,8 @@ class CbaMetaboxEditTemplatePage
         return '';
     }
 }
+
+/**
+ * Run Class CbaMetaboxEditTemplatePage
+ */
 new CbaMetaboxEditTemplatePage();

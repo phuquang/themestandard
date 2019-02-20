@@ -221,6 +221,9 @@ add_action( 'wp_enqueue_scripts', function() {
     }
 });
 
+/**
+ * Print global variable url in javascript
+ */
 add_action('cba_head_after',function(){ ?>
 <script type="text/javascript">
 var urls = {

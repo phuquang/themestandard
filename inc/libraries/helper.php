@@ -53,6 +53,12 @@ function cbaOrderByArray($obj_args, $order_args) {
     return $tmp_args;
 }
 
+/**
+ * the_build_url
+ * @param  array   $args
+ * @param  boolean $return
+ * @return string
+ */
 if ( !function_exists('the_build_url') ) {
     function the_build_url($args = array(), $return = false) {
         if ( !count($args) ) {
@@ -70,6 +76,11 @@ if ( !function_exists('the_build_url') ) {
     }
 }
 
+/**
+ * url
+ * @param  boolean $return Echo or return
+ * @return string url for home page
+ */
 if ( !function_exists('url') ) {
     function url( $return = false ) {
         if ( $return === true ) {
@@ -80,12 +91,21 @@ if ( !function_exists('url') ) {
     }
 }
 
+/**
+ * getUrl
+ * @return string url for home page
+ */
 if ( !function_exists('getUrl') ) {
     function getUrl() {
         return HOME_URL;
     }
 }
 
+/**
+ * themeUrl
+ * @param  boolean $return Echo or return
+ * @return string url for theme
+ */
 if ( !function_exists('themeUrl') ) {
     function themeUrl( $return = false ) {
         if ( $return === true ) {
@@ -96,12 +116,21 @@ if ( !function_exists('themeUrl') ) {
     }
 }
 
+/**
+ * getThemeUrl
+ * @return string url for theme
+ */
 if ( !function_exists('getThemeUrl') ) {
     function getThemeUrl() {
         return THEME_URL;
     }
 }
 
+/**
+ * assets
+ * @param  boolean $return Echo or return
+ * @return string url for assets folder
+ */
 if ( !function_exists('assets') ) {
     function assets( $return = false ) {
         if ( $return === true ) {
@@ -112,6 +141,10 @@ if ( !function_exists('assets') ) {
     }
 }
 
+/**
+ * getAssets
+ * @return string url for assets folder
+ */
 if ( !function_exists('getAssets') ) {
     function getAssets() {
         return THEME_ASSETS;

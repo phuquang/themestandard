@@ -173,6 +173,8 @@ class QNP_Mailer
 
     /**
      * send mail
+     * @param  array  $headers
+     * @return boolean
      */
     public function send($headers = array())
     {
