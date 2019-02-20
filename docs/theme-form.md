@@ -26,7 +26,7 @@
 ├──📁template-pages/                     # Chứa các trang với định danh là slug
 │  ├──📝page-contact.php                 # Trang form
 │  └──📝page-contact-complete.php        # Trang hoàn thành của form
-├──📁template-parts/                     # Chứa các phần của code
+├──📁template-parts/                     # Chứa các thành phần của trang
 │  ├──📝content-contact-confirmation.php # Phần nội dung của trang xác nhận
 │  └──📝content-contact.php              # Phần nội dung của trang form
 ```

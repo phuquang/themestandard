@@ -12,7 +12,7 @@
 │  ├──📁images/                       # Hình dành cho frontend
 │  └──📁js/                           # Script (js) dành cho frontend
 ├──📁inc/                             # Function, controller v.v..
-│  ├──📁libraries/                    # Chứa thư viện code
+│  ├──📁libraries/                    # Thư viện code
 │  │  ├──📁Form/                      # Thư viện Form
 │  │  │  ├──📝index.php               # File index để tránh truy cập trực tiếp
 │  │  │  ├──📝init.php                # Include các file quang trọng
@@ -28,24 +28,24 @@
 │  │  ├──📝helper.php                 # Thư viện những hàm hỗ trợ
 │  │  ├──📝QNP_Pagination.php         # Class phân trang, được gọi trong the_pagination()
 │  │  └──📝theme-debug.php            # Hàm hỗ trợ cho dev và debug, deploy thì nên xóa đi
-│  ├──📁metaboxes/                    # Chứa file tạo metabox
+│  ├──📁metaboxes/                    # Đăng ký metaboxes và field
 │  │  └──📝edit-template-page.php     # Chức năng edit-template-page của page
-│  ├──📁options/                      # Chứa các file đăng ký admin option page
+│  ├──📁options/                      # Đăng ký admin option page
 │  │  ├──📝theme-settings-child.php   # Trang option con
 │  │  └──📝theme-settings.php         # Trang option chung
-│  ├──📁registers/                    # Chứa các file đăng ký post type và sidebar
+│  ├──📁registers/                    # Đăng ký post type và sidebar và các chức năng khác
 │  │  ├──📝posttype-sample.php        # Mẫu đăng ký post type
 │  │  └──📝sidebar-sample.php         # Mẫu đăng ký sidebar
-│  ├──📁widgets/                      # Chứa các file đăng ký widget
+│  ├──📁widgets/                      # Đăng ký widgets
 │  │  └──📝sample.php                 # Mẫu đăng ký widget
 │  ├──📝disable.php                   # Thực thi các hàm loại bỏ các tính năng mặc định
-│  ├──📝pagination.php                # Class phân trang, được gọi trong the_pagination()
-│  ├──📝redirects.php                 # Những hàm chuyển hướng
-│  ├──📝helper.php                    # Những hàm hỗ trợ
+│  ├──📝pagination.php                # Hàm phân trang
+│  ├──📝redirects.php                 # Hàm chuyển hướng
+│  ├──📝helper.php                    # Hàm hỗ trợ
 │  ├──📝seo.php                       # Tùy chỉnh lại các thẻ SEO
 │  ├──📝setup.php                     # Thiết lập theme
 │  └──📝init.php                      # Require các file trong thư mục inc
-├──📁languages/                       # Ngôn ngữ
+├──📁languages/                       # Ngôn ngữ theme
 │  ├──📝theme.pot                     # File chứa chuỗi dịch (Portable Object Template)
 │  ├──📝theme.po                      # File chứa bản dịch thực sự (Portable Object)
 │  └──📝theme.mo                      # File đã được biên dịch (Machine Object)
@@ -61,7 +61,7 @@
 │  ├──📝page-slug.php                 # Các trang theo định danh slug
 │  ├──📝page-contact.php              # Trang form
 │  └──📝page-contact-complete.php     # Trang hoàn thành
-├──📁template-parts/                  # Chứa các phần của code
+├──📁template-parts/                  # Chứa các thành phần của trang
 │  ├──📝global-footer.php             # Phần footer chung
 │  ├──📝global-header.php             # Phần header chung
 │  ├──📝global-navigation.php         # Điều hướng trang
