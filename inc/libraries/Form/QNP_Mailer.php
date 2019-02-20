@@ -10,10 +10,12 @@ class QNP_Mailer
     public $ToName   = '';
     public $CharSet  = 'ISO-2022-JP';
     public $Encoding = '7bit';
+    public $Type     = 'text/plain';
     public $Subject  = '';
     public $Body     = '';
     public $Data     = array();
     public $File     = '';
+    public $Newline  = "\r\n";
 
     /**
      * set email from
@@ -172,23 +174,24 @@ class QNP_Mailer
     /**
      * send mail
      */
-    public function send()
+    public function send($headers = array())
     {
-        $headers = array(
-            "MIME-Version: 1.0",
-            "Content-Type: text/plain; charset={$this->CharSet}",
-            "Content-transfer-encoding: {$this->Encoding}",
-            "From: {$this->FromName} <{$this->From}>",
-        );
+        if ( count($headers) === 0 ) {
+            $headers = array(
+                "MIME-Version: 1.0",
+                "Content-Type: {$this->Type}; charset={$this->CharSet}",
+                "Content-transfer-encoding: {$this->Encoding}",
+                "From: {$this->FromName} <{$this->From}>",
+            );
+        }
 
         if ($this->Language === 'ja'){
-            // mb_language('uni');
             mb_language("Japanese");
             mb_internal_encoding('UTF-8');
 
-            return @mb_send_mail($this->To, $this->Subject, $this->Body, implode("\r\n", $headers));
+            return @mb_send_mail($this->To, $this->Subject, $this->Body, implode($this->Newline, $headers));
         } else {
-            return send_mail($this->To, $this->Subject, $this->Body, implode("\r\n", $headers));
+            return send_mail($this->To, $this->Subject, $this->Body, implode($this->Newline, $headers));
         }
     }
 }
