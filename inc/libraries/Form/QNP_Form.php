@@ -9,6 +9,7 @@ class QNP_Form
     public $fields = array();
     public $field = null;
     public $errors = array();
+    public $default_filters = array('mb_trim', 'strip_tags', 'mysql_real_escape_string');
 
     public function __construct()
     {

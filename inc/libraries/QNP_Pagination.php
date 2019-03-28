@@ -19,7 +19,11 @@ class QNP_Pagination
     public $label_last     = '最後へ';
     public $label_previous = '前へ';
     public $label_next     = '次へ';
-    public $alway_display  = false;
+    public $alway_display  = 0;
+    public $_from_plus     = 0;
+    public $_from_minus    = 0;
+    public $_to_plus       = 0;
+    public $_to_minus      = 0;
 
     /**
      * __construct
@@ -140,10 +144,10 @@ class QNP_Pagination
     public function pagination()
     {
         if ( $this->total_pages > 1 ) {
-            $_form = $this->paged - $this->range;
+            $_from = $this->paged - $this->range;
 
-            if ( $_form < 1 )
-                $_form = 1;
+            if ( $_from < 1 )
+                $_from = 1;
 
             $_to = $this->paged + $this->range;
 
@@ -151,31 +155,42 @@ class QNP_Pagination
                 $_to = $this->total_pages;
 
             // ↓ ↓ ↓ custom alway display 5 item
-            if ( $this->alway_display !== false ) {
+            if ( $this->alway_display !== 0 ) {
                 if ( $this->paged < $this->alway_display ) {
-                    $_form = 1;
+                    $_from = 1;
                     $_to = $this->alway_display;
                 }
 
                 if ( $this->paged >= $this->total_pages - 1 ) {
-                    $_form = $this->total_pages - ( $this->alway_display - 1 );
+                    $_from = $this->total_pages - ( $this->alway_display - 1 );
                     $_to = $this->total_pages;
                 }
 
                 if ( $this->total_pages < $this->alway_display ) {
-                    $_form = 1;
+                    $_from = 1;
                     $_to = $this->total_pages;
                 }
             }
             // ↑ ↑ ↑ custom alway display 5 item
-
+            if ( $this->_from_plus !== 0 ) {
+                $_from  = $_from +$this->_from_plus;
+            }
+            if ( $this->_from_minus !== 0 ) {
+                $_from  = $_from -$this->_from_minus;
+            }
+            if ( $this->_to_plus !== 0 ) {
+                $_to  = $_to +$this->_to_plus;
+            }
+            if ( $this->_to_minus !== 0 ) {
+                $_to  = $_to -$this->_to_minus;
+            }
             if ( $this->hide_first === false )
                 $this->pagerItem($this->label_first, $this->link(1), 'page-first' );
             if ( $this->hide_previous === false )
                 $this->pagerItem($this->label_previous, $this->link($this->paged - 1), 'page-previous' );
             if ( $this->hide_dot === false && $this->paged > $this->range + 2 )
                 $this->pagerItem($this->label_dot, 'javascript:;', 'page-dot' );
-            for ( $i = $_form; $i <= $_to; $i++ ) {
+            for ( $i = $_from; $i <= $_to; $i++ ) {
                 $this->pagerItem($i, $this->link($i), 'page-num ' . ( $this->paged == $i ? 'active' : '') );
             }
             if ( $this->hide_dot === false && $_to < $this->total_pages - 1 )

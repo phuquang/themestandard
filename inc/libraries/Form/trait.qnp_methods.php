@@ -23,16 +23,20 @@ trait QNP_Methods
 
     /**
      * get value from post
-     * @return string
+     * @return value
      */
-    public static function post($name = '', $return = true, $filter = false, $filter_list = array())
+    public static function post($name = '', $return = true, $filter_list = array())
     {
         $value = null;
         if ( array_key_exists($name, $_POST) && ! empty($_POST[$name]) ) {
             $value = $_POST[$name];
         }
 
-        if ( ! empty($value) && $filter === true) {
+        if ( ! empty($this->default_filters)) {
+            $value = self::filter($value, $this->default_filters);
+        }
+
+        if ( ! empty($value) && ! empty($filter_list)) {
             $value = self::filter($value, $filter_list);
         }
 
@@ -45,16 +49,20 @@ trait QNP_Methods
 
     /**
      * get value from get
-     * @return string
+     * @return value
      */
-    public static function get($name = '', $return = true, $filter = false, $filter_list = array())
+    public static function get($name = '', $return = true, $filter_list = array())
     {
         $value = null;
         if ( array_key_exists($name, $_GET) && ! empty($_GET[$name]) ) {
             $value = $_GET[$name];
         }
 
-        if ( $filter === true) {
+        if ( ! empty($this->default_filters)) {
+            $value = self::filter($value, $this->default_filters);
+        }
+
+        if ( ! empty($value) && ! empty($filter_list)) {
             $value = self::filter($value, $filter_list);
         }
 
@@ -89,6 +97,10 @@ trait QNP_Methods
         return false;
     }
 
+    /**
+     * Filter value
+     * @return value
+     */
     public static function filter($value, $filter_list = array())
     {
         foreach ($filter_list as $method_name) {
@@ -116,8 +128,16 @@ trait QNP_Methods
                 $value = sql_escape($value);
             }
 
+            if ($method_name === 'mysql_real_escape_string') {
+                $value = mysql_real_escape_string($value);
+            }
+
             if ($method_name === 'addslashes') {
                 $value = addslashes($value);
+            }
+
+            if ($method_name === 'strip_tags') {
+                $value = strip_tags($value);
             }
         }
         return $value;
