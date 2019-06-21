@@ -41,14 +41,19 @@ trait QNP_Errors
      * @param  string $print
      * @return string
      */
-    public function printError($name, $print = '')
+    public function printError($name, $print = '', $return = false)
     {
         if ( isset($this->errors[$name]) ) {
             $error = $this->errors[$name];
             if ( empty($print) ) {
-                echo array_shift($error[0]);
+                $msg = array_shift($error[0]);
             } else {
-                echo $print;
+                $msg = preg_replace('/:message/', array_shift($error[0]), $print);
+            }
+            if ($return === true) {
+                return $msg;
+            } else {
+                echo $msg;
             }
         }
     }

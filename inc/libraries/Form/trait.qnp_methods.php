@@ -28,12 +28,11 @@ trait QNP_Methods
     public static function post($name = '', $return = true, $filter_list = array())
     {
         $value = null;
-        if ( array_key_exists($name, $_POST) && ! empty($_POST[$name]) ) {
+        if ( array_key_exists($name, $_POST) ) {
             $value = $_POST[$name];
         }
-
-        if ( ! empty($this->default_filters)) {
-            $value = self::filter($value, $this->default_filters);
+        if ( ! empty(self::$default_filters)) {
+            $value = self::filter($value, self::$default_filters);
         }
 
         if ( ! empty($value) && ! empty($filter_list)) {
@@ -58,8 +57,8 @@ trait QNP_Methods
             $value = $_GET[$name];
         }
 
-        if ( ! empty($this->default_filters)) {
-            $value = self::filter($value, $this->default_filters);
+        if ( ! empty(self::$default_filters)) {
+            $value = self::filter($value, self::$default_filters);
         }
 
         if ( ! empty($value) && ! empty($filter_list)) {
@@ -109,7 +108,7 @@ trait QNP_Methods
             }
 
             if ($method_name === 'mb_trim') {
-                $value = mb_trim($value);
+                $value = self::mb_trim($value);
             }
 
             if ($method_name === 'stripslashes') {
@@ -128,8 +127,8 @@ trait QNP_Methods
                 $value = sql_escape($value);
             }
 
-            if ($method_name === 'mysql_real_escape_string') {
-                $value = mysql_real_escape_string($value);
+            if ($method_name === 'mysqli_real_escape_string') {
+                $value = mysqli_real_escape_string($value);
             }
 
             if ($method_name === 'addslashes') {

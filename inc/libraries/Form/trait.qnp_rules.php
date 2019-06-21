@@ -10,7 +10,7 @@ trait QNP_Rules
      */
     private function _required($str)
     {
-        if ( empty($str) ) {
+        if ( $str === '' || $str === null ) {
             return true;
         }
         return false;
@@ -24,7 +24,7 @@ trait QNP_Rules
      */
     private function _max($str,$max)
     {
-        if ( mb_strlen($str, 'UTF-8') > intval($max) ) {
+        if ( intval($str) > intval($max) ) {
             return true;
         }
         return false;
@@ -38,6 +38,34 @@ trait QNP_Rules
      */
     private function _min($str,$min)
     {
+        if ( intval($str) < intval($min) ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * [Value is elder condition]
+     * @param  [string]  $str [Input]
+     * @param  [integer] $max [Condition]
+     * @return [true]         [is error]
+     */
+    private function _lengthmax($str,$max)
+    {
+        if ( mb_strlen($str, 'UTF-8') > intval($max) ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * [Value is lesser condition]
+     * @param  [string]  $str [Input]
+     * @param  [integer] $min [Condition]
+     * @return [true]         [is error]
+     */
+    private function _lengthmin($str,$min)
+    {
         if ( mb_strlen($str, 'UTF-8') < intval($min) ) {
             return true;
         }
@@ -48,7 +76,7 @@ trait QNP_Rules
      * [zipcode format exactly]
      * @param  [string] $str [Input]
      * @return [true]        [is error]
-     *         
+     *
      */
     private function _zipcode($str)
     {

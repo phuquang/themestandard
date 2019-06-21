@@ -161,7 +161,40 @@ trait QNP_Helpers
      * @param  string $name name of input
      * @return string
      */
-    public static function hiddenTextarea($name){
-        echo "<textarea style='display:none' name='{$name}'>{self::post($name)}</textarea>";
+    public static function hiddenTextarea($name)
+    {
+        $value = self::post($name);
+        echo "<textarea style='display:none' name='{$name}'>{$value}</textarea>";
+    }
+
+    public static function htmlInput($name = '', $type = 'text', $attrs = array())
+    {
+        $id    = !empty($attrs['id']) ? 'id="'.$attrs['id'].'"' : '';
+        $class = !empty($attrs['class']) ? 'class="'.$attrs['class'].'"' : '';
+        $placeholder  = !empty($attrs['placeholder']) ? 'placeholder="'.$attrs['placeholder'].'"' : '';
+        $value = 'value="'.self::post($name).'"';
+        $name  = 'name="'.$name.'"';
+        $type  = 'type="'.$type.'"';
+        echo "<input {$type} {$name} {$id} {$class} {$placeholder} {$value}>";
+    }
+
+    public static function htmlSelect($options = array(), $attrs = array())
+    {
+        $id    = !empty($attrs['id']) ? 'id="'.$attrs['id'].'"' : '';
+        $class = !empty($attrs['class']) ? 'class="'.$attrs['class'].'"' : '';
+        $name  = !empty($attrs['name']) ? 'name="'.$attrs['name'].'"' : '';
+        $first = !empty($attrs['first']) ? '<option value="">'.$attrs['first'].'</option>' : '';
+        echo "<select {$name} {$id} {$class}>";
+            echo $first;
+            foreach ($options as $key => $option) {
+                $v = $option;
+                if (is_string($key)) {
+                    $v = $key;
+                }
+                echo '<option value="'.$v.'" ';
+                self::eSelected($attrs['name'], $v);
+                echo ' >'.$option.'</option>';
+            }
+        echo '</select>';
     }
 }

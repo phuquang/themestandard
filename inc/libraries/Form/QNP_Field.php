@@ -13,11 +13,15 @@ class QNP_Field
      * @param string $name
      * @param string $label
      */
-    public function __construct($name, $label)
+    public function __construct($name, $label, $value = '')
     {
         $this->name = $name;
         $this->label = $label;
-        $this->setValue($this->name);
+        if (!empty($value)) {
+            $this->value = $value;
+        } else {
+            $this->setValue($this->name);
+        }
     }
 
     /**

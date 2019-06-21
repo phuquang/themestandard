@@ -9,11 +9,16 @@ class QNP_Form
     public $fields = array();
     public $field = null;
     public $errors = array();
-    public $default_filters = array('mb_trim', 'strip_tags', 'mysql_real_escape_string');
+    public static $default_filters = array('mb_trim', 'strip_tags');
 
     public function __construct()
     {
         $this->method = $_SERVER['REQUEST_METHOD'];
+    }
+
+    public function setFilters($args)
+    {
+        self::$default_filters = $args;
     }
 
     /**
@@ -24,6 +29,18 @@ class QNP_Form
     public function name($name, $label = '')
     {
         $this->field = new QNP_Field($name, $label);
+        $this->fields[$name] = $this->field;
+        return $this;
+    }
+
+    /**
+     * Add custom field
+     * @param  string $name  name of input
+     * @param  string $label label of input
+     */
+    public function addField($name, $label = '', $value = '')
+    {
+        $this->field = new QNP_Field($name, $label, $value);
         $this->fields[$name] = $this->field;
         return $this;
     }
