@@ -1,10 +1,3 @@
-# Tài liệu
-Giải quyết các vấn đề:
-- Đồng nhất để mọi người dễ tiếp cận.
-- Chia nhỏ rõ ràng để tiện quản lý.
-- Không ảnh hưởng lẫn nhau của các tệp khi sửa chữa.
-- Sử dụng lại được tài nguyên code (snippets).
-
 # Navigation
 - [Trang chủ](https://phuquang.github.io/themestandard/)
 - [Sơ đồ tài liệu](https://phuquang.github.io/themestandard/sitemap)
