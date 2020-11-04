@@ -36,8 +36,8 @@ get_header(); ?>
 
         the_post_navigation(
             array(
-                'prev_text' => __( 'Previous Post', 'twentyseventeen' ),
-                'next_text' => __( 'Next Post', 'twentyseventeen' ),
+                'prev_text' => __( 'Previous Post', 'themestandard' ),
+                'next_text' => __( 'Next Post', 'themestandard' ),
             )
         );
 

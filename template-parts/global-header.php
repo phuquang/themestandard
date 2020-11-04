@@ -1,5 +1,11 @@
-<header>
-    <div class="container">
-        <h1><a href="<?php url() ?>">Theme Standard</a></h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <a class="navbar-brand" href="<?php url() ?>"><?php bloginfo() ?></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <?php get_template_part( 'template-parts/global', 'navigation' ); ?>
+        <?php get_search_form(); ?>
     </div>
-    </header>
+</nav>

@@ -14,25 +14,20 @@ get_header(); ?>
     <main class="container">
     <?php
     /* Start the Loop */
-    while ( have_posts() ) :
-        the_post();
+    while ( have_posts() ) : the_post();
 
-        get_template_part( 'template-parts/content', get_post_format() );
-
-        // If comments are open or we have at least one comment, load up the comment template.
-        if ( comments_open() || get_comments_number() ) :
-            comments_template();
-        endif;
+        get_template_part( 'template-parts/content', 'post' );
 
         the_post_navigation(
             array(
-                'prev_text' => __( 'Previous Post', 'twentyseventeen' ),
-                'next_text' => __( 'Next Post', 'twentyseventeen' ),
+                'prev_text' => __( 'Previous Post', 'themestandard' ),
+                'next_text' => __( 'Next Post', 'themestandard' ),
             )
         );
 
     endwhile; // End of the loop.
 
-    get_sidebar(); ?>
+    get_sidebar();
+    ?>
     </main>
 <?php get_footer();

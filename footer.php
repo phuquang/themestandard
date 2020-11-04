@@ -15,6 +15,5 @@
 <?php get_template_part( 'template-parts/global', 'footer' ); ?>
 </div><!-- END #app -->
 <?php wp_footer(); ?>
-<?php do_action('cba_body_after') ?>
 </body>
 </html>

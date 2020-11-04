@@ -14,16 +14,9 @@
 ?><!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
-<?php do_action('cba_head_before') ?>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<?php if(! wp_is_mobile()): ?>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<?php endif; ?>
 <?php wp_head(); ?>
-<?php do_action('cba_head_after') ?>
 </head>
-<body <?php if (WP_DEBUG){ body_class(); } ?> id="<?php do_action('cba_body_id') ?>">
-<?php do_action('cba_body_before') ?>
+<body <?php if (WP_DEBUG) { body_class(); } ?> id="<?php do_action('cba_body_id') ?>">
+<?php wp_body_open(); ?>
 <div id="app">
     <?php get_template_part( 'template-parts/global', 'header' ); ?>
-    <?php get_template_part( 'template-parts/global', 'navigation' ); ?>

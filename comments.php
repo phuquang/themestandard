@@ -34,7 +34,7 @@ if ( post_password_required() ) {
             $comments_number = get_comments_number();
             if ( '1' === $comments_number ) {
                 /* translators: %s: post title */
-                printf( _x( 'One Reply to &ldquo;%s&rdquo;', 'comments title', 'twentyseventeen' ), get_the_title() );
+                printf( _x( 'One Reply to &ldquo;%s&rdquo;', 'comments title', 'themestandard' ), get_the_title() );
             } else {
                 printf(
                     /* translators: 1: number of comments, 2: post title */
@@ -43,7 +43,7 @@ if ( post_password_required() ) {
                         '%1$s Replies to &ldquo;%2$s&rdquo;',
                         $comments_number,
                         'comments title',
-                        'twentyseventeen'
+                        'themestandard'
                     ),
                     number_format_i18n( $comments_number ),
                     get_the_title()
@@ -52,24 +52,22 @@ if ( post_password_required() ) {
             ?>
         </h2>
 
-        <ol class="comment-list">
-            <?php
-                wp_list_comments(
-                    array(
-                        'avatar_size' => 100,
-                        'style'       => 'ol',
-                        'short_ping'  => true,
-                        'reply_text'  => __( 'Reply', 'twentyseventeen' ),
-                    )
-                );
-            ?>
-        </ol>
+        <?php
+            wp_list_comments( array(
+                'style'         => 'ol',
+                'max_depth'     => 4,
+                'short_ping'    => true,
+                'avatar_size'   => '50',
+                'walker'        => new Bootstrap_Comment_Walker(),
+            ) );
+
+        ?>
 
         <?php
         the_comments_pagination(
             array(
-                'prev_text' => __( 'Previous', 'twentyseventeen' ),
-                'next_text' => __( 'Next', 'twentyseventeen' ),
+                'prev_text' => __( 'Previous', 'themestandard' ),
+                'next_text' => __( 'Next', 'themestandard' ),
             )
         );
 
@@ -79,11 +77,35 @@ if ( post_password_required() ) {
     if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
     ?>
 
-        <p class="no-comments"><?php _e( 'Comments are closed.', 'twentyseventeen' ); ?></p>
+        <p class="no-comments"><?php _e( 'Comments are closed.', 'themestandard' ); ?></p>
     <?php
     endif;
 
-    comment_form();
+    $comments_args = array(
+        'fields' => array(
+            'author' => '<p class="comment-form-author"><input id="author" name="author" class="form-control" placeholder="Name" required></p>',
+            'email' => '<p class="comment-form-email"><input id="email" name="email" class="form-control" placeholder="E-Mail" required ></p>',
+            'url' => '<p class="comment-form-url"><input id="url" name="url" class="form-control" placeholder="Website" required></p>',
+            'cookies' => '<input type="checkbox" required> By commenting you accept the<a href="' . get_privacy_policy_url() . '"> Privacy Policy</a>',
+        ),
+        // Change the title of send button
+        'label_submit' => __( 'Send' ),
+        // Change the title of the reply section
+        'title_reply' => __( 'Leave a Message' ),
+        // Change the title of the reply section
+        'title_reply_to' => __( 'Reply' ),
+        //Cancel Reply Text
+        'cancel_reply_link' => __( 'Cancel Reply' ),
+        // Redefine your own textarea (the comment body).
+        'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" class="form-control" required placeholder="Comment"></textarea></p>',
+        //Message Before Comment
+        'comment_notes_before' => __( 'Registration isn\'t required.' ),
+        // Remove "Text or HTML to be displayed after the set of comment fields".
+        'comment_notes_after' => '',
+        //Submit Button ID
+        'id_submit' => __( 'comment-submit' ),
+    );
+    comment_form( $comments_args );
     ?>
 
 </div><!-- #comments -->

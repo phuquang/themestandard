@@ -12,10 +12,13 @@
 
 get_header(); ?>
 <main class="container">
-    <?php if ( have_posts() ) :
-        printf( __( 'Search Results for: %s', 'twentyseventeen' ), '<span>' . get_search_query() . '</span>' );
+    <?php
+    if ( have_posts() ) :
+        printf( __( 'Search Results for: %s', 'themestandard' ), '<span>' . get_search_query() . '</span>' );
     else :
-        _e( 'Nothing Found', 'twentyseventeen' );
+        echo '<h1>';
+        _e( 'Nothing Found', 'themestandard' );
+        echo '</h1>';
     endif;
 
     if ( have_posts() ) :
@@ -38,8 +41,7 @@ get_header(); ?>
 
     else :
 
-        _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyseventeen' ); 
-        get_search_form();
+        get_template_part( 'template-parts/content', 'none' );
 
     endif;
     get_sidebar(); ?>
