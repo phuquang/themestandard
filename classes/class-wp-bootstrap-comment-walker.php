@@ -46,7 +46,7 @@ class Bootstrap_Comment_Walker extends Walker_Comment {
 							</time>
 						</a>
 						<ul class="list-inline">
-							<?php edit_comment_link( __( 'Edit' ), '<li class="edit-link list-inline-item btn btn-link">', '</li>' ); ?>
+							<?php edit_comment_link( __( 'Edit', 'themestandard' ), '<li class="edit-link list-inline-item btn btn-link">', '</li>' ); ?>
 							<?php
 								comment_reply_link( array_merge( $args, array(
 									'add_below' => 'div-comment',
@@ -61,7 +61,7 @@ class Bootstrap_Comment_Walker extends Walker_Comment {
 				</div>
 				<div class="card-body">
 					<?php if ( '0' == $comment->comment_approved ) : ?>
-					<p class="card-text comment-awaiting-moderation label label-info text-muted small"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
+					<p class="card-text comment-awaiting-moderation label label-info text-muted small"><?php _e( 'Your comment is awaiting moderation.', 'themestandard' ); ?></p>
 					<?php endif; ?>
 
 					<div class="comment-content card-text">

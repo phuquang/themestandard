@@ -89,21 +89,21 @@ if ( post_password_required() ) {
             'cookies' => '<input type="checkbox" required> By commenting you accept the<a href="' . get_privacy_policy_url() . '"> Privacy Policy</a>',
         ),
         // Change the title of send button
-        'label_submit' => __( 'Send' ),
+        'label_submit' => __( 'Send', 'themestandard' ),
         // Change the title of the reply section
-        'title_reply' => __( 'Leave a Message' ),
+        'title_reply' => __( 'Leave a Message', 'themestandard' ),
         // Change the title of the reply section
-        'title_reply_to' => __( 'Reply' ),
+        'title_reply_to' => __( 'Reply', 'themestandard' ),
         //Cancel Reply Text
-        'cancel_reply_link' => __( 'Cancel Reply' ),
+        'cancel_reply_link' => __( 'Cancel Reply', 'themestandard' ),
         // Redefine your own textarea (the comment body).
         'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" class="form-control" required placeholder="Comment"></textarea></p>',
         //Message Before Comment
-        'comment_notes_before' => __( 'Registration isn\'t required.' ),
+        'comment_notes_before' => __( 'Registration isn\'t required.', 'themestandard' ),
         // Remove "Text or HTML to be displayed after the set of comment fields".
         'comment_notes_after' => '',
         //Submit Button ID
-        'id_submit' => __( 'comment-submit' ),
+        'id_submit' => __( 'comment-submit', 'themestandard' ),
     );
     comment_form( $comments_args );
     ?>
