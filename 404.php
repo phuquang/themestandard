@@ -12,10 +12,8 @@
 
 get_header(); ?>
 <main class="container">
-    <?php _e( 'Oops! That page can&rsquo;t be found.', 'twentyseventeen' );
-
-    _e( 'It looks like nothing was found at this location. Maybe try a search?', 'twentyseventeen' );
-
-    get_search_form(); ?>
+    <h1><?php _e( 'Oops! That page can&rsquo;t be found.', 'themestandard' ); ?></h1>
+    <p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'themestandard' ); ?> </p>
+    <?php get_search_form(); ?>
 </main>
 <?php get_footer();

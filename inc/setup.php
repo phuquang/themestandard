@@ -10,11 +10,11 @@ add_action( 'after_setup_theme', function () {
 
     /*
      * Make theme available for translation.
-     * Translations can be filed at WordPress.org. See: https://translate.wordpress.org/projects/wp-themes/twentyseventeen
+     * Translations can be filed at WordPress.org. See: https://translate.wordpress.org/projects/wp-themes/themestandard
      * If you're building a theme based on Twenty Seventeen, use a find and replace
-     * to change 'twentyseventeen' to the name of your theme in all the template files.
+     * to change 'themestandard' to the name of your theme in all the template files.
      */
-    load_theme_textdomain( TEXT_DOMAIN, get_template_directory() . '/languages' );
+    // load_theme_themestandard( TEXT_DOMAIN, get_template_directory() . '/languages' );
 
     // Add default posts and comments RSS feed links to head.
     add_theme_support( 'automatic-feed-links' );
@@ -38,11 +38,17 @@ add_action( 'after_setup_theme', function () {
     // This theme uses wp_nav_menu() in two locations.
     register_nav_menus(
         array(
-            'primary' => __( 'Primary', 'twentynineteen' ),
-            'footer'  => __( 'Footer Menu', 'twentynineteen' ),
-            'social'  => __( 'Social Links Menu', 'twentynineteen' ),
+            'primary' => __( 'Primary', 'themestandard' ),
+            'footer'  => __( 'Footer Menu', 'themestandard' ),
+            'social'  => __( 'Social Links Menu', 'themestandard' ),
         )
     );
+
+    // Set content-width.
+	global $content_width;
+	if ( ! isset( $content_width ) ) {
+		$content_width = 580;
+	}
 
     /*
      * Switch default core markup for search form, comment form, and comments
@@ -77,8 +83,8 @@ add_action( 'after_setup_theme', function () {
     // Add theme support for selective refresh for widgets.
     add_theme_support( 'customize-selective-refresh-widgets' );
 
-    // Add support for Block Styles.
-    add_theme_support( 'wp-block-styles' );
+    // Add support for Block Styles. (wp-block-library-theme-css)
+    // add_theme_support( 'wp-block-styles' );
 
     // Add support for full and wide align images.
     add_theme_support( 'align-wide' );
@@ -94,26 +100,26 @@ add_action( 'after_setup_theme', function () {
         'editor-font-sizes',
         array(
             array(
-                'name'      => __( 'Small', 'twentynineteen' ),
-                'shortName' => __( 'S', 'twentynineteen' ),
+                'name'      => __( 'Small', 'themestandard' ),
+                'shortName' => __( 'S', 'themestandard' ),
                 'size'      => 19.5,
                 'slug'      => 'small',
             ),
             array(
-                'name'      => __( 'Normal', 'twentynineteen' ),
-                'shortName' => __( 'M', 'twentynineteen' ),
+                'name'      => __( 'Normal', 'themestandard' ),
+                'shortName' => __( 'M', 'themestandard' ),
                 'size'      => 22,
                 'slug'      => 'normal',
             ),
             array(
-                'name'      => __( 'Large', 'twentynineteen' ),
-                'shortName' => __( 'L', 'twentynineteen' ),
+                'name'      => __( 'Large', 'themestandard' ),
+                'shortName' => __( 'L', 'themestandard' ),
                 'size'      => 36.5,
                 'slug'      => 'large',
             ),
             array(
-                'name'      => __( 'Huge', 'twentynineteen' ),
-                'shortName' => __( 'XL', 'twentynineteen' ),
+                'name'      => __( 'Huge', 'themestandard' ),
+                'shortName' => __( 'XL', 'themestandard' ),
                 'size'      => 49.5,
                 'slug'      => 'huge',
             ),
@@ -125,27 +131,27 @@ add_action( 'after_setup_theme', function () {
         'editor-color-palette',
         array(
             array(
-                'name'  => __( 'Primary', 'twentynineteen' ),
+                'name'  => __( 'Primary', 'themestandard' ),
                 'slug'  => 'primary',
                 'color' => get_theme_mod( 'primary_color_hue', 199 ),
             ),
             array(
-                'name'  => __( 'Secondary', 'twentynineteen' ),
+                'name'  => __( 'Secondary', 'themestandard' ),
                 'slug'  => 'secondary',
                 'color' => get_theme_mod( 'primary_color_hue', 199 ),
             ),
             array(
-                'name'  => __( 'Dark Gray', 'twentynineteen' ),
+                'name'  => __( 'Dark Gray', 'themestandard' ),
                 'slug'  => 'dark-gray',
                 'color' => '#111',
             ),
             array(
-                'name'  => __( 'Light Gray', 'twentynineteen' ),
+                'name'  => __( 'Light Gray', 'themestandard' ),
                 'slug'  => 'light-gray',
                 'color' => '#767676',
             ),
             array(
-                'name'  => __( 'White', 'twentynineteen' ),
+                'name'  => __( 'White', 'themestandard' ),
                 'slug'  => 'white',
                 'color' => '#FFF',
             ),
@@ -154,6 +160,18 @@ add_action( 'after_setup_theme', function () {
 
     // Add support for responsive embedded content.
     add_theme_support( 'responsive-embeds' );
+
+    $args = array(
+        'default-image'      => get_template_directory_uri() . 'img/default-image.jpg',
+        'default-text-color' => '000',
+        'width'              => 1000,
+        'height'             => 250,
+        'flex-width'         => true,
+        'flex-height'        => true,
+    );
+    add_theme_support( 'custom-header', $args );
+
+    add_theme_support( 'custom-background' );
 
 });
 
@@ -169,7 +187,7 @@ function themestandard_fonts_url() {
      * supported by Libre Franklin, translate this to 'off'. Do not translate
      * into your own language.
      */
-    $libre_franklin = _x( 'on', 'Libre Franklin font: on or off', 'twentyseventeen' );
+    $libre_franklin = _x( 'on', 'Libre Franklin font: on or off', 'themestandard' );
 
     if ( 'off' !== $libre_franklin ) {
         $font_families = array();
@@ -192,15 +210,14 @@ function themestandard_fonts_url() {
  */
 add_action( 'wp_enqueue_scripts', function() {
     // Theme stylesheet.
-    // wp_enqueue_style( TEXT_DOMAIN . '-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( TEXT_DOMAIN . '-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
     // wp_style_add_data( TEXT_DOMAIN . '-style', 'rtl', 'replace' );
 
-    wp_enqueue_script( TEXT_DOMAIN . '-jquery', 'https://code.jquery.com/jquery-3.3.1.slim.min.js', array(), '3.3.1', false );
-    wp_enqueue_script( TEXT_DOMAIN . '-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array(), '1.14.3', false );
+    wp_enqueue_script( TEXT_DOMAIN . '-jquery', get_stylesheet_directory_uri() . '/assets/js/jquery-3.5.1.slim.min.js', array(), '3.5.1', false );
 
     // bootstrap
-    wp_enqueue_style( TEXT_DOMAIN . '-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', array(), '4.1.3' );
-    wp_enqueue_script( TEXT_DOMAIN . '-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', array(), '4.1.3', false );
+    wp_enqueue_style( TEXT_DOMAIN . '-bootstrap', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', array(), '4.5.3' );
+    wp_enqueue_script( TEXT_DOMAIN . '-bootstrap', get_stylesheet_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '4.5.3', false );
 
     // Add custom fonts, used in the main stylesheet.
     wp_enqueue_style( TEXT_DOMAIN . '-fonts', themestandard_fonts_url(), array(), null );
@@ -221,15 +238,25 @@ add_action( 'wp_enqueue_scripts', function() {
     }
 });
 
+add_action('wp_head', function () {
+?>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<?php if (! wp_is_mobile()) : ?>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<?php endif;
+}, 0);
+
 /**
  * Print global variable url in javascript
  */
-add_action('cba_head_after',function(){ ?>
+add_action('wp_head', function () {
+?>
 <script type="text/javascript">
 var urls = {
-home : "<?php url() ?>",
-theme : "<?php themeUrl() ?>",
-assets : "<?php assets() ?>",
+    home : "<?php url() ?>",
+    theme : "<?php themeUrl() ?>",
+    assets : "<?php assets() ?>",
 }
 </script>
-<?php });
+<?php
+}, 999);

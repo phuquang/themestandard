@@ -20,22 +20,22 @@ if ( !function_exists('mb_limit_text') ) {
 
 /**
  * cbaOrderByArray
- * @param  [array] $obj_args   
- * @param  [array] $order_args 
- * @return [array]             
+ * @param  [array] $obj_args
+ * @param  [array] $order_args
+ * @return [array]
  * @example
  * $order_args = array('aichi','shizuoka','yamanashi')
  * $obj_args = array(3) {
-          [0]=> (object) { "slug"=>"yamanashi" }
-          [1]=> (object) { "slug"=>"shizuoka" }
-          [2]=> (object) { "slug"=>"aichi" }
-        }
+ *        [0]=> (object) { "slug"=>"yamanashi" }
+ *        [1]=> (object) { "slug"=>"shizuoka" }
+ *        [2]=> (object) { "slug"=>"aichi" }
+ *      }
  * @result
  *     array(3) {
-          [0]=> (object) { "slug"=>"aichi" }
-          [1]=> (object) { "slug"=>"shizuoka" }
-          [2]=> (object) { "slug"=>"yamanashi" }
-        }
+ *        [0]=> (object) { "slug"=>"aichi" }
+ *        [1]=> (object) { "slug"=>"shizuoka" }
+ *        [2]=> (object) { "slug"=>"yamanashi" }
+ *      }
  */
 function cbaOrderByArray($obj_args, $order_args) {
     $tmp_args = array();
@@ -148,5 +148,44 @@ if ( !function_exists('assets') ) {
 if ( !function_exists('getAssets') ) {
     function getAssets() {
         return THEME_ASSETS;
+    }
+}
+
+if ( !function_exists('get_bootstrap_paginate_links') ) {
+    function get_bootstrap_paginate_links() {
+        ob_start();
+        ?>
+        <nav class="pages clearfix">
+            <?php
+                global $wp_query;
+                $current = max( 1, absint( get_query_var( 'paged' ) ) );
+                $pagination = paginate_links( array(
+                    'base' => str_replace( PHP_INT_MAX, '%#%', esc_url( get_pagenum_link( PHP_INT_MAX ) ) ),
+                    'format' => '?paged=%#%',
+                    'current' => $current,
+                    'total' => $wp_query->max_num_pages,
+                    'type' => 'array',
+                    'prev_text' => '&laquo;',
+                    'next_text' => '&raquo;',
+                ) ); ?>
+            <?php if ( ! empty( $pagination ) ) : ?>
+                <ul class="pagination">
+                    <?php foreach ( $pagination as $key => $page_link ) : ?>
+                        <li class="page-item<?php if ( strpos( $page_link, 'current' ) !== false ) { echo ' active'; } ?>">
+                            <?php echo str_replace( 'class="', 'class="page-link ', $page_link ) ?>
+                        </li>
+                    <?php endforeach ?>
+                </ul>
+            <?php endif ?>
+        </nav>
+        <?php
+        $links = ob_get_clean();
+        return apply_filters( 'get_bootstrap_paginate_links', $links );
+    }
+}
+
+if ( !function_exists('the_bootstrap_paginate_links') ) {
+    function the_bootstrap_paginate_links() {
+        echo get_bootstrap_paginate_links();
     }
 }

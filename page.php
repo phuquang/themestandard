@@ -12,16 +12,21 @@
  * @version 1.0
  */
 
-// Start the loop.
-while ( have_posts() ) : the_post();
+$located = locate_template('template-pages/page-' . get_post_field( 'post_name') . '.php');
 
-    $located = locate_template('template-pages/page-' . get_post_field( 'post_name') . '.php');
-    if ( !empty($located) ) {
-        // Include the page content template.
-        get_template_part( 'template-pages/page', get_post_field( 'post_name') );
-    } else {
-        get_template_part( 'template-parts/content');
+if ( !empty($located) ) {
+    // Include the page content template.
+    get_template_part( 'template-pages/page', get_post_field( 'post_name') );
+} else {
+    get_header();
+
+    echo '<main class="container">';
+
+    while ( have_posts() ) { the_post();
+        get_template_part( 'template-parts/content', 'post');
     }
 
-endwhile;
-// End of the loop.
+    echo '</main>';
+
+    get_footer();
+}

@@ -15,4 +15,26 @@
  * @version 1.0
  */
 
-get_template_part( 'template-pages/page', 'top' );
+get_header(); ?>
+    <main class="container">
+    <?php
+    if ( have_posts() ) :
+
+        while ( have_posts() ) : the_post();
+
+            get_template_part( 'template-parts/content' );
+
+        endwhile;
+
+        the_bootstrap_paginate_links();
+
+    else :
+
+        get_template_part( 'template-parts/content', 'none' );
+
+    endif;
+
+    get_sidebar();
+    ?>
+    </main>
+<?php get_footer();
