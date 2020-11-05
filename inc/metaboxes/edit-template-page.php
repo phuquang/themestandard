@@ -1,5 +1,5 @@
 <?php
-class CbaMetaboxEditTemplatePage
+class QnpEditTemplate
 {
     public $nonce = '_nonce_';
     public $id    = '';
@@ -88,110 +88,9 @@ class CbaMetaboxEditTemplatePage
         <button id="btn_sourcecode_save" class="button button-large button-green"><?php echo $this->lang['button_update'] ?></button>
         <?php if (empty($this->file)): ?>
         <p style="padding: 10px;margin: 0;"><label for="btn_create_file"><input type="checkbox" name="createfile" id="btn_create_file" value="create"> <?php echo $this->lang['not_file_create_it'] ?></label></p>
-        <script>
-        jQuery(function($){
-            $('#edit_file_page>.inside>.CodeMirror').addClass('not_change');
-
-            $('#edit_file_page #btn_create_file').on('change',function(){
-                var value = $(this).prop('checked');
-                if( value ){
-                    $('#edit_file_page>.inside>.CodeMirror').removeClass('not_change');
-                }else{
-                    $('#edit_file_page>.inside>.CodeMirror').addClass('not_change');
-                }
-            });
-        });
-        </script>
         <?php endif; ?>
         <input type="hidden" name="has_change_slug" id="has_change_slug" value="">
         <input type="hidden" name="has_change_template" id="has_change_template" value="">
-        <script>
-        var myTextarea = document.getElementById("sourcecode_val");
-
-        var editor = CodeMirror.fromTextArea(myTextarea, {
-            lineNumbers: true,
-            mode: "application/x-httpd-php",
-            keyMap: "sublime",
-            autoCloseBrackets: true,
-            matchBrackets: true,
-            showCursorWhenSelecting: true,
-            theme: "monokai",
-            tabSize: 4
-        }).on('change', editor => {
-            var v = editor.getValue();
-            $('#slugdiv #post_name').attr('readonly',true);
-            $('#pageparentdiv #page_template').attr('readonly',true);
-        });
-
-        // editor.focus();
-        // editor.setCursor({line: 0});
-        // editor.setSize('100%', '100%');
-
-        jQuery(function($){
-            $('#slugdiv #post_name').on('keyup',function(){
-                $('#has_change_slug').val('changed');
-                $('#edit_file_page .inside').addClass('readonly');
-            });
-
-            $('#pageparentdiv #page_template').on('change',function(){
-                $('#has_change_template').val('changed');
-                $('#edit_file_page .inside').addClass('readonly');
-            });
-        });
-        </script>
-        <style>
-        #edit_file_page>.inside{
-            padding: 0;
-            margin: 0;
-        }
-        .CodeMirror { min-height: 100px; width: 100%; }
-        .CodeMirror-scroll { max-height: 1000px; width:100%; }
-        .CodeMirror-linenumber {padding: 0 3px 0 0px;}
-        .button-green{margin: 10px !important;}
-        .button-green{
-            border-color: #00854C !important;
-            background: #1BAE75 !important;
-            text-shadow: 0 -1px 1px #00854C, 1px 0 1px #00854C, 0 1px 1px #00854C, -1px 0 1px #00854C;
-            box-shadow: 0 1px 0 #00854C !important;
-            color: #fff !important;
-        }
-        .button-green:hover{
-            background: #1aa871 !important;
-        }
-        select[readonly=readonly]{
-            pointer-events: none;
-            background: #eee;
-        }
-        #edit_file_page>.inside.readonly{
-            position: relative;
-        }
-        #edit_file_page>.inside.readonly:before{
-            content:'<?php echo $this->lang['not_change_editor'] ?>';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.8);;
-            z-index: 11;
-            color: #fff;
-            padding: 15px;
-            font-size: 18px;
-        }
-        #edit_file_page>.inside>.CodeMirror.not_change{
-            position: relative;
-        }
-        #edit_file_page>.inside>.CodeMirror.not_change:before{
-            content:'';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.8);;
-            z-index: 10;
-        }
-        </style>
         <?php
     }
 
@@ -300,29 +199,33 @@ class CbaMetaboxEditTemplatePage
     public function enqueue($hook)
     {
         if ( in_array($hook, array('post.php','post-new.php')) ) {
-            $dir = get_template_directory_uri() . '/assets/admin-js/codemirror';
-            wp_enqueue_style('cba-codemirror', $dir . '/codemirror.css');
-            wp_enqueue_style('cba-codemirror-addon-foldgutter', $dir . '/addon/fold/foldgutter.css');
-            wp_enqueue_style('cba-codemirror-addon-dialog', $dir . '/addon/dialog/dialog.css');
-            wp_enqueue_style('cba-codemirror-theme-monokai', $dir . '/theme/monokai.css');
+            $dir_css = get_template_directory_uri() . '/assets/admin-css';
+            $dir_js = get_template_directory_uri() . '/assets/admin-js';
+            $dir_cm = get_template_directory_uri() . '/assets/admin-js/codemirror';
+            wp_enqueue_style('codemirror', $dir_cm . '/codemirror.css');
+            wp_enqueue_style('codemirror-addon-foldgutter', $dir_cm . '/addon/fold/foldgutter.css');
+            wp_enqueue_style('codemirror-addon-dialog', $dir_cm . '/addon/dialog/dialog.css');
+            wp_enqueue_style('codemirror-theme-monokai', $dir_cm . '/theme/monokai.css');
+            wp_enqueue_style('qnp-edit-template', $dir_css . '/qnp-edit-template.css');
 
-            wp_enqueue_script('cba-codemirror', $dir . '/codemirror.js');
-            wp_enqueue_script('cba-codemirror-addon-searchcursor', $dir . '/addon/search/searchcursor.js');
-            wp_enqueue_script('cba-codemirror-addon-search', $dir . '/addon/search/search.js');
-            wp_enqueue_script('cba-codemirror-addon-dialog', $dir . '/addon/dialog/dialog.js');
-            wp_enqueue_script('cba-codemirror-addon-matchbrackets', $dir . '/addon/edit/matchbrackets.js');
-            wp_enqueue_script('cba-codemirror-addon-closebrackets', $dir . '/addon/edit/closebrackets.js');
-            wp_enqueue_script('cba-codemirror-addon-comment', $dir . '/addon/comment/comment.js');
-            wp_enqueue_script('cba-codemirror-addon-hardwrap', $dir . '/addon/wrap/hardwrap.js');
-            wp_enqueue_script('cba-codemirror-addon-foldcode', $dir . '/addon/fold/foldcode.js');
-            wp_enqueue_script('cba-codemirror-addon-brace-fold', $dir . '/addon/fold/brace-fold.js');
-            wp_enqueue_script('cba-codemirror-mode-xml', $dir . '/mode/xml/xml.js');
-            wp_enqueue_script('cba-codemirror-mode-clike', $dir . '/mode/clike/clike.js');
-            wp_enqueue_script('cba-codemirror-mode-javascript', $dir . '/mode/javascript/javascript.js');
-            wp_enqueue_script('cba-codemirror-mode-css', $dir . '/mode/css/css.js');
-            wp_enqueue_script('cba-codemirror-mode-php', $dir . '/mode/php/php.js');
-            wp_enqueue_script('cba-codemirror-mode-htmlmixed', $dir . '/mode/htmlmixed/htmlmixed.js');
-            wp_enqueue_script('cba-codemirror-keymap-sublime', $dir . '/keymap/sublime.js');
+            wp_enqueue_script('codemirror', $dir_cm . '/codemirror.js');
+            wp_enqueue_script('codemirror-addon-searchcursor', $dir_cm . '/addon/search/searchcursor.js');
+            wp_enqueue_script('codemirror-addon-search', $dir_cm . '/addon/search/search.js');
+            wp_enqueue_script('codemirror-addon-dialog', $dir_cm . '/addon/dialog/dialog.js');
+            wp_enqueue_script('codemirror-addon-matchbrackets', $dir_cm . '/addon/edit/matchbrackets.js');
+            wp_enqueue_script('codemirror-addon-closebrackets', $dir_cm . '/addon/edit/closebrackets.js');
+            wp_enqueue_script('codemirror-addon-comment', $dir_cm . '/addon/comment/comment.js');
+            wp_enqueue_script('codemirror-addon-hardwrap', $dir_cm . '/addon/wrap/hardwrap.js');
+            wp_enqueue_script('codemirror-addon-foldcode', $dir_cm . '/addon/fold/foldcode.js');
+            wp_enqueue_script('codemirror-addon-brace-fold', $dir_cm . '/addon/fold/brace-fold.js');
+            wp_enqueue_script('codemirror-mode-xml', $dir_cm . '/mode/xml/xml.js');
+            wp_enqueue_script('codemirror-mode-clike', $dir_cm . '/mode/clike/clike.js');
+            wp_enqueue_script('codemirror-mode-javascript', $dir_cm . '/mode/javascript/javascript.js');
+            wp_enqueue_script('codemirror-mode-css', $dir_cm . '/mode/css/css.js');
+            wp_enqueue_script('codemirror-mode-php', $dir_cm . '/mode/php/php.js');
+            wp_enqueue_script('codemirror-mode-htmlmixed', $dir_cm . '/mode/htmlmixed/htmlmixed.js');
+            wp_enqueue_script('codemirror-keymap-sublime', $dir_cm . '/keymap/sublime.js');
+            wp_enqueue_script('qnp-edit-template', $dir_js . '/qnp-edit-template.js');
             wp_enqueue_media();
         }
     }
@@ -464,6 +367,6 @@ class CbaMetaboxEditTemplatePage
 }
 
 /**
- * Run Class CbaMetaboxEditTemplatePage
+ * Run Class QnpEditTemplate
  */
-new CbaMetaboxEditTemplatePage();
+new QnpEditTemplate();
