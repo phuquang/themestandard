@@ -20,7 +20,7 @@ if ( !empty($located) ) {
 } else {
     get_header();
 
-    echo '<main class="container">';
+    echo '<main class="app_container container">';
 
     while ( have_posts() ) { the_post();
         get_template_part( 'template-parts/content', 'post');

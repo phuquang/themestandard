@@ -11,23 +11,29 @@
  */
 
 get_header(); ?>
-    <main class="container">
-    <?php
-    /* Start the Loop */
-    while ( have_posts() ) : the_post();
+<main class="app_container container">
+    <div class="row">
+        <div class="col col-md-8">
+            <?php
+            /* Start the Loop */
+            while ( have_posts() ) : the_post();
 
-        get_template_part( 'template-parts/content', 'post' );
+                get_template_part( 'template-parts/content', 'post' );
 
-        the_post_navigation(
-            array(
-                'prev_text' => __( 'Previous Post', 'themestandard' ),
-                'next_text' => __( 'Next Post', 'themestandard' ),
-            )
-        );
+                the_post_navigation(
+                    array(
+                        'class'     => 'app_post_navigation',
+                        'prev_text' => __( 'Previous Post: %title', 'themestandard' ),
+                        'next_text' => __( 'Next Post: %title', 'themestandard' ),
+                    )
+                );
 
-    endwhile; // End of the loop.
-
-    get_sidebar();
-    ?>
-    </main>
+            endwhile; // End of the loop.
+            ?>
+        </div>
+        <div class="col col-md-4">
+            <?php get_sidebar(); ?>
+        </div>
+    </div>
+</main>
 <?php get_footer();

@@ -22,7 +22,7 @@ if (!empty($_GET['pager']) && $_GET['pager'] >= $pagi->total_pages)
 $pagi->pagination();
 exit;
 get_header(); ?>
-    <main class="container">
+    <main class="app_container container">
     <?php
     if ( have_posts() ) :
 

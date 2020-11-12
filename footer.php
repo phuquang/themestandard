@@ -12,8 +12,8 @@
  * @version 1.0
  */
 ?>
-<?php get_template_part( 'template-parts/global', 'footer' ); ?>
-</div><!-- END #app -->
+	<?php get_template_part( 'template-parts/global', 'footer' ); ?>
+	</div><!-- END #app -->
 <?php wp_footer(); ?>
 </body>
 </html>

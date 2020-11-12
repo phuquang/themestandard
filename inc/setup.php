@@ -209,10 +209,6 @@ function themestandard_fonts_url() {
  * Enqueue scripts and styles.
  */
 add_action( 'wp_enqueue_scripts', function() {
-    // Theme stylesheet.
-    wp_enqueue_style( TEXT_DOMAIN . '-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
-    // wp_style_add_data( TEXT_DOMAIN . '-style', 'rtl', 'replace' );
-
     wp_enqueue_script( TEXT_DOMAIN . '-jquery', get_stylesheet_directory_uri() . '/assets/js/jquery-3.5.1.slim.min.js', array(), '3.5.1', false );
 
     // bootstrap
@@ -230,8 +226,11 @@ add_action( 'wp_enqueue_scripts', function() {
     wp_enqueue_script( TEXT_DOMAIN . '-html5', getAssets() . '/js/html5.js', array(), '1.0' );
     wp_script_add_data( TEXT_DOMAIN . '-html5', 'conditional', 'lt IE 9' );
 
-    wp_enqueue_style( TEXT_DOMAIN . '-style', getAssets() . '/css/style.css', array(), '1.0' );
-    wp_enqueue_script( TEXT_DOMAIN . '-script', getAssets() . '/js/script.js', array(), '1.0', true );
+    // Theme script.
+    wp_enqueue_script( TEXT_DOMAIN . '-script', getAssets() . '/js/script.js', array(), wp_get_theme()->get( 'Version' ), true );
+
+    // Theme stylesheet.
+    wp_enqueue_style( TEXT_DOMAIN . '-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
 
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );

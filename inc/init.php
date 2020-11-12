@@ -14,7 +14,7 @@ require get_parent_theme_file_path( '/inc/helper.php' );
 /**
  * Register Sidebar
  */
-require get_parent_theme_file_path( '/inc/registers/sidebar-sample.php' );
+require get_parent_theme_file_path( '/inc/registers/sidebar.php' );
 
 /**
  * Custom SEO tags

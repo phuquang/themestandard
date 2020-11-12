@@ -16,25 +16,30 @@
  */
 
 get_header(); ?>
-    <main class="container">
-    <?php
-    if ( have_posts() ) :
+<main class="app_container container">
+    <div class="row">
+        <div class="col col-md-8">
+            <?php
+            if ( have_posts() ) :
 
-        while ( have_posts() ) : the_post();
+                while ( have_posts() ) : the_post();
 
-            get_template_part( 'template-parts/content' );
+                    get_template_part( 'template-parts/content' );
 
-        endwhile;
+                endwhile;
 
-        the_bootstrap_paginate_links();
+                the_bootstrap_paginate_links();
 
-    else :
+            else :
 
-        get_template_part( 'template-parts/content', 'none' );
+                get_template_part( 'template-parts/content', 'none' );
 
-    endif;
-
-    get_sidebar();
-    ?>
-    </main>
+            endif;
+            ?>
+        </div>
+        <div class="col col-md-4">
+            <?php get_sidebar(); ?>
+        </div>
+    </div>
+</main>
 <?php get_footer();

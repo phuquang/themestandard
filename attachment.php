@@ -16,7 +16,7 @@
 
 get_header();
 
-echo '<main class="container">';
+echo '<main class="app_container container">';
 
 if ( have_posts() ) {
 	while ( have_posts() ) :

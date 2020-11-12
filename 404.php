@@ -11,7 +11,7 @@
  */
 
 get_header(); ?>
-<main class="container">
+<main class="app_container container mb-5">
     <h1><?php _e( 'Oops! That page can&rsquo;t be found.', 'themestandard' ); ?></h1>
     <p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'themestandard' ); ?> </p>
     <?php get_search_form(); ?>

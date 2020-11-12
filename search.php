@@ -11,39 +11,35 @@
  */
 
 get_header(); ?>
-<main class="container">
-    <?php
-    if ( have_posts() ) :
-        printf( __( 'Search Results for: %s', 'themestandard' ), '<span>' . get_search_query() . '</span>' );
-    else :
-        echo '<h1>';
-        _e( 'Nothing Found', 'themestandard' );
-        echo '</h1>';
-    endif;
+<main class="app_container container">
+    <div class="row">
+        <div class="col col-md-8">
+            <?php
+            if ( have_posts() ) :
+                echo '<h1>';
+                printf( __( 'Search Results for: %s', 'themestandard' ), '<span>' . get_search_query() . '</span>' );
+                echo '</h1>';
 
-    if ( have_posts() ) :
-        /* Start the Loop */
-        while ( have_posts() ) :
-            the_post();
+                while ( have_posts() ) :
+                    the_post();
 
-            get_template_part( 'template-parts/content', get_post_format() );
+                    get_template_part( 'template-parts/content', get_post_format() );
 
-        endwhile; // End of the loop.
+                endwhile;
 
-        global $wp_query;
+                the_bootstrap_paginate_links();
 
-        the_pagination(array(
-            'paged' => $wp_query->query['paged'],
-            'max_num_pages' => $wp_query->max_num_pages,
-            'found_posts' => $wp_query->found_posts,
-            'posts_per_page' => $wp_query->posts_per_page,
-        ));
+            else :
+                echo '<h1>' . __( 'Nothing Found', 'themestandard' ) . '</h1>';
 
-    else :
+                get_template_part( 'template-parts/content', 'none' );
 
-        get_template_part( 'template-parts/content', 'none' );
-
-    endif;
-    get_sidebar(); ?>
+            endif;
+            ?>
+        </div>
+        <div class="col col-md-4">
+            <?php get_sidebar(); ?>
+        </div>
+    </div>
 </main>
 <?php get_footer();
