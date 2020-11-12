@@ -133,3 +133,10 @@ a img.aligncenter {
 .bypostauthor {
     font-weight: 600;
 }
+
+/* App
+-------------------------------------------------------------- */
+.app_footer {
+    background-color: #1d1d1f;
+    color: #f5f5f7;
+}

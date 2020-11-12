@@ -2,7 +2,7 @@
     <?php the_post_thumbnail('post-thumbnail',['class' => 'img-responsive responsive--full card-img-top']) ?>
     <div class="card-body">
         <h5 class="card-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h5>
-        <p class="card-text"><?php the_excerpt(); ?></p>
+        <div class="card-text"><?php the_excerpt(); ?></div>
         <?php edit_post_link(); ?>
     </div>
 </article><!-- .post -->

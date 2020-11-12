@@ -241,6 +241,7 @@ add_action( 'wp_enqueue_scripts', function() {
 add_action('wp_head', function () {
 ?>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <?php if (! wp_is_mobile()) : ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <?php endif;
