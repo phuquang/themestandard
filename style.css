@@ -167,7 +167,7 @@ a img.aligncenter {
     color: #f5f5f7;
 }
 .app_container {
-    padding-top: 100px;
+    padding-top: 75px;
     padding-bottom: 60px;
 }
 .app_container .row{
@@ -741,4 +741,60 @@ a img.aligncenter {
 	text-align: left;
 	padding: 0 10px 0 0;
 	margin-bottom: 0;
+}
+
+/* ---------------------------------------------- template-magazine */
+.template-magazine .row{
+    padding-bottom: 20px;
+}
+
+.template-magazine .col{
+    border-left: 1px solid #ced4da;
+}
+.template-magazine .col:first-child{
+    border-left: 1px solid transparent;
+}
+.single-temp-articles img {
+    width: 70px;
+}
+.single-temp-articles .media {
+    border-bottom: 1px solid #ced4da;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.single-temp-articles .media:last-child {
+    border-bottom: 1px solid transparent;
+}
+.single-temp-articles .media a{
+    color: inherit;
+}
+.single-temp-articles .media small{
+    color: #666;
+}
+.single-temp-articles h3 {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.1818em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.single-temp-articles.style1 .media:first-child {
+    display: block;
+}
+.single-temp-articles.style1 .media:first-child img {
+    width: 100%;
+}
+.single-temp-articles.style2 .media:first-child {
+    display: block;
+}
+.single-temp-articles.style2 .media:first-child img {
+    width: 100%;
+}
+.single-temp-articles.style2 .media:nth-child(n+2) img{
+    display: none;
 }

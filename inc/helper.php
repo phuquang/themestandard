@@ -264,6 +264,7 @@ if(!function_exists('custom_breadcrumbs')) {
                 $thisCat = $cat_obj->term_id;
                 $thisCat = get_category($thisCat);
                 $parentCat = get_category($thisCat->parent);
+                $position = 1;
                 if ($thisCat->parent != 0) {
                     $cats = get_category_parents($parentCat, true, '');
                     preg_match_all('/\<a href=\"(.*?)\"\>(.*?)<\/a\>/',$cats, $matches, PREG_PATTERN_ORDER);
