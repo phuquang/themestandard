@@ -22,6 +22,8 @@ if ( !empty($located) ) {
 
     echo '<main class="app_container container">';
 
+    get_template_part( 'template-parts/global', 'breadcrumbs' );
+
     while ( have_posts() ) { the_post();
         get_template_part( 'template-parts/content', 'post');
     }

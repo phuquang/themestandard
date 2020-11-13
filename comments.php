@@ -51,7 +51,7 @@ if ( post_password_required() ) {
             }
             ?>
         </h2>
-
+        <ol class="p-0">
         <?php
             wp_list_comments( array(
                 'style'         => 'ol',
@@ -60,9 +60,8 @@ if ( post_password_required() ) {
                 'avatar_size'   => '50',
                 'walker'        => new Bootstrap_Comment_Walker(),
             ) );
-
         ?>
-
+        </ol>
         <?php
         the_comments_pagination(
             array(
@@ -76,7 +75,6 @@ if ( post_password_required() ) {
     // If comments are closed and there are comments, let's leave a little note, shall we?
     if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
     ?>
-
         <p class="no-comments"><?php _e( 'Comments are closed.', 'themestandard' ); ?></p>
     <?php
     endif;
@@ -104,6 +102,7 @@ if ( post_password_required() ) {
         'comment_notes_after' => '',
         //Submit Button ID
         'id_submit' => __( 'comment-submit', 'themestandard' ),
+        'class_submit' => 'submit btn btn-light'
     );
     comment_form( $comments_args );
     ?>

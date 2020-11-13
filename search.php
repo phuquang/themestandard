@@ -15,6 +15,8 @@ get_header(); ?>
     <div class="row">
         <div class="col col-md-8">
             <?php
+            get_template_part( 'template-parts/global', 'breadcrumbs' );
+
             if ( have_posts() ) :
                 echo '<h1>';
                 printf( __( 'Search Results for: %s', 'themestandard' ), '<span>' . get_search_query() . '</span>' );

@@ -15,7 +15,8 @@ get_header(); ?>
     <div class="row">
         <div class="col col-md-8">
             <?php
-            /* Start the Loop */
+            get_template_part( 'template-parts/global', 'breadcrumbs' );
+
             while ( have_posts() ) : the_post();
 
                 get_template_part( 'template-parts/content', 'post' );
@@ -28,7 +29,7 @@ get_header(); ?>
                     )
                 );
 
-            endwhile; // End of the loop.
+            endwhile;
             ?>
         </div>
         <div class="col col-md-4">

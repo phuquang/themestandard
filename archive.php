@@ -15,7 +15,10 @@ get_header(); ?>
     <div class="row">
         <div class="col col-md-8">
             <?php
+            get_template_part( 'template-parts/global', 'breadcrumbs' );
+
             the_archive_title( '<h1 class="page-title">', '</h1>' );
+
             the_archive_description( '<div class="taxonomy-description">', '</div>' );
 
             if ( have_posts() ) :

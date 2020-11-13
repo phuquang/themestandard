@@ -32,7 +32,7 @@ class Bootstrap_Comment_Walker extends Walker_Comment {
 				<div class="card-header hoverable">
 					<div class="flex-center">
 						<?php if ( $args['avatar_size'] != 0  ): ?>
-						<a href="<?php echo get_comment_author_url(); ?>" class="media-object float-left">
+						<a href="<?php echo get_comment_author_url(); ?>" class="media-object float-left mr-2">
 							<?php echo get_avatar( $comment, $args['avatar_size'],'mm','', array('class'=>"comment_avatar rounded-circle") ); ?>
 						</a>
 						<?php endif; ?>

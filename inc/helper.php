@@ -237,3 +237,141 @@ if ( !function_exists('cbaGoto404') ) {
         exit;
     }
 }
+
+if(!function_exists('custom_breadcrumb')) {
+    function custom_breadcrumb() {
+        $delimiter = '<span class="delimiter">›</span>';
+        $home = 'Trang chủ';
+        $before = '<span property="itemListElement" typeof="ListItem" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">';
+        $after = '</span>';
+
+        if ( !is_home() && !is_front_page() || is_paged() ) {
+
+            echo '<nav aria-label="breadcrumb">';
+            echo '<ol itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">';
+            global $post;
+
+            $homeLink = get_bloginfo('url');
+
+            $li_tag = '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="breadcrumb-item"><a itemprop="item" href="%s"><span itemprop="name">%s</span></a><meta itemprop="position" content="%s" /></li> ' . $delimiter;
+            $li2_tag = '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="breadcrumb-item"><span itemprop="name">%s</span><meta itemprop="position" content="%s" /></li> ';
+
+            printf($li_tag, $homeLink, $home, '1');
+
+            if ( is_category() ) {
+                global $wp_query;
+                $cat_obj = $wp_query->get_queried_object();
+                $thisCat = $cat_obj->term_id;
+                $thisCat = get_category($thisCat);
+                $parentCat = get_category($thisCat->parent);
+                if ($thisCat->parent != 0) {
+                    $cats = get_category_parents($parentCat, true, '');
+                    preg_match_all('/\<a href=\"(.*?)\"\>(.*?)<\/a\>/',$cats, $matches, PREG_PATTERN_ORDER);
+                    foreach ($matches[1] as $k => $matche_url) {
+                        $position = ($k + 2);
+                        printf($li_tag, $matche_url, $matches[2][$k], $position );
+                    }
+                }
+                printf($li2_tag, single_cat_title('', false), $position + 1 );
+            } elseif ( is_day() ) {
+                // Day page
+                printf($li_tag, get_year_link(get_the_time('Y')), get_the_time('Y'), '2');
+                printf($li_tag, get_month_link(get_the_time('Y'),get_the_time('m')), get_the_time('F'), '3');
+                printf($li2_tag, get_the_time('d'), '4');
+            } elseif ( is_month() ) {
+                // Month page
+                printf($li_tag, get_year_link(get_the_time('Y')), get_the_time('Y'), '2');
+                printf($li2_tag, get_the_time('F'), '3');
+            } elseif ( is_year() ) {
+                // Year page
+                printf($li2_tag, get_the_time('Y'), '3');
+            } elseif ( is_single() && !is_attachment() ) {
+                // Single page
+                if ( get_post_type() != 'post' ) {
+                    // Other post type
+                    $post_type = get_post_type_object(get_post_type());
+                    if (is_string($post_type->has_archive)) {
+                        $slug = $post_type->has_archive;
+                    } else {
+                        $slug = $post_type->rewrite;
+                        $slug = $slug['slug'];
+                    }
+                    printf($li_tag, $homeLink . '/' . $slug, $post_type->labels->singular_name, 3);
+                    printf($li2_tag, get_the_title(), 3);
+                } else {
+                    // Post type "Post"
+                    $cat = get_the_category();
+                    $position = 2;
+                    if (!empty($cat)) {
+                        $cat = $cat[0];
+                        printf($li_tag, get_category_link($cat->term_id), $cat->name, '2');
+                        $position = 3;
+                    }
+                    printf($li2_tag, get_the_title(), $position);
+                }
+            // } elseif ( !is_single() && !is_page() && get_post_type() != 'post' && !is_404() ) {
+            //     $post_type = get_post_type_object(get_post_type());
+            //     echo $before . $post_type->labels->singular_name . $after;
+            } elseif ( is_attachment() ) {
+                // attachment page
+                $parent = get_post($post->post_parent);
+                $parentCat = get_the_category($parent->ID);
+                $parentCat = $parentCat[0];
+                $cats = get_category_parents($parentCat, true, '');
+                preg_match_all('/\<a href=\"(.*?)\"\>(.*?)<\/a\>/',$cats, $matches, PREG_PATTERN_ORDER);
+                foreach ($matches[1] as $k => $matche_url) {
+                    $position = ($k + 2);
+                    printf($li_tag, $matche_url, $matches[2][$k], $position );
+                }
+                printf($li_tag, get_permalink($parent), $parent->post_title, $position + 1);
+                printf($li2_tag, get_the_title(), $position + 2);
+            } elseif ( is_page() && !$post->post_parent ) {
+                // Page not parent
+                printf($li2_tag, get_the_title(), '2');
+            } elseif ( is_page() && $post->post_parent ) {
+                // Page with parent
+                $parent_id = $post->post_parent;
+                $breadcrumbs = array();
+                while ($parent_id) {
+                    $page = get_page($parent_id);
+                    $breadcrumbs[] = sprintf($li_tag, get_permalink($page->ID), get_the_title($page->ID), '%s');
+                    $parent_id = $page->post_parent;
+                }
+                $breadcrumbs = array_reverse($breadcrumbs);
+                $i = 2;
+                foreach ($breadcrumbs as $crumb) {
+                    printf($crumb, $i);
+                    $i++;
+                }
+                printf($li2_tag, get_the_title(), $i++);
+
+            } elseif ( is_search() ) {
+                // Search page
+                printf($li2_tag, 'Tìm kiếm cho "' . get_search_query() . '"', '2');
+            } elseif ( is_tag() ) {
+                // Tag pagepage
+                printf($li2_tag, 'Thẻ "' . single_tag_title('', false) . '"', '2');
+            } elseif ( is_author() ) {
+                // Author page
+                global $author;
+                $userdata = get_userdata($author);
+                printf($li2_tag, 'Tac giả "' . $userdata->display_name . '"', '2');
+            } elseif ( is_404() ) {
+                printf($li2_tag, 'Lỗi 404', '2');
+            }
+
+            if ( get_query_var('paged') ) {
+                if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) {
+                    echo ' (';
+                }
+                echo __('Page') . ' ' . get_query_var('paged');
+                if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) {
+                    echo ')';
+                }
+            }
+
+            echo '</ol>';
+            echo '</nav>';
+        }
+    }
+}

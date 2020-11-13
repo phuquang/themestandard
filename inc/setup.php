@@ -260,3 +260,43 @@ var urls = {
 </script>
 <?php
 }, 999);
+
+// add a class as img-fluid to all the attachments in posts not the thumbnails.
+function add_responsive_class_the_content($content)
+{
+    if (empty($content)) {
+        return '';
+    }
+    $content = mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8");
+    $document = new DOMDocument();
+    libxml_use_internal_errors(true);
+    $document->loadHTML(utf8_decode($content));
+
+    $imgs = $document->getElementsByTagName('img');
+    foreach ($imgs as $img) {
+        $img->setAttribute('class',$img->getAttribute('class') . ' img-fluid');
+    }
+
+    $html = $document->saveHTML();
+    return $html;
+}
+add_filter('the_content', 'add_responsive_class_the_content');
+
+/**
+ * Modifies tag cloud widget arguments to display all tags in the same font size
+ * and use list format for better accessibility.
+ *
+ * @since Twenty Seventeen 1.4
+ *
+ * @param array $args Arguments for tag cloud widget.
+ * @return array The filtered arguments for tag cloud widget.
+ */
+function theme_widget_tag_cloud_args( $args ) {
+	$args['largest']  = 1;
+	$args['smallest'] = 1;
+	$args['unit']     = 'em';
+	$args['format']   = 'list';
+
+	return $args;
+}
+add_filter( 'widget_tag_cloud_args', 'theme_widget_tag_cloud_args' );
