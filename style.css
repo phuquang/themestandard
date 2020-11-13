@@ -170,29 +170,127 @@ a img.aligncenter {
     padding-top: 100px;
     padding-bottom: 60px;
 }
+.app_container .row{
+    border: 10px solid #f9f9f9;
+    padding: 20px 0 40px;
+}
+.app_container .row .col:nth-child(2){
+    border-left: 1px solid #ced4da;
+}
 
 .breadcrumb .delimiter {
     padding: 0 3px;
 }
 
+/*breadcrumb*/
+.breadcrumb-wrap {
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.breadcrumb-wrap ol {
+    background:none;
+    padding: 0;
+    margin: 0;
+}
 /*Single*/
+.app_post_navigation a {
+    color: inherit;
+}
+.app_post_navigation .nav-links {
+    border-top: 1px solid #ced4da;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+.app_post_navigation .nav-links:after {
+    content: '';
+    clear: both;
+    display: table;
+}
 .app_post_navigation .nav-next {
     text-align: right;
 }
+.app_post_navigation .nav-previous,
+.app_post_navigation .nav-next {
+    width: 40%;
+    float: left;
+}
+.app_post_navigation .nav-next {
+    float: right;
+}
+
 .post-meta ul {
     list-style: none;
     padding: 0;
+    font-style: italic;
 }
 .post-meta li {
     float: left;
     margin-right: 5px;
 }
-
 .post-meta ul:after {
     content: '';
     clear: both;
     display: table;
 }
+.post-meta ul a {
+    color: inherit;
+}
+.post-meta ul .post-author a {
+    text-transform: capitalize;
+}
+.comments-wrapper {
+    border-top: 1px solid #ced4da;
+    padding-top: 10px;
+}
+.comment-reply-title,
+.comments-title {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.1818em;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+.comments-wrapper .media-heading{
+    font-size: 18px;
+    margin: 0;
+}
+.post-nav-links .post-page-numbers {
+    padding: 0 3px;
+}
+.single-related-articles {
+    border-top: 1px solid #ced4da;
+    padding-top: 10px;
+}
+.single-related-articles h3 {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.1818em;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+.single-related-articles .related-articles-list {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    list-style-type: disc;
+    list-style-position: inside;
+}
+.single-related-articles .media {
+    margin-bottom: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ced4da;
+}
+.single-related-articles .media:first-child,
+.single-related-articles .media:nth-child(3) {
+    border-top: 1px solid transparent;
+}
+.single-related-articles .media img {
+    max-width: 80px;
+}
+
 /* Widgets
 -------------------------------------------------------------- */
 .widget {

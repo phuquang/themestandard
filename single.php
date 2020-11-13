@@ -21,15 +21,9 @@ get_header(); ?>
 
                 get_template_part( 'template-parts/content', 'post' );
 
-                the_post_navigation(
-                    array(
-                        'class'     => 'app_post_navigation',
-                        'prev_text' => __( 'Previous Post: %title', 'themestandard' ),
-                        'next_text' => __( 'Next Post: %title', 'themestandard' ),
-                    )
-                );
-
             endwhile;
+
+            get_template_part( 'template-parts/section', 'related-articles' );
             ?>
         </div>
         <div class="col col-md-4">

@@ -19,16 +19,20 @@ if ( !empty($located) ) {
     get_template_part( 'template-pages/page', get_post_field( 'post_name') );
 } else {
     get_header();
+    ?>
+    <main class="app_container container">
+        <div class="row">
+            <div class="col col-md-12">
+            <?php
+            get_template_part( 'template-parts/global', 'breadcrumbs' );
 
-    echo '<main class="app_container container">';
-
-    get_template_part( 'template-parts/global', 'breadcrumbs' );
-
-    while ( have_posts() ) { the_post();
-        get_template_part( 'template-parts/content', 'post');
-    }
-
-    echo '</main>';
-
+            while ( have_posts() ) { the_post();
+                get_template_part( 'template-parts/content', 'post');
+            }
+            ?>
+            </div>
+        </div>
+    </main>
+    <?php
     get_footer();
 }

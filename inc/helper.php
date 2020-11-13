@@ -238,8 +238,8 @@ if ( !function_exists('cbaGoto404') ) {
     }
 }
 
-if(!function_exists('custom_breadcrumb')) {
-    function custom_breadcrumb() {
+if(!function_exists('custom_breadcrumbs')) {
+    function custom_breadcrumbs() {
         $delimiter = '<span class="delimiter">›</span>';
         $home = 'Trang chủ';
         $before = '<span property="itemListElement" typeof="ListItem" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">';
@@ -247,7 +247,7 @@ if(!function_exists('custom_breadcrumb')) {
 
         if ( !is_home() && !is_front_page() || is_paged() ) {
 
-            echo '<nav aria-label="breadcrumb">';
+            echo '<nav aria-label="breadcrumb" class="breadcrumb-wrap">';
             echo '<ol itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">';
             global $post;
 

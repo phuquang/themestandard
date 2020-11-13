@@ -14,7 +14,7 @@
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<?php the_post_thumbnail('post-thumbnail',['class' => 'img-fluid card-img-top']) ?>
+	<?php the_post_thumbnail('post-thumbnail',['class' => 'img-fluid']) ?>
 
 	<h1><?php the_title() ?></h1>
 
@@ -37,25 +37,24 @@
 		}
 		?>
 			<li class="post-date">
+				<span>posted </span>
 				<a href="<?php the_permalink(); ?>"><?php the_time( get_option( 'date_format' ) ); ?></a>
 			</li>
 		<?php
 		// Sticky
 		if ( is_sticky() ) {
 			?>
-			<li class="post-sticky">
-				<?php _e( 'Sticky post', 'twentytwenty' ); ?>
-			</li>
+			<li class="post-sticky"><?php _e( 'Sticky post', 'themestandard' ); ?></li>
 			<?php
 		}
 		// Comments link
 		if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			?>
-			<li class="post-comment-link">
-				<?php comments_popup_link(); ?>
-			</li>
+			<li class="post-comment-link">, <?php comments_popup_link(); ?></li>
 			<?php
 		}
+
+		edit_post_link(__( 'Edit', 'themestandard' ), '<li>, ', '</li>');
 		?>
 		</ul>
 		<?php
@@ -67,37 +66,42 @@
 			</div>
 			<?php
 		}
-		// Tags.
-		if ( has_tag() ) {
-			?>
-			<div class="post-tags">
-				Tags: <?php the_tags( '', ', ', '' ); ?>
-			</div>
-			<?php
-		}
 		?>
 	</div>
 
-	<div class="content post-content mb-5">
+	<div class="content post-content mb-3">
 		<?php the_content(); ?>
 	</div>
 
-	<div class="link-pages mb-5">
+	<div class="link-pages mb-3">
 		<?php
 		wp_link_pages(
 			array(
-				'before'      => '<nav class="post-nav-links bg-light-background" aria-label="' . esc_attr__( 'Page', 'themestandard' ) . '"><span class="label">' . __( 'Pages:', 'themestandard' ) . '</span>',
+				'before'      => '<nav class="post-nav-links text-right" aria-label="' . esc_attr__( 'Page', 'themestandard' ) . '"><span class="label">' . __( 'Pages:', 'themestandard' ) . '</span>',
 				'after'       => '</nav>',
 				'link_before' => '<span class="page-number">',
 				'link_after'  => '</span>',
 			)
 		);
-
-		edit_post_link();
 		?>
 	</div>
-	<?php
 
+	<?php
+	// Tags.
+	if ( has_tag() ) { ?>
+	<div class="post-tags mb-3">
+		Tags: <?php the_tags( '', ', ', '' ); ?>
+	</div>
+	<?php
+	}
+
+	the_post_navigation(
+		array(
+			'class'     => 'app_post_navigation',
+			'prev_text' => __( '🡐 Previous Post<br> %title', 'themestandard' ),
+			'next_text' => __( 'Next Post 🡒<br> %title', 'themestandard' ),
+		)
+	);
 
 	/**
 	 *  Output comments wrapper if it's a post, or if comments are open,
@@ -105,15 +109,10 @@
 	 * */
 	if ( ( is_single() || is_page() ) && ( comments_open() || get_comments_number() ) && ! post_password_required() ) {
 		?>
-
-		<div class="comments-wrapper mb-5">
-
+		<div class="comments-wrapper">
 			<?php comments_template(); ?>
-
 		</div><!-- .comments-wrapper -->
-
 		<?php
 	}
 	?>
-
 </article><!-- .post -->
