@@ -6,7 +6,8 @@
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-add_action( 'after_setup_theme', function () {
+add_action( 'after_setup_theme', 'theme_setups');
+function theme_setups() {
 
     /*
      * Make theme available for translation.
@@ -44,12 +45,6 @@ add_action( 'after_setup_theme', function () {
         )
     );
 
-    // Set content-width.
-	global $content_width;
-	if ( ! isset( $content_width ) ) {
-		$content_width = 580;
-	}
-
     /*
      * Switch default core markup for search form, comment form, and comments
      * to output valid HTML5.
@@ -65,7 +60,26 @@ add_action( 'after_setup_theme', function () {
         )
     );
 
+    /*
+     * Enable support for Post Formats.
+     *
+     * See: https://codex.wordpress.org/Post_Formats
+     */
+    add_theme_support( 'post-formats', array(
+        'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'
+    ) );
+
     /**
+     * Set content-width.
+     * https://codex.wordpress.org/Content_Width
+     */
+    global $content_width;
+    if ( ! isset( $content_width ) ) {
+        $content_width = 600;
+    }
+
+    /**
+     * Customize - Site Identity - Logo
      * Add support for core custom logo.
      *
      * @link https://codex.wordpress.org/Theme_Logo
@@ -75,58 +89,69 @@ add_action( 'after_setup_theme', function () {
         array(
             'height'      => 190,
             'width'       => 190,
-            'flex-width'  => false,
-            'flex-height' => false,
+            'flex-width'  => true,
+            'flex-height' => true,
+            'header-text' => array( 'site-title', 'site-description' ),
+            'unlink-homepage-logo' => true,
         )
     );
 
-    // Add theme support for selective refresh for widgets.
-    add_theme_support( 'customize-selective-refresh-widgets' );
+    /**
+     * Customize - Header Image
+     */
+    $args = array(
+        // 'default-image'      => get_template_directory_uri() . '/images/default-image.jpg',
+        'default-image'      => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
+        'default-text-color' => '212529',
+        'width'              => 1000,
+        'height'             => 250,
+        'flex-width'         => true,
+        'flex-height'        => true,
+    );
+    add_theme_support( 'custom-header', $args );
 
-    // Add support for Block Styles. (wp-block-library-theme-css)
+    $header_images = array(
+        'demo1' => array(
+                'url'           => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
+                'thumbnail_url' => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
+                'description'   => 'demo1',
+        ),
+        'demo2' => array(
+                'url'           => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
+                'thumbnail_url' => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
+                'description'   => 'demo2',
+        ),
+    );
+    register_default_headers( $header_images );
+
+    /**
+     * Customize - Background Image
+     */
+    $args = array(
+        'default-color' => 'ffffff',
+        // 'default-image' => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
+    );
+    add_theme_support( 'custom-background', $args );
+
+    /**
+     * Theme Support - Default block styles
+     * Add support for Block Styles. (wp-block-library-theme-css)
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
     // add_theme_support( 'wp-block-styles' );
 
-    // Add support for full and wide align images.
+    /**
+     * Theme Support - Wide Alignment
+     * Add support for full and wide align images.
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
     add_theme_support( 'align-wide' );
 
-    // Add support for editor styles.
-    add_theme_support( 'editor-styles' );
-
-    // Enqueue editor styles.
-    add_editor_style( 'style-editor.css' );
-
-    // Add custom editor font sizes.
-    add_theme_support(
-        'editor-font-sizes',
-        array(
-            array(
-                'name'      => __( 'Small', 'themestandard' ),
-                'shortName' => __( 'S', 'themestandard' ),
-                'size'      => 19.5,
-                'slug'      => 'small',
-            ),
-            array(
-                'name'      => __( 'Normal', 'themestandard' ),
-                'shortName' => __( 'M', 'themestandard' ),
-                'size'      => 22,
-                'slug'      => 'normal',
-            ),
-            array(
-                'name'      => __( 'Large', 'themestandard' ),
-                'shortName' => __( 'L', 'themestandard' ),
-                'size'      => 36.5,
-                'slug'      => 'large',
-            ),
-            array(
-                'name'      => __( 'Huge', 'themestandard' ),
-                'shortName' => __( 'XL', 'themestandard' ),
-                'size'      => 49.5,
-                'slug'      => 'huge',
-            ),
-        )
-    );
-
-    // Editor color palette.
+    /**
+     * Theme Support - Block Color Palettes
+     * Editor color palette.
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
     add_theme_support(
         'editor-color-palette',
         array(
@@ -158,23 +183,120 @@ add_action( 'after_setup_theme', function () {
         )
     );
 
-    // Add support for responsive embedded content.
+    /**
+     * Theme Support - Block Gradient Presets
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
+    add_theme_support(
+        'editor-gradient-presets',
+        array(
+            array(
+                'name'     => __( 'Vivid cyan blue to vivid purple', 'themestandard' ),
+                'gradient' => 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)',
+                'slug'     => 'vivid-cyan-blue-to-vivid-purple'
+            ),
+            array(
+                'name'     => __( 'Vivid green cyan to vivid cyan blue', 'themestandard' ),
+                'gradient' => 'linear-gradient(135deg,rgba(0,208,132,1) 0%,rgba(6,147,227,1) 100%)',
+                'slug'     =>  'vivid-green-cyan-to-vivid-cyan-blue',
+            ),
+            array(
+                'name'     => __( 'Light green cyan to vivid green cyan', 'themestandard' ),
+                'gradient' => 'linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%)',
+                'slug'     => 'light-green-cyan-to-vivid-green-cyan',
+            ),
+            array(
+                'name'     => __( 'Luminous vivid amber to luminous vivid orange', 'themestandard' ),
+                'gradient' => 'linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%)',
+                'slug'     => 'luminous-vivid-amber-to-luminous-vivid-orange',
+            ),
+            array(
+                'name'     => __( 'Luminous vivid orange to vivid red', 'themestandard' ),
+                'gradient' => 'linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%)',
+                'slug'     => 'luminous-vivid-orange-to-vivid-red',
+            ),
+        )
+    );
+
+    /**
+     * Theme Support - Block Font Sizes
+     * Add custom editor font sizes.
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
+    add_theme_support(
+        'editor-font-sizes',
+        array(
+            array(
+                'name'      => __( 'Small', 'themestandard' ),
+                'shortName' => __( 'S', 'themestandard' ),
+                'size'      => 12,
+                'slug'      => 'small',
+            ),
+            array(
+                'name'      => __( 'Normal', 'themestandard' ),
+                'shortName' => __( 'M', 'themestandard' ),
+                'size'      => 16,
+                'slug'      => 'normal',
+            ),
+            array(
+                'name'      => __( 'Large', 'themestandard' ),
+                'shortName' => __( 'L', 'themestandard' ),
+                'size'      => 36,
+                'slug'      => 'large',
+            ),
+            array(
+                'name'      => __( 'Huge', 'themestandard' ),
+                'shortName' => __( 'XL', 'themestandard' ),
+                'size'      => 50,
+                'slug'      => 'huge',
+            ),
+        )
+    );
+
+    /**
+     * Theme Support - Supporting custom line heights
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
+    add_theme_support( 'custom-line-height' );
+
+    /**
+     * Theme Support - Editor styles
+     * Add support for editor styles.
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
+    add_theme_support( 'editor-styles' );
+
+    // Theme Support - Editor styles - Dark backgrounds
+    add_theme_support( 'dark-editor-style' );
+
+    /**
+     * Theme Support - Enqueuing the editor style
+     * Enqueue editor styles.
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
+    add_editor_style( 'style-editor.css' );
+
+    /**
+     * Theme Support - Responsive embedded content
+     * Add support for responsive embedded content.
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
     add_theme_support( 'responsive-embeds' );
 
-    $args = array(
-        'default-image'      => get_template_directory_uri() . 'img/default-image.jpg',
-        'default-text-color' => '000',
-        'width'              => 1000,
-        'height'             => 250,
-        'flex-width'         => true,
-        'flex-height'        => true,
-    );
-    add_theme_support( 'custom-header', $args );
+    /**
+     * Theme Support - Spacing control
+     * https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+     */
+    add_theme_support('custom-spacing');
 
-    add_theme_support( 'custom-background' );
+    /**
+     * Add theme support for selective refresh for widgets.
+     * https://developer.wordpress.org/reference/classes/wp_customize_widgets/get_selective_refreshable_widgets/
+     */
+    add_theme_support( 'customize-selective-refresh-widgets' );
 
-});
-
+}
+// END Action after_setup_theme
 
 /**
  * Register custom fonts.
@@ -208,8 +330,12 @@ function themestandard_fonts_url() {
 /**
  * Enqueue scripts and styles.
  */
-add_action( 'wp_enqueue_scripts', function() {
-    wp_enqueue_script( TEXT_DOMAIN . '-jquery', get_stylesheet_directory_uri() . '/assets/js/jquery-3.5.1.slim.min.js', array(), '3.5.1', false );
+add_action( 'wp_enqueue_scripts', 'theme_add_scripts_styles');
+function theme_add_scripts_styles() {
+
+    if (!is_customize_preview()) {
+        wp_enqueue_script( TEXT_DOMAIN . '-jquery', get_stylesheet_directory_uri() . '/assets/js/jquery-3.5.1.slim.min.js', array(), '3.5.1', false );
+    }
 
     // bootstrap
     wp_enqueue_style( TEXT_DOMAIN . '-bootstrap', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', array(), '4.5.3' );
@@ -235,21 +361,24 @@ add_action( 'wp_enqueue_scripts', function() {
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
-});
+}
+// END Action wp_enqueue_scripts
 
-add_action('wp_head', function () {
+add_action('wp_head', 'theme_add_script_top_head' , 0);
+function theme_add_script_top_head() {
 ?>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <?php if (! wp_is_mobile()) : ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <?php endif;
-}, 0);
+}
 
 /**
  * Print global variable url in javascript
  */
-add_action('wp_head', function () {
+add_action('wp_head', 'theme_add_script_bottom_head' , 999);
+function theme_add_script_bottom_head() {
 ?>
 <script type="text/javascript">
 var urls = {
@@ -259,7 +388,7 @@ var urls = {
 }
 </script>
 <?php
-}, 999);
+}
 
 // add a class as img-fluid to all the attachments in posts not the thumbnails.
 function add_responsive_class_the_content($content)
@@ -292,11 +421,11 @@ add_filter('the_content', 'add_responsive_class_the_content');
  * @return array The filtered arguments for tag cloud widget.
  */
 function theme_widget_tag_cloud_args( $args ) {
-	$args['largest']  = 1;
-	$args['smallest'] = 1;
-	$args['unit']     = 'em';
-	$args['format']   = 'list';
+    $args['largest']  = 1;
+    $args['smallest'] = 1;
+    $args['unit']     = 'em';
+    $args['format']   = 'list';
 
-	return $args;
+    return $args;
 }
 add_filter( 'widget_tag_cloud_args', 'theme_widget_tag_cloud_args' );

@@ -1,7 +1,17 @@
 <header class="app_header">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
-			<a class="navbar-brand" href="<?php url() ?>"><?php bloginfo() ?></a>
+			<a class="navbar-brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<?php
+				$custom_logo_id = get_theme_mod( 'custom_logo' );
+				$logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+				if ( has_custom_logo() ) {
+						echo '<img src="' . esc_url( $logo[0] ) . '" alt="' . get_bloginfo( 'name' ) . '">';
+				} else {
+					bloginfo();
+				}
+				?>
+			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_main">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -13,3 +23,8 @@
 		</nav>
 	</div>
 </header>
+<?php if ( get_header_image() ) : ?>
+	<div class="container text-center" id="site-header">
+		<img src="<?php header_image(); ?>" width="<?php echo absint( get_custom_header()->width ); ?>" height="<?php echo absint( get_custom_header()->height ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+	</div>
+<?php endif; ?>

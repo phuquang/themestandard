@@ -134,6 +134,16 @@ a img.aligncenter {
     font-weight: 600;
 }
 
+/* define-wordpress-content-width */
+.size-auto,
+.size-full,
+.size-large,
+.size-medium,
+.size-thumbnail {
+    max-width: 100%;
+    height: auto;
+}
+
 /* App
 -------------------------------------------------------------- */
 .app_header {

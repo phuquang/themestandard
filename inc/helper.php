@@ -220,7 +220,7 @@ if ( !function_exists('cbaRedirectUrlTo404') ) {
             }
         }
     }
-    add_action( 'wp', 'cbaRedirectUrlTo404' );
+    // add_action( 'wp', 'cbaRedirectUrlTo404' );
 }
 
 if ( !function_exists('cbaGoto404') ) {

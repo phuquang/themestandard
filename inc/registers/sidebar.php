@@ -1,5 +1,5 @@
 <?php
-add_action( 'widgets_init', function () {
+function theme_register_sidebar() {
     // Main
     register_sidebar( array(
         'name'          => 'Left sidebar',
@@ -21,4 +21,5 @@ add_action( 'widgets_init', function () {
         'before_title'  => '<h3 class="widget-title">',
         'after_title'   => '</h3>',
     ) );
-} );
+}
+add_action( 'widgets_init', 'theme_register_sidebar' );
