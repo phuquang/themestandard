@@ -1,0 +1,11 @@
+/* ---------------------------------------------- template-magazine */
+.template-magazine .row{
+  padding-bottom: 20px;
+}
+
+.template-magazine .col{
+  border-left: 1px solid #ced4da;
+}
+.template-magazine .col:first-child{
+  border-left: 1px solid transparent;
+}

@@ -352,7 +352,7 @@ function theme_add_scripts_styles() {
     wp_enqueue_style( TEXT_DOMAIN . '-fonts', themestandard_fonts_url(), array(), null );
 
     // Load the Internet Explorer 8 specific stylesheet.
-    wp_enqueue_style( TEXT_DOMAIN . '-ie8', getAssets() .'/css/ie8.css', array( TEXT_DOMAIN . '-style' ), '1.0' );
+    wp_enqueue_style( TEXT_DOMAIN . '-ie8', getAssets() .'/css/ie8.css', array( TEXT_DOMAIN . '-theme' ), '1.0' );
     wp_style_add_data( TEXT_DOMAIN . '-ie8', 'conditional', 'lt IE 9' );
 
     // Load the html5 shiv.
@@ -363,7 +363,8 @@ function theme_add_scripts_styles() {
     wp_enqueue_script( TEXT_DOMAIN . '-script', getAssets() . '/js/script.js', array(), wp_get_theme()->get( 'Version' ), true );
 
     // Theme stylesheet.
-    wp_enqueue_style( TEXT_DOMAIN . '-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( TEXT_DOMAIN . '-theme', getAssets() . '/css/style.css', array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( TEXT_DOMAIN . '-theme-main', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
 
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
