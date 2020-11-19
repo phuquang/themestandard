@@ -18,7 +18,7 @@ get_header(); ?>
             get_template_part( 'template-parts/global', 'breadcrumbs' );
 
             if ( have_posts() ) :
-                echo '<h1>';
+                echo '<h1 class="page-title">';
                 printf( __( 'Search Results for: %s', 'themestandard' ), '<span>' . get_search_query() . '</span>' );
                 echo '</h1>';
 

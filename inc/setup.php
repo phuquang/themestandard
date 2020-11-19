@@ -101,9 +101,9 @@ function theme_setups() {
      */
     $args = array(
         // 'default-image'      => get_template_directory_uri() . '/images/default-image.jpg',
-        'default-image'      => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
+        'default-image'      => 'https://dummyimage.com/1140x250/f9f9f9/cccccc.jpg',
         'default-text-color' => '212529',
-        'width'              => 1000,
+        'width'              => 1140,
         'height'             => 250,
         'flex-width'         => true,
         'flex-height'        => true,
@@ -112,13 +112,13 @@ function theme_setups() {
 
     $header_images = array(
         'demo1' => array(
-                'url'           => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
-                'thumbnail_url' => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
+                'url'           => 'https://dummyimage.com/1140x250/f9f9f9/cccccc.jpg',
+                'thumbnail_url' => 'https://dummyimage.com/1140x250/f9f9f9/cccccc.jpg',
                 'description'   => 'demo1',
         ),
         'demo2' => array(
-                'url'           => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
-                'thumbnail_url' => 'https://dummyimage.com/1000x250/f9f9f9/cccccc.jpg',
+                'url'           => 'https://dummyimage.com/1140x250/f9f9f9/cccccc.jpg',
+                'thumbnail_url' => 'https://dummyimage.com/1140x250/f9f9f9/cccccc.jpg',
                 'description'   => 'demo2',
         ),
     );
@@ -341,6 +341,13 @@ function theme_add_scripts_styles() {
     wp_enqueue_style( TEXT_DOMAIN . '-bootstrap', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', array(), '4.5.3' );
     wp_enqueue_script( TEXT_DOMAIN . '-bootstrap', get_stylesheet_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '4.5.3', false );
 
+    if (is_page_template('templates/magazine.php')) {
+        // slick
+        wp_enqueue_style( TEXT_DOMAIN . '-slick', get_stylesheet_directory_uri() . '/assets/slick/slick.css', array(), '1.8.1' );
+        wp_enqueue_style( TEXT_DOMAIN . '-slick-theme', get_stylesheet_directory_uri() . '/assets/slick/slick-theme.css', array(), '1.8.1' );
+        wp_enqueue_script( TEXT_DOMAIN . '-slick', get_stylesheet_directory_uri() . '/assets/slick/slick.min.js', array(), '1.8.1', false );
+    }
+
     // Add custom fonts, used in the main stylesheet.
     wp_enqueue_style( TEXT_DOMAIN . '-fonts', themestandard_fonts_url(), array(), null );
 
@@ -379,7 +386,42 @@ function theme_add_script_top_head() {
  */
 add_action('wp_head', 'theme_add_script_bottom_head' , 999);
 function theme_add_script_bottom_head() {
-?>
+    if (get_header_image()) :
+    ?>
+<style>
+#site-header-image {
+    padding: 0;
+    padding-top: 70px;
+}
+.app_container {
+    padding-top: 15px;
+}
+</style>
+<?php if (is_page_template('templates/magazine.php')) : ?>
+<style>
+.slick-prev {
+    left: 10px;
+}
+.slick-next {
+    right: 10px;
+}
+.slick-prev,
+.slick-next {
+    z-index: 1;
+}
+</style>
+    <?php endif; ?>
+    <?php endif; ?>
+    <?php if (is_page_template('templates/magazine.php')) : ?>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery('.slick_slider').slick({
+        dots: true,
+        infinite: true,
+        speed: 300});
+});
+</script>
+    <?php endif; ?>
 <script type="text/javascript">
 var urls = {
     home : "<?php url() ?>",

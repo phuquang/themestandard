@@ -35,3 +35,5 @@ function register_navwalker(){
 	require_once get_template_directory() . '/inc/classes/class-wp-bootstrap-comment-walker.php';
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
+
+require get_parent_theme_file_path( '/inc/registers/customize.php' );

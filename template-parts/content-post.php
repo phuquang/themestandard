@@ -16,9 +16,9 @@
 
 	<?php the_post_thumbnail('post-thumbnail',['class' => 'img-fluid']) ?>
 
-	<h1><?php the_title() ?></h1>
+	<h1 class="entry-title"><?php the_title() ?></h1>
 
-	<div class="post-meta mb-5">
+	<div class="entry-meta mb-5">
 		<ul>
 		<?php
 		// Author
@@ -61,7 +61,7 @@
 		// Categories
 		if (has_category()) {
 			?>
-			<div class="post-categories">
+			<div class="entry-categories">
 				Categories: <?php the_category( ', ' ); ?>
 			</div>
 			<?php
@@ -89,7 +89,7 @@
 	<?php
 	// Tags.
 	if ( has_tag() ) { ?>
-	<div class="post-tags mb-3">
+	<div class="entry-tags mb-3">
 		Tags: <?php the_tags( '', ', ', '' ); ?>
 	</div>
 	<?php

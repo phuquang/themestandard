@@ -241,7 +241,7 @@ if ( !function_exists('cbaGoto404') ) {
 if(!function_exists('custom_breadcrumbs')) {
     function custom_breadcrumbs() {
         $delimiter = '<span class="delimiter">›</span>';
-        $home = 'Trang chủ';
+        $home = 'Home';
         $before = '<span property="itemListElement" typeof="ListItem" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">';
         $after = '</span>';
 
@@ -348,17 +348,17 @@ if(!function_exists('custom_breadcrumbs')) {
 
             } elseif ( is_search() ) {
                 // Search page
-                printf($li2_tag, 'Tìm kiếm cho "' . get_search_query() . '"', '2');
+                printf($li2_tag, 'Search for "' . get_search_query() . '"', '2');
             } elseif ( is_tag() ) {
                 // Tag pagepage
-                printf($li2_tag, 'Thẻ "' . single_tag_title('', false) . '"', '2');
+                printf($li2_tag, 'Tag "' . single_tag_title('', false) . '"', '2');
             } elseif ( is_author() ) {
                 // Author page
                 global $author;
                 $userdata = get_userdata($author);
-                printf($li2_tag, 'Tac giả "' . $userdata->display_name . '"', '2');
+                printf($li2_tag, 'Author "' . $userdata->display_name . '"', '2');
             } elseif ( is_404() ) {
-                printf($li2_tag, 'Lỗi 404', '2');
+                printf($li2_tag, '404 Page not found', '2');
             }
 
             if ( get_query_var('paged') ) {

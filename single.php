@@ -23,7 +23,9 @@ get_header(); ?>
 
             endwhile;
 
+            get_template_part( 'template-parts/section', 'author' );
             get_template_part( 'template-parts/section', 'related-articles' );
+            get_template_part( 'template-parts/section', 'related-posts-by-category' );
             ?>
         </div>
         <div class="col col-md-4">
