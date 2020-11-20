@@ -37,3 +37,4 @@ function register_navwalker(){
 add_action( 'after_setup_theme', 'register_navwalker' );
 
 require get_parent_theme_file_path( '/inc/registers/customize.php' );
+require get_parent_theme_file_path( '/inc/widgets/article-by-category.php' );

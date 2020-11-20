@@ -278,7 +278,11 @@ width: 100%;
 }
 
 /* Tag cloud widget */
-
+.tagcloud:after{
+  display: block;
+  clear: both;
+  content: "";
+}
 .tagcloud ul li {
   float: left;
   border-top: 0;
@@ -394,7 +398,7 @@ max-width: 100%;
 }
 
 /*--------------------------------------------------------------
-16.1 Galleries
+Galleries
 --------------------------------------------------------------*/
 
 .gallery-item {
