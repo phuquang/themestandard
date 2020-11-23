@@ -16,7 +16,7 @@
 <head>
 <?php wp_head(); ?>
 </head>
-<body <?php if (WP_DEBUG) { body_class(); } ?> id="<?php do_action('cba_body_id') ?>">
+<body <?php body_class(); ?> id="<?php do_action('cba_body_id') ?>">
 <?php wp_body_open(); ?>
 <div id="app">
     <?php get_template_part( 'template-parts/global', 'header' ); ?>
