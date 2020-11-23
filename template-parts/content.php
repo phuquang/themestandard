@@ -12,7 +12,7 @@
                     <?php
                     printf(
                         /* translators: %s: Author name. */
-                        __( 'By %s', 'twentytwenty' ),
+                        __( 'By %s', 'themestandard' ),
                         '<a href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author_meta( 'display_name' ) ) . '</a>'
                     );
                     ?>
@@ -44,7 +44,7 @@
         </div>
         <div class="article-text">
             <?php the_excerpt(); ?>
-            <a href="<?php the_permalink() ?>">Read more ...</a>
+            <a href="<?php the_permalink(); ?>"><?php _e('Continue reading', 'themestandard'); ?></a>
         </div>
     </div>
 </article><!-- .post -->

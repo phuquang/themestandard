@@ -121,9 +121,7 @@ a img.aligncenter {
   padding-bottom: 0; }
 
 .widget-title {
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0.1818em;
+  font-weight: bold;
   margin-bottom: 1.5em;
   text-transform: uppercase; }
 
@@ -541,8 +539,7 @@ Galleries
   border-bottom: 1px solid #d0d0d0;
   padding: 7px 0;
   color: #555;
-  font-size: 11px;
-  font-family: Georgia,"Times New Roman",Times,serif;
+  font-size: 12px;
   font-style: italic; }
   .breadcrumb-wrap ol {
     background: none;
@@ -595,9 +592,8 @@ Galleries
   padding-top: 10px; }
   .comments-wrapper .comment-reply-title,
   .comments-wrapper .comments-title {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.1818em;
+    font-size: 16px;
+    font-weight: bold;
     margin-bottom: 0;
     text-transform: uppercase; }
   .comments-wrapper .media-heading {
@@ -705,11 +701,10 @@ Galleries
 
 /* ---------------------------------------------- Typography */
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px; }
+  font-size: 14px; }
 
 .widget-title {
-  font-size: 12px; }
+  font-size: 16px; }
 
 .section-title {
   font-size: 12px; }
@@ -719,13 +714,13 @@ body {
 
 .page-title,
 .entry-title {
-  font-size: 24px;
+  font-size: 16px;
   line-height: 28px;
   margin: 0 0 7px;
   letter-spacing: 0; }
 
 .entry-meta {
-  font-size: 11px;
+  font-size: 12px;
   color: #6a6a6a;
   display: inline-block; }
 
@@ -764,10 +759,10 @@ body {
   .article a {
     color: inherit; }
   .article .article-title {
-    font-weight: 700;
+    font-weight: bold;
     color: #222;
-    font-size: 19px;
-    margin: 0 0 10px 0; }
+    font-size: 16px;
+    margin: 5px 0 10px 0; }
   .article .article-text {
     color: #6a6a6a; }
 

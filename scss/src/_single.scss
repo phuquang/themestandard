@@ -54,9 +54,8 @@
   padding-top: 10px;
   .comment-reply-title,
   .comments-title {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.1818em;
+    font-size: $font-size-section-title;
+    font-weight: bold;
     margin-bottom: 0;
     text-transform: uppercase;
   }
