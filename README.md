@@ -1,5 +1,5 @@
-# Theme standard
-Theme này, chỉ là code mẫu dựa trên cấu trúc của WordPress đưa ra. Hãy cũng nhau phát triễn nhé
+# Theme
+Theme mẫu dựa trên cấu trúc theme của WordPress.
 
 # Tham khảo thêm
 - [Tài liệu](https://phuquang.github.io/themestandard/)

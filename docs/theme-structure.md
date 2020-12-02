@@ -1,84 +1,44 @@
 # Hệ thống phân cấp thư mục dành cho dự án
 ```bash
 .
-├──📁assets/                          # Chứa các tệp frontend và admin (css, js, image, font v.v..)
-│  ├──📁admin-css/                    # Style (css) dành cho trang admin
-│  ├──📁admin-fonts/                  # Font dành cho trang admin
-│  ├──📁admin-images/                 # Hình dành cho trang admin
-│  ├──📁admin-js/                     # Script (js) dành cho trang admin
-│  │  └──📁codemirror/                # Thư viện codemirror (Sử dụng cho chức năng edit-template-page của page)
+├──📁assets/                          # Chứa các tệp css, js, image, font v.v..
 │  ├──📁css/                          # Style (css) dành cho frontend
 │  ├──📁fonts/                        # Font dành cho frontend
 │  ├──📁images/                       # Hình dành cho frontend
 │  └──📁js/                           # Script (js) dành cho frontend
-├──📁inc/                             # Function, controller v.v..
+├──📁inc/                             # Function, classes v.v..
+│  ├──📁classes/                      # Thư viện code
 │  ├──📁libraries/                    # Thư viện code
-│  │  ├──📁Form/                      # Thư viện Form
-│  │  │  ├──📝index.php               # File index để tránh truy cập trực tiếp
-│  │  │  ├──📝init.php                # Include các file quang trọng
-│  │  │  ├──📝QNP_Form.php            # Chương trình chính
-│  │  │  ├──📝QNP_Field.php           # Khởi tạo field
-│  │  │  ├──📝QNP_Mailer.php          # Gửi mail
-│  │  │  ├──📝trait.qnp_errors.php    # Hàm xử lý thông tin lỗi
-│  │  │  ├──📝trait.qnp_filters.php   # Hàm xử lý và chuyển đổi dữ liệu
-│  │  │  ├──📝trait.qnp_methods.php   # Hàm xử lý dữ liệu đầu vào
-│  │  │  ├──📝trait.qnp_rules.php     # Xử lý dữ liệu qua các quy tắc định trước
-│  │  │  └──📝trait.qnp_helpers.php   # Hàm phụ trợ
-│  │  ├──📝disable-feature.php        # Thư viện loại bỏ các tính năng mặc định
-│  │  ├──📝helper.php                 # Thư viện những hàm hỗ trợ
-│  │  ├──📝QNP_Pagination.php         # Class phân trang, được gọi trong the_pagination()
-│  │  └──📝theme-debug.php            # Hàm hỗ trợ cho dev và debug, deploy thì nên xóa đi
 │  ├──📁metaboxes/                    # Đăng ký metaboxes và field
-│  │  └──📝edit-template-page.php     # Chức năng edit-template-page của page
-│  ├──📁options/                      # Đăng ký admin option page
-│  │  ├──📝theme-settings-child.php   # Trang option con
-│  │  └──📝theme-settings.php         # Trang option chung
 │  ├──📁registers/                    # Đăng ký post type và sidebar và các chức năng khác
-│  │  ├──📝posttype-sample.php        # Mẫu đăng ký post type
-│  │  └──📝sidebar-sample.php         # Mẫu đăng ký sidebar
+│  │  ├──📝customize.php              # Mẫu đăng ký post type
+│  │  └──📝sidebar.php                # Đăng ký sidebar
 │  ├──📁widgets/                      # Đăng ký widgets
-│  │  └──📝sample.php                 # Mẫu đăng ký widget
-│  ├──📝disable.php                   # Thực thi các hàm loại bỏ các tính năng mặc định
-│  ├──📝pagination.php                # Hàm phân trang
-│  ├──📝redirects.php                 # Hàm chuyển hướng
+│  │  └──📝article-by-category.php    # Đăng ký widget article by category
 │  ├──📝helper.php                    # Hàm hỗ trợ
-│  ├──📝seo.php                       # Tùy chỉnh lại các thẻ SEO
 │  ├──📝setup.php                     # Thiết lập theme
+│  ├──📝seo.php                       # Tùy chỉnh các thẻ của plugin All in One SEO Pack
 │  └──📝init.php                      # Require các file trong thư mục inc
 ├──📁languages/                       # Ngôn ngữ theme
 │  ├──📝theme.pot                     # File chứa chuỗi dịch (Portable Object Template)
 │  ├──📝theme.po                      # File chứa bản dịch thực sự (Portable Object)
 │  └──📝theme.mo                      # File đã được biên dịch (Machine Object)
-├──📁form-controllers/                # Chứa các file sử lý của form
-│  ├──📝page-contact-controller.php   # Xử lý
-│  ├──📝page-contact-validator.php    # Kiểm tra đầu vào
-│  └──📝page-contact-sendmail.php     # Gửi mail
-├──📁template-emails/                 # Chứa các mẫu gửi mail
-│  ├──📝page-contact-user.tpl         # Mẫu dành email của user
-│  └──📝page-contact-admin.tpl        # Mẫu dành email của admin
 ├──📁template-pages/                  # Chứa các trang với định danh là slug
-│  ├──📝page-top.php                  # Nội dung trang chủ
-│  ├──📝page-slug.php                 # Các trang theo định danh slug
-│  ├──📝page-contact.php              # Trang form
-│  └──📝page-contact-complete.php     # Trang hoàn thành
 ├──📁template-parts/                  # Chứa các thành phần của trang
 │  ├──📝global-footer.php             # Phần footer chung
 │  ├──📝global-header.php             # Phần header chung
 │  ├──📝global-navigation.php         # Điều hướng trang
-│  ├──📝content-contact-confirmation.php # Phần nội dung của trang xác nhận
-│  ├──📝content-contact.php              # Phần nội dung của trang form
+│  ├──📝global-breadcrumbs.php        # Điều hướng trang
 │  ├──📝content-none.php              # Code in nội dung
 │  └──📝content.php                   # Code in nội dung
-├──📁tmp/                             # Sử dụng cho chức năng edit-template-page của page
+├──📁templates/                       # Chứa các mẫu cho Post Type
 ├──📝404.php                          # Trang không tìm thấy
-├──📝archive-sample.php               # Danh sách của Post Type: sample
 ├──📝archive.php                      # Danh sách chung (Post)
+├──📝attachment.php                   # Danh sách chung (Post)
 ├──📝author.php                       # Trang dành cho user
 ├──📝category.php                     # Trang dành cho danh mục
-├──📝tag.php                          # Trang dành cho thẻ
-├──📝date.php                         # Trang dành cho ngày tháng năm
-├──📝taxonomy.php                     # Trang dành cho các phân loại
 ├──📝comments.php                     # Bình luận
+├──📝date.php                         # Trang dành cho ngày tháng năm
 ├──📝footer.php                       # Chân site
 ├──📝functions.php                    # Chức năng chính
 ├──📝header.php                       # Đầu site
@@ -89,9 +49,11 @@
 ├──📝search.php                       # Trang tìm kiếm
 ├──📝searchform.php                   # Form tìm kiếm
 ├──📝sidebar.php                      # Sidebar
-├──📝single-sample.php                # Chi tiết của Post Type: sample
 ├──📝single.php                       # Chi tiết chung (Post)
+└──📝style-editor.css                 # Style dành cho editor
 └──📝style.css                        # Style chính
+├──📝tag.php                          # Trang dành cho thẻ
+├──📝taxonomy.php                     # Trang dành cho các phân loại
 ```
 
 # Navigation
